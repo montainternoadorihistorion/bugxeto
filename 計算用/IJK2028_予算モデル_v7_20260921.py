@@ -47,6 +47,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 from dataclasses import asdict, dataclass, replace
 from decimal import Decimal
 from pathlib import Path
@@ -54,7 +55,8 @@ from typing import Iterable, Mapping
 
 
 VERSION = "v7_20260921"
-REVISION = "ホテル泊は全日・短期とも最低10000円、短期は同条件全日ホテル料金が上限。施設内宿泊には適用しない。短期差額の省略値も全日差額の70%へ統一（料金表・年齢倍率・全日青年個室21000円・会員30%見込みは維持）"
+REVISION = "表示基本料金Cを固定して会員割引額だけを変更可能にし、人数・定員・食数・費用・換算率・比率の入力検証を追加。現行50ユーロ割引の基本8ケースと従来25ケースの金額は維持。ホテル最低10000円・短期全日上限・全日青年個室21000円も維持"
+DISPLAY_TABLE_OFFSET_EURO = 50  # TABLEの旧会員相当額Bから、確定済みの表示基本料金Cへの固定差額。
 TABLE = {
     "A": [265,275,280,290,300,305,315,325,335,340,350,360,365,375,385,390,400,410,420,425,435,445,450,460],
     "B": [230,235,245,250,255,260,270,275,280,285,295,300,305,310,320,325,330,335,345,350,355,360,370,375],
@@ -69,6 +71,31 @@ YOUTH_AGE_KEYS = frozenset(("16_or_under", "17_24", BASE_AGE_KEY))
 PERIOD_FACTOR = {"full": 1., "first": .7, "second": .7}
 NIGHTS = {"full": 7, "first": 3, "second": 3}
 NIGHT_MASK = {"full": (1,1,1,1,1,1,1), "first": (1,1,1,0,0,0,0), "second": (0,0,0,0,1,1,1)}
+
+
+def require_number(name, value, *, minimum=0, maximum=None, strictly_positive=False):
+    """条件変更時の誤入力を、収支へ紛れ込ませず明示して止める。丸めは行わない。"""
+    if isinstance(value, bool) or not isinstance(value, (int, float, Decimal)):
+        raise ValueError(f"{name}は数値で指定してください")
+    try:
+        finite = math.isfinite(value)
+    except (OverflowError, TypeError, ValueError):
+        finite = False
+    if not finite or value < minimum or (maximum is not None and value > maximum) or (
+            strictly_positive and value <= 0):
+        bounds = "0より大きい有限値" if strictly_positive else (
+            f"{minimum}以上{maximum}以下の有限値" if maximum is not None else f"{minimum}以上の有限値")
+        raise ValueError(f"{name}は{bounds}で指定してください")
+
+
+def require_count(name, value):
+    if type(value) is not int or value < 0:
+        raise ValueError(f"{name}は0以上の整数で指定してください")
+
+
+def require_flag(name, value):
+    if type(value) is not bool:
+        raise ValueError(f"{name}はTrue/Falseで指定してください")
 
 
 @dataclass(frozen=True)
@@ -132,9 +159,11 @@ def participant_fee_euro(age, period="full", *, display_base_euro=350, member=Tr
     """
     if age not in AGE_FACTOR or period not in PERIOD_FACTOR:
         raise ValueError("年齢・参加期間が不正です")
-    if min(display_base_euro, member_discount_full_euro) < 0 or (
-            nonmember_short_euro is not None and nonmember_short_euro < 0):
-        raise ValueError("料金・会員差額を負にはできません")
+    require_flag("会員区分", member)
+    require_number("表示基本料金", display_base_euro)
+    require_number("全日会員割引", member_discount_full_euro)
+    if nonmember_short_euro is not None:
+        require_number("短期会員差額", nonmember_short_euro)
     # 通貨の例示で244.99999999999997等を出さず、未決定の価格丸めも加えない。
     full_member = (Decimal(str(display_base_euro))*Decimal(str(AGE_FACTOR[age]))
                    - Decimal(str(member_discount_full_euro)))
@@ -158,7 +187,8 @@ def private_addition_yen(age, period="full", *, actual_nights=None, addition_nig
     if age not in YOUTH_AGE_KEYS or period != "full":
         raise ValueError("施設内個室は全日7泊の35歳以下一般参加者専用。前半・後半参加では利用不可")
     nights = NIGHTS["full"] if actual_nights is None else actual_nights
-    if type(nights) is not int or nights != NIGHTS["full"] or addition_night < 0:
+    require_number("個室1泊追加額", addition_night)
+    if type(nights) is not int or nights != NIGHTS["full"]:
         raise ValueError("個室は全日7泊のみ。1泊追加額は0以上")
     return nights*addition_night
 
@@ -166,18 +196,23 @@ def private_addition_yen(age, period="full", *, actual_nights=None, addition_nig
 def average_fee(mix=None, distribution=(.5, .3, .2)):
     """25～35歳の全日会員相当額Bの平均。申込週3期間内は均等。"""
     mix = MIX_JP if mix is None else mix
-    if set(mix) != set(TABLE) or abs(sum(mix.values()) - 1) > 1e-9:
+    if set(mix) != set(TABLE):
         raise ValueError("国区分構成は A/B/C/Cx の合計1で指定してください")
-    if len(distribution) != 3 or abs(sum(distribution) - 1) > 1e-9:
+    for group, value in mix.items():
+        require_number(f"国区分{group}の構成比", value, maximum=1)
+    if len(distribution) != 3:
         raise ValueError("登録時期の構成は3期間の合計1で指定してください")
-    if min(mix.values()) < 0 or min(distribution) < 0:
-        raise ValueError("構成比を負にはできません")
+    for i, value in enumerate(distribution):
+        require_number(f"登録時期{i+1}の構成比", value, maximum=1)
+    if abs(sum(mix.values()) - 1) > 1e-9 or abs(sum(distribution) - 1) > 1e-9:
+        raise ValueError("国区分構成・登録時期の構成はそれぞれ合計1で指定してください")
     by_country = {g: sum(distribution[i] * sum(v[i*8:i*8+8])/8 for i in range(3))
                   for g, v in TABLE.items()}
     return sum(mix[g] * by_country[g] for g in mix), by_country
 
 
 def nightly_occupancy(cohorts, staff_full=15):
+    require_count("運営人数", staff_full)
     return [staff_full + sum(c.count * NIGHT_MASK[c.period][night]
                             for c in cohorts if c.lodging == "onsite") for night in range(7)]
 
@@ -185,6 +220,8 @@ def nightly_occupancy(cohorts, staff_full=15):
 def route_capacity_overflow(cohorts, capacity, staff_full):
     """比較用に不足床数だけ全日25～35歳群をホテルへ移す。若年群を自動振替しない。"""
     cohorts = list(cohorts)
+    require_count("施設内定員", capacity)
+    require_count("運営人数", staff_full)
     needed = max(0, max(nightly_occupancy(cohorts, staff_full)) - capacity)
     remaining = needed
     result = []
@@ -206,6 +243,12 @@ def route_capacity_overflow(cohorts, capacity, staff_full):
 def unit_cost(period, lodging, *, lodging_night=1000, meal_price=450,
               full_meals=21, short_meals=11):
     """宿泊は実際の泊数、食事は予算確保数、一人ごとの費用は期間にかかわらず一人分。"""
+    if period not in NIGHTS or lodging not in ("onsite", "hotel"):
+        raise ValueError("参加期間・宿泊区分が不正です")
+    require_number("施設宿泊1泊原価", lodging_night)
+    require_number("食事1食原価", meal_price)
+    require_count("全日食数", full_meals)
+    require_count("短期食数", short_meals)
     day_ratio = 1 if period == "full" else .5
     return {
         "lodging": NIGHTS[period]*lodging_night if lodging == "onsite" else 0,
@@ -233,15 +276,19 @@ def average_hotel_fee_adjustment_yen(age, period, *, mix, distribution, fx,
         for week, member_base in enumerate(member_bases):
             price_weight = (Decimal(str(mix[group]))
                             * Decimal(str(distribution[week//8]))/8)
+            if not price_weight:
+                continue
             for member, member_weight in ((True, 1-nonmember_share), (False, nonmember_share)):
+                if not member_weight:
+                    continue
                 euro = participant_fee_euro(age, period,
-                    display_base_euro=member_base+member_discount_full_euro, member=member,
+                    display_base_euro=member_base+DISPLAY_TABLE_OFFSET_EURO, member=member,
                     member_discount_full_euro=member_discount_full_euro,
                     nonmember_short_euro=nonmember_short_euro)
                 before_minimum = (Decimal(str(euro))*Decimal(str(fx))
                                   - Decimal(str(refund_night))*NIGHTS[period])
                 adjusted = hotel_fee_example(age, period,
-                    display_base_euro=member_base+member_discount_full_euro, member=member, fx=fx,
+                    display_base_euro=member_base+DISPLAY_TABLE_OFFSET_EURO, member=member, fx=fx,
                     member_discount_full_euro=member_discount_full_euro,
                     nonmember_short_euro=nonmember_short_euro, refund_night=refund_night,
                     minimum_fee_yen=minimum_fee_yen, short_full_cap=short_full_cap)
@@ -266,6 +313,7 @@ def scenario(label="年齢未反映参考値：全員25～35歳・会員相当�
     """helpers の回収収入は実費/無料を直接円指定し、年齢倍率は決して掛けない。
 
     非会員割合の既定値は0。短期差額の省略値は全日差額×0.7。
+    nonmember_full_euroは会員割引額（旧変数名）。変更しても表示基本料金CはTABLE+50で固定。
     従来の参考ケースはlegacy_scenarioが旧短期差額50とホテル最低額・短期上限なしを明示する。
     最新の基本の見通しでは build_planning_cases が割合0.7と確定した短期差額35を明示する。
     現行の宿泊差引き2000円と個室追加3000円は参加者向け料金。施設宿泊原価1000円は別。
@@ -274,10 +322,31 @@ def scenario(label="年齢未反映参考値：全員25～35歳・会員相当�
     外部ホテル代と遠足事業費は本人払いの別会計。本体には遠足支援枠だけを計上。
     """
     mix = dict(MIX_JP if mix is None else mix)
+    for name, value in (("全日人数", full), ("前半人数", first), ("後半人数", second),
+                        ("運営人数", staff_full), ("施設内定員", capacity),
+                        ("全日個室人数", private_youth_full), ("前半個室人数", private_youth_first),
+                        ("後半個室人数", private_youth_second), ("日帰り1日人数", paid_per_day),
+                        ("無料日帰り延べ人数", free_day_person_days),
+                        ("全日食数", full_meals), ("短期食数", short_meals), ("日帰り受付日数", paid_days)):
+        require_count(name, value)
+    for name, value in (("個室1泊追加額", private_addition_night), ("個室追加原価", private_extra_cost_night),
+                        ("日帰り1人日原価", day_cost), ("施設宿泊1泊原価", lodging_night),
+                        ("食事1食原価", meal_price), ("ホテル1泊差引額", hotel_refund_night),
+                        ("共通費", fixed), ("TEJO関連費", tejo), ("遠足補助", excursion),
+                        ("協力者回収収入", helper_recovery_yen), ("助成金", grants),
+                        ("赤字補填", deficit_support), ("全日会員割引", nonmember_full_euro)):
+        require_number(name, value)
+    require_number("円換算率", fx, strictly_positive=True)
+    for name, value in (("非会員割合", nonmember_share), ("日帰り35歳以上割合", older_day_share),
+                        ("決済手数料率", fee_rate), ("予備費率", reserve_rate)):
+        require_number(name, value, maximum=1)
+    require_flag("定員超過時のホテル自動振替", auto_hotel_overflow)
+    require_flag("短期ホテル料金の全日上限", hotel_short_full_cap)
     if nonmember_short_euro is None:
         nonmember_short_euro = float(Decimal(str(nonmember_full_euro))*Decimal("0.7"))
-    if hotel_minimum_fee_yen is not None and hotel_minimum_fee_yen < 0:
-        raise ValueError("ホテル泊の最低請求額は0以上")
+    require_number("短期会員差額", nonmember_short_euro)
+    if hotel_minimum_fee_yen is not None:
+        require_number("ホテル泊の最低請求額", hotel_minimum_fee_yen)
     if cohorts is not None and age_counts is not None:
         raise ValueError("cohortsとage_countsは同時に指定できません")
     cohorts = list(make_cohorts(full, first, second, age_counts=age_counts) if cohorts is None else cohorts)
@@ -286,16 +355,8 @@ def scenario(label="年齢未反映参考値：全員25～35歳・会員相当�
             raise ValueError(f"不正な参加区分: {c}")
         if type(c.count) is not int or c.count < 0:
             raise ValueError("人数は0以上の整数")
-    if not 0 <= nonmember_share <= 1 or not 0 <= older_day_share <= 1:
-        raise ValueError("構成比は0～1")
     if paid_days not in (0,1,2,3):
         raise ValueError("有料日帰り受付は現日程の最大3日")
-    if min(staff_full, private_youth_full, private_youth_first, private_youth_second,
-           private_addition_night, private_extra_cost_night,
-           paid_per_day, free_day_person_days, helper_recovery_yen,
-           grants, deficit_support, lodging_night, meal_price, hotel_refund_night,
-           nonmember_full_euro, nonmember_short_euro) < 0:
-        raise ValueError("人数・費用・収入を負にはできません")
     initial_registration = sum(c.count for c in cohorts)
     if auto_hotel_overflow:
         cohorts, routed = route_capacity_overflow(cohorts, capacity, staff_full)
@@ -315,9 +376,22 @@ def scenario(label="年齢未反映参考値：全員25～35歳・会員相当�
         raise ValueError("個室料金方式が不正です")
     if private_youth_first or private_youth_second:
         raise ValueError("施設内個室は全日参加者専用。前半・後半の個室人数は0にしてください")
-    avg_euro, by_country = average_fee(mix, distribution)
+    table_average_euro, table_by_country = average_fee(mix, distribution)
+    # 平均額だけが正でも、実際に含めた低料金区分で会員料金が負なら集計しない。
+    # 料金は基本額Cに対し単調なので、含めた国・申込時期の最小額を調べればよい。
+    lowest_display_euro = min(base+DISPLAY_TABLE_OFFSET_EURO
+        for group, values in TABLE.items() if mix[group] > 0
+        for week, base in enumerate(values) if distribution[week//8] > 0)
+    for age, period in {(c.age, c.period) for c in cohorts if c.count}:
+        for member in (True, False):
+            participant_fee_euro(age, period, display_base_euro=lowest_display_euro,
+                member=member, member_discount_full_euro=nonmember_full_euro,
+                nonmember_short_euro=nonmember_short_euro)
+    display_avg_euro = table_average_euro + DISPLAY_TABLE_OFFSET_EURO
+    avg_euro = display_avg_euro - nonmember_full_euro
+    by_country = {g: v+DISPLAY_TABLE_OFFSET_EURO-nonmember_full_euro
+                  for g, v in table_by_country.items()}
     avg_yen = avg_euro*fx
-    display_avg_euro = avg_euro + nonmember_full_euro
     display_avg_yen = display_avg_euro*fx
     age_adjustments = [c.count*display_avg_yen*PERIOD_FACTOR[c.period]*(AGE_FACTOR[c.age]-1)
                        for c in cohorts]
@@ -408,7 +482,7 @@ def scenario(label="年齢未反映参考値：全員25～35歳・会員相当�
         "average_display_basic_fee_euro": display_avg_euro,
         "average_display_basic_fee_yen": display_avg_yen,
         "average_by_country_member_base_euro": by_country,
-        "average_by_country_display_basic_euro": {g: v+nonmember_full_euro for g, v in by_country.items()},
+        "average_by_country_display_basic_euro": {g: v+DISPLAY_TABLE_OFFSET_EURO for g, v in table_by_country.items()},
         "income_yen": income, "variable_expense_components_yen": components,
         "expenses_yen": expenses, "expense_subtotal_before_reserve_yen": subtotal,
         "revenue_yen": revenue, "expenses_total_yen": cost, "balance_yen": revenue-cost,
@@ -432,10 +506,12 @@ def scenario(label="年齢未反映参考値：全員25～35歳・会員相当�
             "nonmember_full_euro": nonmember_full_euro, "nonmember_short_euro": nonmember_short_euro,
             "day_older_share": older_day_share, "payment_rate": fee_rate, "reserve_rate": reserve_rate,
             "age_factors": AGE_FACTOR,
+            "display_table_offset_euro": DISPLAY_TABLE_OFFSET_EURO,
+            "membership_discount_parameter_notice": "nonmember_full_euroは会員割引額（旧変数名）。表示基本料金CはTABLE+50で固定し、割引額の感度変更では動かさない",
             "age_factors_apply_to": "非会員・雑魚寝・食事付き・全日程・25～35歳の表示基本額C",
             "private_addition_basis": ("過去比較用：25～35歳の全日会員料金Bの50%。現行料金ではない"
                 if private_pricing == "legacy_half_member_base" else
-                "全日7泊の35歳以下一般参加者専用。1人1泊3000円×7泊=21000円。前半・後半参加は利用不可。年齢・国・会員・申込週の倍率は掛けない"),
+                f"全日7泊の35歳以下一般参加者専用。1人1泊{private_addition_night}円×7泊={private_addition_night*7}円。前半・後半参加は利用不可。年齢・国・会員・申込週の倍率は掛けない"),
             "lodging_price_notice": "ホテル宿泊差引きは参加者向け料金、lodging_night_yenは施設へ払う原価。連動させず別々に設定する",
             "young_participant_cost_discount": False,
             "site_older_cap": "施設内の36歳以上一般参加者に約2割の目安。分母未定のため人数上限へ変換しない",
@@ -449,8 +525,11 @@ def hotel_fee_example(age, period, *, display_base_euro=350, member=True, fx=170
                       refund_night=2000, member_discount_full_euro=50,
                       nonmember_short_euro=None, minimum_fee_yen=10000, short_full_cap=True):
     """ホテル泊は最低10000円、短期は同条件全日料金が上限。ホテル代は本人別払い。"""
-    if minimum_fee_yen is not None and minimum_fee_yen < 0:
-        raise ValueError("ホテル泊の最低請求額は0以上")
+    require_number("円換算率", fx, strictly_positive=True)
+    require_number("ホテル1泊差引額", refund_night)
+    require_flag("短期ホテル料金の全日上限", short_full_cap)
+    if minimum_fee_yen is not None:
+        require_number("ホテル泊の最低請求額", minimum_fee_yen)
     before_minimum = Decimal(str(participant_fee_euro(age, period,
         display_base_euro=display_base_euro, member=member,
         member_discount_full_euro=member_discount_full_euro,
