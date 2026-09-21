@@ -1,0 +1,4809 @@
+{
+  "version": "v7_20260921",
+  "notice": "需要予測ではなく現条件の比較計算。基準は年齢未定・全員基本倍率。年長40/80人例は任意の感度分析。",
+  "price_table_euro": {
+    "A": [
+      265,
+      275,
+      280,
+      290,
+      300,
+      305,
+      315,
+      325,
+      335,
+      340,
+      350,
+      360,
+      365,
+      375,
+      385,
+      390,
+      400,
+      410,
+      420,
+      425,
+      435,
+      445,
+      450,
+      460
+    ],
+    "B": [
+      230,
+      235,
+      245,
+      250,
+      255,
+      260,
+      270,
+      275,
+      280,
+      285,
+      295,
+      300,
+      305,
+      310,
+      320,
+      325,
+      330,
+      335,
+      345,
+      350,
+      355,
+      360,
+      370,
+      375
+    ],
+    "C": [
+      200,
+      205,
+      210,
+      215,
+      215,
+      220,
+      225,
+      230,
+      235,
+      240,
+      245,
+      250,
+      250,
+      255,
+      260,
+      265,
+      270,
+      275,
+      280,
+      285,
+      285,
+      290,
+      295,
+      300
+    ],
+    "Cx": [
+      130,
+      135,
+      135,
+      140,
+      140,
+      145,
+      145,
+      150,
+      150,
+      155,
+      155,
+      160,
+      160,
+      165,
+      165,
+      170,
+      170,
+      175,
+      175,
+      180,
+      180,
+      185,
+      185,
+      190
+    ]
+  },
+  "hotel_fee_examples_B_week12_yen": {
+    "36_40_full": 69500.0,
+    "36_40_first": 50550.0,
+    "41_plus_full": 95000.0,
+    "41_plus_first": 68400.0
+  },
+  "verification": "24週間料金表・年長者を内数とする登録総数・宿泊定員・基準収支・ホテル控除/費用同時減少・青年のみ個室を検証済み",
+  "scenarios": [
+    {
+      "label": "年齢未定・基本倍率の比較基準",
+      "version": "v7_20260921",
+      "ordinary_registration": 350,
+      "ordinary_period_counts": {
+        "full": 150,
+        "first": 100,
+        "second": 100
+      },
+      "ordinary_age_counts": {
+        "base": 350,
+        "36_40": 0,
+        "41_plus": 0
+      },
+      "free_or_actual_cost_staff": 15,
+      "age_composition_is_forecast": false,
+      "capacity_routed_hotel_full": 8,
+      "hotel_registration": 8,
+      "hotel_period_counts": {
+        "full": 8,
+        "first": 0,
+        "second": 0
+      },
+      "nightly_attendance_including_hotel_and_staff": [
+        265,
+        265,
+        265,
+        165,
+        265,
+        265,
+        265
+      ],
+      "nightly_onsite_including_staff": [
+        257,
+        257,
+        257,
+        157,
+        257,
+        257,
+        257
+      ],
+      "nightly_hotel": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      "onsite_bed_nights": 1699,
+      "meal_allowance_total": 5665,
+      "quantity_notice": "泊数は実滞在、食数は予算仮定。",
+      "paid_day_person_days": 120,
+      "free_day_person_days": 300,
+      "average_basic_fee_euro": 295.61312499999997,
+      "average_basic_fee_yen": 50254.23125,
+      "average_by_country_euro": {
+        "A": 342.0625,
+        "B": 287.5,
+        "C": 239.5,
+        "Cx": 154.0
+      },
+      "income_yen": {
+        "full_basic": 7538134.6875,
+        "first_basic": 3517796.1875,
+        "second_basic": 3517796.1875,
+        "age_uplift": 0.0,
+        "private_youth": 502542.3125,
+        "nonmember": 0.0,
+        "paid_day": 660000.0,
+        "hotel_lodging_credit": -56000,
+        "helpers_actual_cost_recovery": 0,
+        "grants": 0,
+        "deficit_support": 0
+      },
+      "variable_expense_components_yen": {
+        "lodging": 1699000.0,
+        "meals": 2549250.0,
+        "vegetarian": 424000.0,
+        "heat": 265000.0,
+        "kit": 255500.0,
+        "insurance": 292000.0,
+        "visa_admin": 109500.0
+      },
+      "expenses_yen": {
+        "ordinary_and_staff_variable": 5594250.0,
+        "day_reception": 336000,
+        "fixed_common": 4500000,
+        "tejo_support": 2000000,
+        "excursion_support": 400000,
+        "payment_fees": 595850.23625,
+        "reserve": 1611132.02835
+      },
+      "expense_subtotal_before_reserve_yen": 13426100.23625,
+      "revenue_yen": 15680269.375,
+      "expenses_total_yen": 15037232.2646,
+      "balance_yen": 643037.1104000006,
+      "revenue": 15680269.375,
+      "cost": 15037232.2646,
+      "balance": 643037.1104000006,
+      "occupancy": [
+        257,
+        257,
+        257,
+        157,
+        257,
+        257,
+        257
+      ],
+      "cohorts": [
+        {
+          "period": "full",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 142,
+          "unit_expenses_yen": {
+            "lodging": 7000,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 2960700
+        },
+        {
+          "period": "full",
+          "age": "base",
+          "lodging": "hotel",
+          "count": 8,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 110800
+        },
+        {
+          "period": "first",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 100,
+          "unit_expenses_yen": {
+            "lodging": 3000,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 1105000.0
+        },
+        {
+          "period": "second",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 100,
+          "unit_expenses_yen": {
+            "lodging": 3000,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 1105000.0
+        }
+      ],
+      "staff_unit_expenses_yen": {
+        "lodging": 7000,
+        "meals": 9450,
+        "vegetarian": 1600,
+        "heat": 1000,
+        "kit": 700,
+        "insurance": 800,
+        "visa_admin": 300
+      },
+      "assumptions": {
+        "fx": 170,
+        "country_mix": {
+          "A": 0.45,
+          "B": 0.35,
+          "C": 0.12,
+          "Cx": 0.08
+        },
+        "registration_distribution": [
+          0.5,
+          0.3,
+          0.2
+        ],
+        "capacity": 257,
+        "private_youth_full": 20,
+        "lodging_night_yen": 1000,
+        "hotel_credit_night_yen": 1000,
+        "meal_price_yen": 450,
+        "full_meal_allowance": 21,
+        "short_meal_allowance": 11,
+        "meal_counts_are_confirmed": false,
+        "short_vegetarian_heat_fraction": 0.5,
+        "nonmember_share": 0.0,
+        "nonmember_full_euro": 50,
+        "nonmember_short_euro": 50,
+        "day_older_share": 0.5,
+        "payment_rate": 0.038,
+        "reserve_rate": 0.12,
+        "site_older_cap": "施設内の36歳以上一般参加者に約2割の目安。分母未定のため人数上限へ変換しない",
+        "hotel_older_cap": "施設内と同じ厳しい年齢人数上限なし",
+        "hotel_breakfast_automatic_deduction": false
+      }
+    },
+    {
+      "label": "仮例：350人のうち年長40人がホテル泊（需要予測ではない）",
+      "version": "v7_20260921",
+      "ordinary_registration": 350,
+      "ordinary_period_counts": {
+        "full": 150,
+        "first": 100,
+        "second": 100
+      },
+      "ordinary_age_counts": {
+        "base": 310,
+        "36_40": 20,
+        "41_plus": 20
+      },
+      "free_or_actual_cost_staff": 15,
+      "age_composition_is_forecast": false,
+      "capacity_routed_hotel_full": 0,
+      "hotel_registration": 40,
+      "hotel_period_counts": {
+        "full": 20,
+        "first": 10,
+        "second": 10
+      },
+      "nightly_attendance_including_hotel_and_staff": [
+        265,
+        265,
+        265,
+        165,
+        265,
+        265,
+        265
+      ],
+      "nightly_onsite_including_staff": [
+        235,
+        235,
+        235,
+        145,
+        235,
+        235,
+        235
+      ],
+      "nightly_hotel": [
+        30,
+        30,
+        30,
+        20,
+        30,
+        30,
+        30
+      ],
+      "onsite_bed_nights": 1555,
+      "meal_allowance_total": 5665,
+      "quantity_notice": "泊数は実滞在、食数は予算仮定。",
+      "paid_day_person_days": 120,
+      "free_day_person_days": 300,
+      "average_basic_fee_euro": 295.61312499999997,
+      "average_basic_fee_yen": 50254.23125,
+      "average_by_country_euro": {
+        "A": 342.0625,
+        "B": 287.5,
+        "C": 239.5,
+        "Cx": 154.0
+      },
+      "income_yen": {
+        "full_basic": 7538134.6875,
+        "first_basic": 3517796.1875,
+        "second_basic": 3517796.1875,
+        "age_uplift": 1281482.8968749999,
+        "private_youth": 502542.3125,
+        "nonmember": 0.0,
+        "paid_day": 660000.0,
+        "hotel_lodging_credit": -200000,
+        "helpers_actual_cost_recovery": 0,
+        "grants": 0,
+        "deficit_support": 0
+      },
+      "variable_expense_components_yen": {
+        "lodging": 1555000.0,
+        "meals": 2549250.0,
+        "vegetarian": 424000.0,
+        "heat": 265000.0,
+        "kit": 255500.0,
+        "insurance": 292000.0,
+        "visa_admin": 109500.0
+      },
+      "expenses_yen": {
+        "ordinary_and_staff_variable": 5450250.0,
+        "day_reception": 336000,
+        "fixed_common": 4500000,
+        "tejo_support": 2000000,
+        "excursion_support": 400000,
+        "payment_fees": 639074.58633125,
+        "reserve": 1599038.95035975
+      },
+      "expense_subtotal_before_reserve_yen": 13325324.58633125,
+      "revenue_yen": 16817752.271875,
+      "expenses_total_yen": 14924363.536691,
+      "balance_yen": 1893388.7351840008,
+      "revenue": 16817752.271875,
+      "cost": 14924363.536691,
+      "balance": 1893388.7351840008,
+      "occupancy": [
+        235,
+        235,
+        235,
+        145,
+        235,
+        235,
+        235
+      ],
+      "cohorts": [
+        {
+          "period": "full",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 130,
+          "unit_expenses_yen": {
+            "lodging": 7000,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 2710500
+        },
+        {
+          "period": "full",
+          "age": "36_40",
+          "lodging": "hotel",
+          "count": 10,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 138500
+        },
+        {
+          "period": "full",
+          "age": "41_plus",
+          "lodging": "hotel",
+          "count": 10,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 138500
+        },
+        {
+          "period": "first",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 90,
+          "unit_expenses_yen": {
+            "lodging": 3000,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 994500.0
+        },
+        {
+          "period": "first",
+          "age": "36_40",
+          "lodging": "hotel",
+          "count": 5,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 40250.0
+        },
+        {
+          "period": "first",
+          "age": "41_plus",
+          "lodging": "hotel",
+          "count": 5,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 40250.0
+        },
+        {
+          "period": "second",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 90,
+          "unit_expenses_yen": {
+            "lodging": 3000,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 994500.0
+        },
+        {
+          "period": "second",
+          "age": "36_40",
+          "lodging": "hotel",
+          "count": 5,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 40250.0
+        },
+        {
+          "period": "second",
+          "age": "41_plus",
+          "lodging": "hotel",
+          "count": 5,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 40250.0
+        }
+      ],
+      "staff_unit_expenses_yen": {
+        "lodging": 7000,
+        "meals": 9450,
+        "vegetarian": 1600,
+        "heat": 1000,
+        "kit": 700,
+        "insurance": 800,
+        "visa_admin": 300
+      },
+      "assumptions": {
+        "fx": 170,
+        "country_mix": {
+          "A": 0.45,
+          "B": 0.35,
+          "C": 0.12,
+          "Cx": 0.08
+        },
+        "registration_distribution": [
+          0.5,
+          0.3,
+          0.2
+        ],
+        "capacity": 257,
+        "private_youth_full": 20,
+        "lodging_night_yen": 1000,
+        "hotel_credit_night_yen": 1000,
+        "meal_price_yen": 450,
+        "full_meal_allowance": 21,
+        "short_meal_allowance": 11,
+        "meal_counts_are_confirmed": false,
+        "short_vegetarian_heat_fraction": 0.5,
+        "nonmember_share": 0.0,
+        "nonmember_full_euro": 50,
+        "nonmember_short_euro": 50,
+        "day_older_share": 0.5,
+        "payment_rate": 0.038,
+        "reserve_rate": 0.12,
+        "site_older_cap": "施設内の36歳以上一般参加者に約2割の目安。分母未定のため人数上限へ変換しない",
+        "hotel_older_cap": "施設内と同じ厳しい年齢人数上限なし",
+        "hotel_breakfast_automatic_deduction": false
+      }
+    },
+    {
+      "label": "仮例：350人のうち年長80人がホテル泊（需要予測ではない）",
+      "version": "v7_20260921",
+      "ordinary_registration": 350,
+      "ordinary_period_counts": {
+        "full": 150,
+        "first": 100,
+        "second": 100
+      },
+      "ordinary_age_counts": {
+        "base": 270,
+        "36_40": 40,
+        "41_plus": 40
+      },
+      "free_or_actual_cost_staff": 15,
+      "age_composition_is_forecast": false,
+      "capacity_routed_hotel_full": 0,
+      "hotel_registration": 80,
+      "hotel_period_counts": {
+        "full": 40,
+        "first": 20,
+        "second": 20
+      },
+      "nightly_attendance_including_hotel_and_staff": [
+        265,
+        265,
+        265,
+        165,
+        265,
+        265,
+        265
+      ],
+      "nightly_onsite_including_staff": [
+        205,
+        205,
+        205,
+        125,
+        205,
+        205,
+        205
+      ],
+      "nightly_hotel": [
+        60,
+        60,
+        60,
+        40,
+        60,
+        60,
+        60
+      ],
+      "onsite_bed_nights": 1355,
+      "meal_allowance_total": 5665,
+      "quantity_notice": "泊数は実滞在、食数は予算仮定。",
+      "paid_day_person_days": 120,
+      "free_day_person_days": 300,
+      "average_basic_fee_euro": 295.61312499999997,
+      "average_basic_fee_yen": 50254.23125,
+      "average_by_country_euro": {
+        "A": 342.0625,
+        "B": 287.5,
+        "C": 239.5,
+        "Cx": 154.0
+      },
+      "income_yen": {
+        "full_basic": 7538134.6875,
+        "first_basic": 3517796.1875,
+        "second_basic": 3517796.1875,
+        "age_uplift": 2562965.7937499997,
+        "private_youth": 502542.3125,
+        "nonmember": 0.0,
+        "paid_day": 660000.0,
+        "hotel_lodging_credit": -400000,
+        "helpers_actual_cost_recovery": 0,
+        "grants": 0,
+        "deficit_support": 0
+      },
+      "variable_expense_components_yen": {
+        "lodging": 1355000.0,
+        "meals": 2549250.0,
+        "vegetarian": 424000.0,
+        "heat": 265000.0,
+        "kit": 255500.0,
+        "insurance": 292000.0,
+        "visa_admin": 109500.0
+      },
+      "expenses_yen": {
+        "ordinary_and_staff_variable": 5250250.0,
+        "day_reception": 336000,
+        "fixed_common": 4500000,
+        "tejo_support": 2000000,
+        "excursion_support": 400000,
+        "payment_fees": 680170.9364125,
+        "reserve": 1579970.5123695
+      },
+      "expense_subtotal_before_reserve_yen": 13166420.9364125,
+      "revenue_yen": 17899235.16875,
+      "expenses_total_yen": 14746391.448782,
+      "balance_yen": 3152843.7199679986,
+      "revenue": 17899235.16875,
+      "cost": 14746391.448782,
+      "balance": 3152843.7199679986,
+      "occupancy": [
+        205,
+        205,
+        205,
+        125,
+        205,
+        205,
+        205
+      ],
+      "cohorts": [
+        {
+          "period": "full",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 110,
+          "unit_expenses_yen": {
+            "lodging": 7000,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 2293500
+        },
+        {
+          "period": "full",
+          "age": "36_40",
+          "lodging": "hotel",
+          "count": 20,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 277000
+        },
+        {
+          "period": "full",
+          "age": "41_plus",
+          "lodging": "hotel",
+          "count": 20,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 277000
+        },
+        {
+          "period": "first",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 80,
+          "unit_expenses_yen": {
+            "lodging": 3000,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 884000.0
+        },
+        {
+          "period": "first",
+          "age": "36_40",
+          "lodging": "hotel",
+          "count": 10,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 80500.0
+        },
+        {
+          "period": "first",
+          "age": "41_plus",
+          "lodging": "hotel",
+          "count": 10,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 80500.0
+        },
+        {
+          "period": "second",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 80,
+          "unit_expenses_yen": {
+            "lodging": 3000,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 884000.0
+        },
+        {
+          "period": "second",
+          "age": "36_40",
+          "lodging": "hotel",
+          "count": 10,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 80500.0
+        },
+        {
+          "period": "second",
+          "age": "41_plus",
+          "lodging": "hotel",
+          "count": 10,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 80500.0
+        }
+      ],
+      "staff_unit_expenses_yen": {
+        "lodging": 7000,
+        "meals": 9450,
+        "vegetarian": 1600,
+        "heat": 1000,
+        "kit": 700,
+        "insurance": 800,
+        "visa_admin": 300
+      },
+      "assumptions": {
+        "fx": 170,
+        "country_mix": {
+          "A": 0.45,
+          "B": 0.35,
+          "C": 0.12,
+          "Cx": 0.08
+        },
+        "registration_distribution": [
+          0.5,
+          0.3,
+          0.2
+        ],
+        "capacity": 257,
+        "private_youth_full": 20,
+        "lodging_night_yen": 1000,
+        "hotel_credit_night_yen": 1000,
+        "meal_price_yen": 450,
+        "full_meal_allowance": 21,
+        "short_meal_allowance": 11,
+        "meal_counts_are_confirmed": false,
+        "short_vegetarian_heat_fraction": 0.5,
+        "nonmember_share": 0.0,
+        "nonmember_full_euro": 50,
+        "nonmember_short_euro": 50,
+        "day_older_share": 0.5,
+        "payment_rate": 0.038,
+        "reserve_rate": 0.12,
+        "site_older_cap": "施設内の36歳以上一般参加者に約2割の目安。分母未定のため人数上限へ変換しない",
+        "hotel_older_cap": "施設内と同じ厳しい年齢人数上限なし",
+        "hotel_breakfast_automatic_deduction": false
+      }
+    },
+    {
+      "label": "青年の有料個室0人",
+      "version": "v7_20260921",
+      "ordinary_registration": 350,
+      "ordinary_period_counts": {
+        "full": 150,
+        "first": 100,
+        "second": 100
+      },
+      "ordinary_age_counts": {
+        "base": 350,
+        "36_40": 0,
+        "41_plus": 0
+      },
+      "free_or_actual_cost_staff": 15,
+      "age_composition_is_forecast": false,
+      "capacity_routed_hotel_full": 8,
+      "hotel_registration": 8,
+      "hotel_period_counts": {
+        "full": 8,
+        "first": 0,
+        "second": 0
+      },
+      "nightly_attendance_including_hotel_and_staff": [
+        265,
+        265,
+        265,
+        165,
+        265,
+        265,
+        265
+      ],
+      "nightly_onsite_including_staff": [
+        257,
+        257,
+        257,
+        157,
+        257,
+        257,
+        257
+      ],
+      "nightly_hotel": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      "onsite_bed_nights": 1699,
+      "meal_allowance_total": 5665,
+      "quantity_notice": "泊数は実滞在、食数は予算仮定。",
+      "paid_day_person_days": 120,
+      "free_day_person_days": 300,
+      "average_basic_fee_euro": 295.61312499999997,
+      "average_basic_fee_yen": 50254.23125,
+      "average_by_country_euro": {
+        "A": 342.0625,
+        "B": 287.5,
+        "C": 239.5,
+        "Cx": 154.0
+      },
+      "income_yen": {
+        "full_basic": 7538134.6875,
+        "first_basic": 3517796.1875,
+        "second_basic": 3517796.1875,
+        "age_uplift": 0.0,
+        "private_youth": 0.0,
+        "nonmember": 0.0,
+        "paid_day": 660000.0,
+        "hotel_lodging_credit": -56000,
+        "helpers_actual_cost_recovery": 0,
+        "grants": 0,
+        "deficit_support": 0
+      },
+      "variable_expense_components_yen": {
+        "lodging": 1699000.0,
+        "meals": 2549250.0,
+        "vegetarian": 424000.0,
+        "heat": 265000.0,
+        "kit": 255500.0,
+        "insurance": 292000.0,
+        "visa_admin": 109500.0
+      },
+      "expenses_yen": {
+        "ordinary_and_staff_variable": 5594250.0,
+        "day_reception": 336000,
+        "fixed_common": 4500000,
+        "tejo_support": 2000000,
+        "excursion_support": 400000,
+        "payment_fees": 576753.628375,
+        "reserve": 1608840.4354049999
+      },
+      "expense_subtotal_before_reserve_yen": 13407003.628375,
+      "revenue_yen": 15177727.0625,
+      "expenses_total_yen": 15015844.06378,
+      "balance_yen": 161882.99871999957,
+      "revenue": 15177727.0625,
+      "cost": 15015844.06378,
+      "balance": 161882.99871999957,
+      "occupancy": [
+        257,
+        257,
+        257,
+        157,
+        257,
+        257,
+        257
+      ],
+      "cohorts": [
+        {
+          "period": "full",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 142,
+          "unit_expenses_yen": {
+            "lodging": 7000,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 2960700
+        },
+        {
+          "period": "full",
+          "age": "base",
+          "lodging": "hotel",
+          "count": 8,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 110800
+        },
+        {
+          "period": "first",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 100,
+          "unit_expenses_yen": {
+            "lodging": 3000,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 1105000.0
+        },
+        {
+          "period": "second",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 100,
+          "unit_expenses_yen": {
+            "lodging": 3000,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 1105000.0
+        }
+      ],
+      "staff_unit_expenses_yen": {
+        "lodging": 7000,
+        "meals": 9450,
+        "vegetarian": 1600,
+        "heat": 1000,
+        "kit": 700,
+        "insurance": 800,
+        "visa_admin": 300
+      },
+      "assumptions": {
+        "fx": 170,
+        "country_mix": {
+          "A": 0.45,
+          "B": 0.35,
+          "C": 0.12,
+          "Cx": 0.08
+        },
+        "registration_distribution": [
+          0.5,
+          0.3,
+          0.2
+        ],
+        "capacity": 257,
+        "private_youth_full": 0,
+        "lodging_night_yen": 1000,
+        "hotel_credit_night_yen": 1000,
+        "meal_price_yen": 450,
+        "full_meal_allowance": 21,
+        "short_meal_allowance": 11,
+        "meal_counts_are_confirmed": false,
+        "short_vegetarian_heat_fraction": 0.5,
+        "nonmember_share": 0.0,
+        "nonmember_full_euro": 50,
+        "nonmember_short_euro": 50,
+        "day_older_share": 0.5,
+        "payment_rate": 0.038,
+        "reserve_rate": 0.12,
+        "site_older_cap": "施設内の36歳以上一般参加者に約2割の目安。分母未定のため人数上限へ変換しない",
+        "hotel_older_cap": "施設内と同じ厳しい年齢人数上限なし",
+        "hotel_breakfast_automatic_deduction": false
+      }
+    },
+    {
+      "label": "青年の有料個室10人",
+      "version": "v7_20260921",
+      "ordinary_registration": 350,
+      "ordinary_period_counts": {
+        "full": 150,
+        "first": 100,
+        "second": 100
+      },
+      "ordinary_age_counts": {
+        "base": 350,
+        "36_40": 0,
+        "41_plus": 0
+      },
+      "free_or_actual_cost_staff": 15,
+      "age_composition_is_forecast": false,
+      "capacity_routed_hotel_full": 8,
+      "hotel_registration": 8,
+      "hotel_period_counts": {
+        "full": 8,
+        "first": 0,
+        "second": 0
+      },
+      "nightly_attendance_including_hotel_and_staff": [
+        265,
+        265,
+        265,
+        165,
+        265,
+        265,
+        265
+      ],
+      "nightly_onsite_including_staff": [
+        257,
+        257,
+        257,
+        157,
+        257,
+        257,
+        257
+      ],
+      "nightly_hotel": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      "onsite_bed_nights": 1699,
+      "meal_allowance_total": 5665,
+      "quantity_notice": "泊数は実滞在、食数は予算仮定。",
+      "paid_day_person_days": 120,
+      "free_day_person_days": 300,
+      "average_basic_fee_euro": 295.61312499999997,
+      "average_basic_fee_yen": 50254.23125,
+      "average_by_country_euro": {
+        "A": 342.0625,
+        "B": 287.5,
+        "C": 239.5,
+        "Cx": 154.0
+      },
+      "income_yen": {
+        "full_basic": 7538134.6875,
+        "first_basic": 3517796.1875,
+        "second_basic": 3517796.1875,
+        "age_uplift": 0.0,
+        "private_youth": 251271.15625,
+        "nonmember": 0.0,
+        "paid_day": 660000.0,
+        "hotel_lodging_credit": -56000,
+        "helpers_actual_cost_recovery": 0,
+        "grants": 0,
+        "deficit_support": 0
+      },
+      "variable_expense_components_yen": {
+        "lodging": 1699000.0,
+        "meals": 2549250.0,
+        "vegetarian": 424000.0,
+        "heat": 265000.0,
+        "kit": 255500.0,
+        "insurance": 292000.0,
+        "visa_admin": 109500.0
+      },
+      "expenses_yen": {
+        "ordinary_and_staff_variable": 5594250.0,
+        "day_reception": 336000,
+        "fixed_common": 4500000,
+        "tejo_support": 2000000,
+        "excursion_support": 400000,
+        "payment_fees": 586301.9323125,
+        "reserve": 1609986.2318775
+      },
+      "expense_subtotal_before_reserve_yen": 13416551.9323125,
+      "revenue_yen": 15428998.21875,
+      "expenses_total_yen": 15026538.16419,
+      "balance_yen": 402460.0545600001,
+      "revenue": 15428998.21875,
+      "cost": 15026538.16419,
+      "balance": 402460.0545600001,
+      "occupancy": [
+        257,
+        257,
+        257,
+        157,
+        257,
+        257,
+        257
+      ],
+      "cohorts": [
+        {
+          "period": "full",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 142,
+          "unit_expenses_yen": {
+            "lodging": 7000,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 2960700
+        },
+        {
+          "period": "full",
+          "age": "base",
+          "lodging": "hotel",
+          "count": 8,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 110800
+        },
+        {
+          "period": "first",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 100,
+          "unit_expenses_yen": {
+            "lodging": 3000,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 1105000.0
+        },
+        {
+          "period": "second",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 100,
+          "unit_expenses_yen": {
+            "lodging": 3000,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 1105000.0
+        }
+      ],
+      "staff_unit_expenses_yen": {
+        "lodging": 7000,
+        "meals": 9450,
+        "vegetarian": 1600,
+        "heat": 1000,
+        "kit": 700,
+        "insurance": 800,
+        "visa_admin": 300
+      },
+      "assumptions": {
+        "fx": 170,
+        "country_mix": {
+          "A": 0.45,
+          "B": 0.35,
+          "C": 0.12,
+          "Cx": 0.08
+        },
+        "registration_distribution": [
+          0.5,
+          0.3,
+          0.2
+        ],
+        "capacity": 257,
+        "private_youth_full": 10,
+        "lodging_night_yen": 1000,
+        "hotel_credit_night_yen": 1000,
+        "meal_price_yen": 450,
+        "full_meal_allowance": 21,
+        "short_meal_allowance": 11,
+        "meal_counts_are_confirmed": false,
+        "short_vegetarian_heat_fraction": 0.5,
+        "nonmember_share": 0.0,
+        "nonmember_full_euro": 50,
+        "nonmember_short_euro": 50,
+        "day_older_share": 0.5,
+        "payment_rate": 0.038,
+        "reserve_rate": 0.12,
+        "site_older_cap": "施設内の36歳以上一般参加者に約2割の目安。分母未定のため人数上限へ変換しない",
+        "hotel_older_cap": "施設内と同じ厳しい年齢人数上限なし",
+        "hotel_breakfast_automatic_deduction": false
+      }
+    },
+    {
+      "label": "青年の有料個室20人",
+      "version": "v7_20260921",
+      "ordinary_registration": 350,
+      "ordinary_period_counts": {
+        "full": 150,
+        "first": 100,
+        "second": 100
+      },
+      "ordinary_age_counts": {
+        "base": 350,
+        "36_40": 0,
+        "41_plus": 0
+      },
+      "free_or_actual_cost_staff": 15,
+      "age_composition_is_forecast": false,
+      "capacity_routed_hotel_full": 8,
+      "hotel_registration": 8,
+      "hotel_period_counts": {
+        "full": 8,
+        "first": 0,
+        "second": 0
+      },
+      "nightly_attendance_including_hotel_and_staff": [
+        265,
+        265,
+        265,
+        165,
+        265,
+        265,
+        265
+      ],
+      "nightly_onsite_including_staff": [
+        257,
+        257,
+        257,
+        157,
+        257,
+        257,
+        257
+      ],
+      "nightly_hotel": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      "onsite_bed_nights": 1699,
+      "meal_allowance_total": 5665,
+      "quantity_notice": "泊数は実滞在、食数は予算仮定。",
+      "paid_day_person_days": 120,
+      "free_day_person_days": 300,
+      "average_basic_fee_euro": 295.61312499999997,
+      "average_basic_fee_yen": 50254.23125,
+      "average_by_country_euro": {
+        "A": 342.0625,
+        "B": 287.5,
+        "C": 239.5,
+        "Cx": 154.0
+      },
+      "income_yen": {
+        "full_basic": 7538134.6875,
+        "first_basic": 3517796.1875,
+        "second_basic": 3517796.1875,
+        "age_uplift": 0.0,
+        "private_youth": 502542.3125,
+        "nonmember": 0.0,
+        "paid_day": 660000.0,
+        "hotel_lodging_credit": -56000,
+        "helpers_actual_cost_recovery": 0,
+        "grants": 0,
+        "deficit_support": 0
+      },
+      "variable_expense_components_yen": {
+        "lodging": 1699000.0,
+        "meals": 2549250.0,
+        "vegetarian": 424000.0,
+        "heat": 265000.0,
+        "kit": 255500.0,
+        "insurance": 292000.0,
+        "visa_admin": 109500.0
+      },
+      "expenses_yen": {
+        "ordinary_and_staff_variable": 5594250.0,
+        "day_reception": 336000,
+        "fixed_common": 4500000,
+        "tejo_support": 2000000,
+        "excursion_support": 400000,
+        "payment_fees": 595850.23625,
+        "reserve": 1611132.02835
+      },
+      "expense_subtotal_before_reserve_yen": 13426100.23625,
+      "revenue_yen": 15680269.375,
+      "expenses_total_yen": 15037232.2646,
+      "balance_yen": 643037.1104000006,
+      "revenue": 15680269.375,
+      "cost": 15037232.2646,
+      "balance": 643037.1104000006,
+      "occupancy": [
+        257,
+        257,
+        257,
+        157,
+        257,
+        257,
+        257
+      ],
+      "cohorts": [
+        {
+          "period": "full",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 142,
+          "unit_expenses_yen": {
+            "lodging": 7000,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 2960700
+        },
+        {
+          "period": "full",
+          "age": "base",
+          "lodging": "hotel",
+          "count": 8,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 110800
+        },
+        {
+          "period": "first",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 100,
+          "unit_expenses_yen": {
+            "lodging": 3000,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 1105000.0
+        },
+        {
+          "period": "second",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 100,
+          "unit_expenses_yen": {
+            "lodging": 3000,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 1105000.0
+        }
+      ],
+      "staff_unit_expenses_yen": {
+        "lodging": 7000,
+        "meals": 9450,
+        "vegetarian": 1600,
+        "heat": 1000,
+        "kit": 700,
+        "insurance": 800,
+        "visa_admin": 300
+      },
+      "assumptions": {
+        "fx": 170,
+        "country_mix": {
+          "A": 0.45,
+          "B": 0.35,
+          "C": 0.12,
+          "Cx": 0.08
+        },
+        "registration_distribution": [
+          0.5,
+          0.3,
+          0.2
+        ],
+        "capacity": 257,
+        "private_youth_full": 20,
+        "lodging_night_yen": 1000,
+        "hotel_credit_night_yen": 1000,
+        "meal_price_yen": 450,
+        "full_meal_allowance": 21,
+        "short_meal_allowance": 11,
+        "meal_counts_are_confirmed": false,
+        "short_vegetarian_heat_fraction": 0.5,
+        "nonmember_share": 0.0,
+        "nonmember_full_euro": 50,
+        "nonmember_short_euro": 50,
+        "day_older_share": 0.5,
+        "payment_rate": 0.038,
+        "reserve_rate": 0.12,
+        "site_older_cap": "施設内の36歳以上一般参加者に約2割の目安。分母未定のため人数上限へ変換しない",
+        "hotel_older_cap": "施設内と同じ厳しい年齢人数上限なし",
+        "hotel_breakfast_automatic_deduction": false
+      }
+    },
+    {
+      "label": "食事1食450円",
+      "version": "v7_20260921",
+      "ordinary_registration": 350,
+      "ordinary_period_counts": {
+        "full": 150,
+        "first": 100,
+        "second": 100
+      },
+      "ordinary_age_counts": {
+        "base": 350,
+        "36_40": 0,
+        "41_plus": 0
+      },
+      "free_or_actual_cost_staff": 15,
+      "age_composition_is_forecast": false,
+      "capacity_routed_hotel_full": 8,
+      "hotel_registration": 8,
+      "hotel_period_counts": {
+        "full": 8,
+        "first": 0,
+        "second": 0
+      },
+      "nightly_attendance_including_hotel_and_staff": [
+        265,
+        265,
+        265,
+        165,
+        265,
+        265,
+        265
+      ],
+      "nightly_onsite_including_staff": [
+        257,
+        257,
+        257,
+        157,
+        257,
+        257,
+        257
+      ],
+      "nightly_hotel": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      "onsite_bed_nights": 1699,
+      "meal_allowance_total": 5665,
+      "quantity_notice": "泊数は実滞在、食数は予算仮定。",
+      "paid_day_person_days": 120,
+      "free_day_person_days": 300,
+      "average_basic_fee_euro": 295.61312499999997,
+      "average_basic_fee_yen": 50254.23125,
+      "average_by_country_euro": {
+        "A": 342.0625,
+        "B": 287.5,
+        "C": 239.5,
+        "Cx": 154.0
+      },
+      "income_yen": {
+        "full_basic": 7538134.6875,
+        "first_basic": 3517796.1875,
+        "second_basic": 3517796.1875,
+        "age_uplift": 0.0,
+        "private_youth": 502542.3125,
+        "nonmember": 0.0,
+        "paid_day": 660000.0,
+        "hotel_lodging_credit": -56000,
+        "helpers_actual_cost_recovery": 0,
+        "grants": 0,
+        "deficit_support": 0
+      },
+      "variable_expense_components_yen": {
+        "lodging": 1699000.0,
+        "meals": 2549250.0,
+        "vegetarian": 424000.0,
+        "heat": 265000.0,
+        "kit": 255500.0,
+        "insurance": 292000.0,
+        "visa_admin": 109500.0
+      },
+      "expenses_yen": {
+        "ordinary_and_staff_variable": 5594250.0,
+        "day_reception": 336000,
+        "fixed_common": 4500000,
+        "tejo_support": 2000000,
+        "excursion_support": 400000,
+        "payment_fees": 595850.23625,
+        "reserve": 1611132.02835
+      },
+      "expense_subtotal_before_reserve_yen": 13426100.23625,
+      "revenue_yen": 15680269.375,
+      "expenses_total_yen": 15037232.2646,
+      "balance_yen": 643037.1104000006,
+      "revenue": 15680269.375,
+      "cost": 15037232.2646,
+      "balance": 643037.1104000006,
+      "occupancy": [
+        257,
+        257,
+        257,
+        157,
+        257,
+        257,
+        257
+      ],
+      "cohorts": [
+        {
+          "period": "full",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 142,
+          "unit_expenses_yen": {
+            "lodging": 7000,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 2960700
+        },
+        {
+          "period": "full",
+          "age": "base",
+          "lodging": "hotel",
+          "count": 8,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 110800
+        },
+        {
+          "period": "first",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 100,
+          "unit_expenses_yen": {
+            "lodging": 3000,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 1105000.0
+        },
+        {
+          "period": "second",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 100,
+          "unit_expenses_yen": {
+            "lodging": 3000,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 1105000.0
+        }
+      ],
+      "staff_unit_expenses_yen": {
+        "lodging": 7000,
+        "meals": 9450,
+        "vegetarian": 1600,
+        "heat": 1000,
+        "kit": 700,
+        "insurance": 800,
+        "visa_admin": 300
+      },
+      "assumptions": {
+        "fx": 170,
+        "country_mix": {
+          "A": 0.45,
+          "B": 0.35,
+          "C": 0.12,
+          "Cx": 0.08
+        },
+        "registration_distribution": [
+          0.5,
+          0.3,
+          0.2
+        ],
+        "capacity": 257,
+        "private_youth_full": 20,
+        "lodging_night_yen": 1000,
+        "hotel_credit_night_yen": 1000,
+        "meal_price_yen": 450,
+        "full_meal_allowance": 21,
+        "short_meal_allowance": 11,
+        "meal_counts_are_confirmed": false,
+        "short_vegetarian_heat_fraction": 0.5,
+        "nonmember_share": 0.0,
+        "nonmember_full_euro": 50,
+        "nonmember_short_euro": 50,
+        "day_older_share": 0.5,
+        "payment_rate": 0.038,
+        "reserve_rate": 0.12,
+        "site_older_cap": "施設内の36歳以上一般参加者に約2割の目安。分母未定のため人数上限へ変換しない",
+        "hotel_older_cap": "施設内と同じ厳しい年齢人数上限なし",
+        "hotel_breakfast_automatic_deduction": false
+      }
+    },
+    {
+      "label": "食事1食550円",
+      "version": "v7_20260921",
+      "ordinary_registration": 350,
+      "ordinary_period_counts": {
+        "full": 150,
+        "first": 100,
+        "second": 100
+      },
+      "ordinary_age_counts": {
+        "base": 350,
+        "36_40": 0,
+        "41_plus": 0
+      },
+      "free_or_actual_cost_staff": 15,
+      "age_composition_is_forecast": false,
+      "capacity_routed_hotel_full": 8,
+      "hotel_registration": 8,
+      "hotel_period_counts": {
+        "full": 8,
+        "first": 0,
+        "second": 0
+      },
+      "nightly_attendance_including_hotel_and_staff": [
+        265,
+        265,
+        265,
+        165,
+        265,
+        265,
+        265
+      ],
+      "nightly_onsite_including_staff": [
+        257,
+        257,
+        257,
+        157,
+        257,
+        257,
+        257
+      ],
+      "nightly_hotel": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      "onsite_bed_nights": 1699,
+      "meal_allowance_total": 5665,
+      "quantity_notice": "泊数は実滞在、食数は予算仮定。",
+      "paid_day_person_days": 120,
+      "free_day_person_days": 300,
+      "average_basic_fee_euro": 295.61312499999997,
+      "average_basic_fee_yen": 50254.23125,
+      "average_by_country_euro": {
+        "A": 342.0625,
+        "B": 287.5,
+        "C": 239.5,
+        "Cx": 154.0
+      },
+      "income_yen": {
+        "full_basic": 7538134.6875,
+        "first_basic": 3517796.1875,
+        "second_basic": 3517796.1875,
+        "age_uplift": 0.0,
+        "private_youth": 502542.3125,
+        "nonmember": 0.0,
+        "paid_day": 660000.0,
+        "hotel_lodging_credit": -56000,
+        "helpers_actual_cost_recovery": 0,
+        "grants": 0,
+        "deficit_support": 0
+      },
+      "variable_expense_components_yen": {
+        "lodging": 1699000.0,
+        "meals": 3115750.0,
+        "vegetarian": 424000.0,
+        "heat": 265000.0,
+        "kit": 255500.0,
+        "insurance": 292000.0,
+        "visa_admin": 109500.0
+      },
+      "expenses_yen": {
+        "ordinary_and_staff_variable": 6160750.0,
+        "day_reception": 336000,
+        "fixed_common": 4500000,
+        "tejo_support": 2000000,
+        "excursion_support": 400000,
+        "payment_fees": 595850.23625,
+        "reserve": 1679112.02835
+      },
+      "expense_subtotal_before_reserve_yen": 13992600.23625,
+      "revenue_yen": 15680269.375,
+      "expenses_total_yen": 15671712.2646,
+      "balance_yen": 8557.110400000587,
+      "revenue": 15680269.375,
+      "cost": 15671712.2646,
+      "balance": 8557.110400000587,
+      "occupancy": [
+        257,
+        257,
+        257,
+        157,
+        257,
+        257,
+        257
+      ],
+      "cohorts": [
+        {
+          "period": "full",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 142,
+          "unit_expenses_yen": {
+            "lodging": 7000,
+            "meals": 11550,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 3258900
+        },
+        {
+          "period": "full",
+          "age": "base",
+          "lodging": "hotel",
+          "count": 8,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 11550,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 127600
+        },
+        {
+          "period": "first",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 100,
+          "unit_expenses_yen": {
+            "lodging": 3000,
+            "meals": 6050,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 1215000.0
+        },
+        {
+          "period": "second",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 100,
+          "unit_expenses_yen": {
+            "lodging": 3000,
+            "meals": 6050,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 1215000.0
+        }
+      ],
+      "staff_unit_expenses_yen": {
+        "lodging": 7000,
+        "meals": 11550,
+        "vegetarian": 1600,
+        "heat": 1000,
+        "kit": 700,
+        "insurance": 800,
+        "visa_admin": 300
+      },
+      "assumptions": {
+        "fx": 170,
+        "country_mix": {
+          "A": 0.45,
+          "B": 0.35,
+          "C": 0.12,
+          "Cx": 0.08
+        },
+        "registration_distribution": [
+          0.5,
+          0.3,
+          0.2
+        ],
+        "capacity": 257,
+        "private_youth_full": 20,
+        "lodging_night_yen": 1000,
+        "hotel_credit_night_yen": 1000,
+        "meal_price_yen": 550,
+        "full_meal_allowance": 21,
+        "short_meal_allowance": 11,
+        "meal_counts_are_confirmed": false,
+        "short_vegetarian_heat_fraction": 0.5,
+        "nonmember_share": 0.0,
+        "nonmember_full_euro": 50,
+        "nonmember_short_euro": 50,
+        "day_older_share": 0.5,
+        "payment_rate": 0.038,
+        "reserve_rate": 0.12,
+        "site_older_cap": "施設内の36歳以上一般参加者に約2割の目安。分母未定のため人数上限へ変換しない",
+        "hotel_older_cap": "施設内と同じ厳しい年齢人数上限なし",
+        "hotel_breakfast_automatic_deduction": false
+      }
+    },
+    {
+      "label": "食事1食650円",
+      "version": "v7_20260921",
+      "ordinary_registration": 350,
+      "ordinary_period_counts": {
+        "full": 150,
+        "first": 100,
+        "second": 100
+      },
+      "ordinary_age_counts": {
+        "base": 350,
+        "36_40": 0,
+        "41_plus": 0
+      },
+      "free_or_actual_cost_staff": 15,
+      "age_composition_is_forecast": false,
+      "capacity_routed_hotel_full": 8,
+      "hotel_registration": 8,
+      "hotel_period_counts": {
+        "full": 8,
+        "first": 0,
+        "second": 0
+      },
+      "nightly_attendance_including_hotel_and_staff": [
+        265,
+        265,
+        265,
+        165,
+        265,
+        265,
+        265
+      ],
+      "nightly_onsite_including_staff": [
+        257,
+        257,
+        257,
+        157,
+        257,
+        257,
+        257
+      ],
+      "nightly_hotel": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      "onsite_bed_nights": 1699,
+      "meal_allowance_total": 5665,
+      "quantity_notice": "泊数は実滞在、食数は予算仮定。",
+      "paid_day_person_days": 120,
+      "free_day_person_days": 300,
+      "average_basic_fee_euro": 295.61312499999997,
+      "average_basic_fee_yen": 50254.23125,
+      "average_by_country_euro": {
+        "A": 342.0625,
+        "B": 287.5,
+        "C": 239.5,
+        "Cx": 154.0
+      },
+      "income_yen": {
+        "full_basic": 7538134.6875,
+        "first_basic": 3517796.1875,
+        "second_basic": 3517796.1875,
+        "age_uplift": 0.0,
+        "private_youth": 502542.3125,
+        "nonmember": 0.0,
+        "paid_day": 660000.0,
+        "hotel_lodging_credit": -56000,
+        "helpers_actual_cost_recovery": 0,
+        "grants": 0,
+        "deficit_support": 0
+      },
+      "variable_expense_components_yen": {
+        "lodging": 1699000.0,
+        "meals": 3682250.0,
+        "vegetarian": 424000.0,
+        "heat": 265000.0,
+        "kit": 255500.0,
+        "insurance": 292000.0,
+        "visa_admin": 109500.0
+      },
+      "expenses_yen": {
+        "ordinary_and_staff_variable": 6727250.0,
+        "day_reception": 336000,
+        "fixed_common": 4500000,
+        "tejo_support": 2000000,
+        "excursion_support": 400000,
+        "payment_fees": 595850.23625,
+        "reserve": 1747092.02835
+      },
+      "expense_subtotal_before_reserve_yen": 14559100.23625,
+      "revenue_yen": 15680269.375,
+      "expenses_total_yen": 16306192.2646,
+      "balance_yen": -625922.8895999994,
+      "revenue": 15680269.375,
+      "cost": 16306192.2646,
+      "balance": -625922.8895999994,
+      "occupancy": [
+        257,
+        257,
+        257,
+        157,
+        257,
+        257,
+        257
+      ],
+      "cohorts": [
+        {
+          "period": "full",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 142,
+          "unit_expenses_yen": {
+            "lodging": 7000,
+            "meals": 13650,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 3557100
+        },
+        {
+          "period": "full",
+          "age": "base",
+          "lodging": "hotel",
+          "count": 8,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 13650,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 144400
+        },
+        {
+          "period": "first",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 100,
+          "unit_expenses_yen": {
+            "lodging": 3000,
+            "meals": 7150,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 1325000.0
+        },
+        {
+          "period": "second",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 100,
+          "unit_expenses_yen": {
+            "lodging": 3000,
+            "meals": 7150,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 1325000.0
+        }
+      ],
+      "staff_unit_expenses_yen": {
+        "lodging": 7000,
+        "meals": 13650,
+        "vegetarian": 1600,
+        "heat": 1000,
+        "kit": 700,
+        "insurance": 800,
+        "visa_admin": 300
+      },
+      "assumptions": {
+        "fx": 170,
+        "country_mix": {
+          "A": 0.45,
+          "B": 0.35,
+          "C": 0.12,
+          "Cx": 0.08
+        },
+        "registration_distribution": [
+          0.5,
+          0.3,
+          0.2
+        ],
+        "capacity": 257,
+        "private_youth_full": 20,
+        "lodging_night_yen": 1000,
+        "hotel_credit_night_yen": 1000,
+        "meal_price_yen": 650,
+        "full_meal_allowance": 21,
+        "short_meal_allowance": 11,
+        "meal_counts_are_confirmed": false,
+        "short_vegetarian_heat_fraction": 0.5,
+        "nonmember_share": 0.0,
+        "nonmember_full_euro": 50,
+        "nonmember_short_euro": 50,
+        "day_older_share": 0.5,
+        "payment_rate": 0.038,
+        "reserve_rate": 0.12,
+        "site_older_cap": "施設内の36歳以上一般参加者に約2割の目安。分母未定のため人数上限へ変換しない",
+        "hotel_older_cap": "施設内と同じ厳しい年齢人数上限なし",
+        "hotel_breakfast_automatic_deduction": false
+      }
+    },
+    {
+      "label": "短期食事10食の感度（配食確定前）",
+      "version": "v7_20260921",
+      "ordinary_registration": 350,
+      "ordinary_period_counts": {
+        "full": 150,
+        "first": 100,
+        "second": 100
+      },
+      "ordinary_age_counts": {
+        "base": 350,
+        "36_40": 0,
+        "41_plus": 0
+      },
+      "free_or_actual_cost_staff": 15,
+      "age_composition_is_forecast": false,
+      "capacity_routed_hotel_full": 8,
+      "hotel_registration": 8,
+      "hotel_period_counts": {
+        "full": 8,
+        "first": 0,
+        "second": 0
+      },
+      "nightly_attendance_including_hotel_and_staff": [
+        265,
+        265,
+        265,
+        165,
+        265,
+        265,
+        265
+      ],
+      "nightly_onsite_including_staff": [
+        257,
+        257,
+        257,
+        157,
+        257,
+        257,
+        257
+      ],
+      "nightly_hotel": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      "onsite_bed_nights": 1699,
+      "meal_allowance_total": 5465,
+      "quantity_notice": "泊数は実滞在、食数は予算仮定。",
+      "paid_day_person_days": 120,
+      "free_day_person_days": 300,
+      "average_basic_fee_euro": 295.61312499999997,
+      "average_basic_fee_yen": 50254.23125,
+      "average_by_country_euro": {
+        "A": 342.0625,
+        "B": 287.5,
+        "C": 239.5,
+        "Cx": 154.0
+      },
+      "income_yen": {
+        "full_basic": 7538134.6875,
+        "first_basic": 3517796.1875,
+        "second_basic": 3517796.1875,
+        "age_uplift": 0.0,
+        "private_youth": 502542.3125,
+        "nonmember": 0.0,
+        "paid_day": 660000.0,
+        "hotel_lodging_credit": -56000,
+        "helpers_actual_cost_recovery": 0,
+        "grants": 0,
+        "deficit_support": 0
+      },
+      "variable_expense_components_yen": {
+        "lodging": 1699000.0,
+        "meals": 2459250.0,
+        "vegetarian": 424000.0,
+        "heat": 265000.0,
+        "kit": 255500.0,
+        "insurance": 292000.0,
+        "visa_admin": 109500.0
+      },
+      "expenses_yen": {
+        "ordinary_and_staff_variable": 5504250.0,
+        "day_reception": 336000,
+        "fixed_common": 4500000,
+        "tejo_support": 2000000,
+        "excursion_support": 400000,
+        "payment_fees": 595850.23625,
+        "reserve": 1600332.02835
+      },
+      "expense_subtotal_before_reserve_yen": 13336100.23625,
+      "revenue_yen": 15680269.375,
+      "expenses_total_yen": 14936432.2646,
+      "balance_yen": 743837.1104000006,
+      "revenue": 15680269.375,
+      "cost": 14936432.2646,
+      "balance": 743837.1104000006,
+      "occupancy": [
+        257,
+        257,
+        257,
+        157,
+        257,
+        257,
+        257
+      ],
+      "cohorts": [
+        {
+          "period": "full",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 142,
+          "unit_expenses_yen": {
+            "lodging": 7000,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 2960700
+        },
+        {
+          "period": "full",
+          "age": "base",
+          "lodging": "hotel",
+          "count": 8,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 110800
+        },
+        {
+          "period": "first",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 100,
+          "unit_expenses_yen": {
+            "lodging": 3000,
+            "meals": 4500,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 1060000.0
+        },
+        {
+          "period": "second",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 100,
+          "unit_expenses_yen": {
+            "lodging": 3000,
+            "meals": 4500,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 1060000.0
+        }
+      ],
+      "staff_unit_expenses_yen": {
+        "lodging": 7000,
+        "meals": 9450,
+        "vegetarian": 1600,
+        "heat": 1000,
+        "kit": 700,
+        "insurance": 800,
+        "visa_admin": 300
+      },
+      "assumptions": {
+        "fx": 170,
+        "country_mix": {
+          "A": 0.45,
+          "B": 0.35,
+          "C": 0.12,
+          "Cx": 0.08
+        },
+        "registration_distribution": [
+          0.5,
+          0.3,
+          0.2
+        ],
+        "capacity": 257,
+        "private_youth_full": 20,
+        "lodging_night_yen": 1000,
+        "hotel_credit_night_yen": 1000,
+        "meal_price_yen": 450,
+        "full_meal_allowance": 21,
+        "short_meal_allowance": 10,
+        "meal_counts_are_confirmed": false,
+        "short_vegetarian_heat_fraction": 0.5,
+        "nonmember_share": 0.0,
+        "nonmember_full_euro": 50,
+        "nonmember_short_euro": 50,
+        "day_older_share": 0.5,
+        "payment_rate": 0.038,
+        "reserve_rate": 0.12,
+        "site_older_cap": "施設内の36歳以上一般参加者に約2割の目安。分母未定のため人数上限へ変換しない",
+        "hotel_older_cap": "施設内と同じ厳しい年齢人数上限なし",
+        "hotel_breakfast_automatic_deduction": false
+      }
+    },
+    {
+      "label": "有料日帰り受付1日",
+      "version": "v7_20260921",
+      "ordinary_registration": 350,
+      "ordinary_period_counts": {
+        "full": 150,
+        "first": 100,
+        "second": 100
+      },
+      "ordinary_age_counts": {
+        "base": 350,
+        "36_40": 0,
+        "41_plus": 0
+      },
+      "free_or_actual_cost_staff": 15,
+      "age_composition_is_forecast": false,
+      "capacity_routed_hotel_full": 8,
+      "hotel_registration": 8,
+      "hotel_period_counts": {
+        "full": 8,
+        "first": 0,
+        "second": 0
+      },
+      "nightly_attendance_including_hotel_and_staff": [
+        265,
+        265,
+        265,
+        165,
+        265,
+        265,
+        265
+      ],
+      "nightly_onsite_including_staff": [
+        257,
+        257,
+        257,
+        157,
+        257,
+        257,
+        257
+      ],
+      "nightly_hotel": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      "onsite_bed_nights": 1699,
+      "meal_allowance_total": 5665,
+      "quantity_notice": "泊数は実滞在、食数は予算仮定。",
+      "paid_day_person_days": 40,
+      "free_day_person_days": 300,
+      "average_basic_fee_euro": 295.61312499999997,
+      "average_basic_fee_yen": 50254.23125,
+      "average_by_country_euro": {
+        "A": 342.0625,
+        "B": 287.5,
+        "C": 239.5,
+        "Cx": 154.0
+      },
+      "income_yen": {
+        "full_basic": 7538134.6875,
+        "first_basic": 3517796.1875,
+        "second_basic": 3517796.1875,
+        "age_uplift": 0.0,
+        "private_youth": 502542.3125,
+        "nonmember": 0.0,
+        "paid_day": 220000.0,
+        "hotel_lodging_credit": -56000,
+        "helpers_actual_cost_recovery": 0,
+        "grants": 0,
+        "deficit_support": 0
+      },
+      "variable_expense_components_yen": {
+        "lodging": 1699000.0,
+        "meals": 2549250.0,
+        "vegetarian": 424000.0,
+        "heat": 265000.0,
+        "kit": 255500.0,
+        "insurance": 292000.0,
+        "visa_admin": 109500.0
+      },
+      "expenses_yen": {
+        "ordinary_and_staff_variable": 5594250.0,
+        "day_reception": 272000,
+        "fixed_common": 4500000,
+        "tejo_support": 2000000,
+        "excursion_support": 400000,
+        "payment_fees": 579130.23625,
+        "reserve": 1601445.62835
+      },
+      "expense_subtotal_before_reserve_yen": 13345380.23625,
+      "revenue_yen": 15240269.375,
+      "expenses_total_yen": 14946825.864599999,
+      "balance_yen": 293443.51040000096,
+      "revenue": 15240269.375,
+      "cost": 14946825.864599999,
+      "balance": 293443.51040000096,
+      "occupancy": [
+        257,
+        257,
+        257,
+        157,
+        257,
+        257,
+        257
+      ],
+      "cohorts": [
+        {
+          "period": "full",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 142,
+          "unit_expenses_yen": {
+            "lodging": 7000,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 2960700
+        },
+        {
+          "period": "full",
+          "age": "base",
+          "lodging": "hotel",
+          "count": 8,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 110800
+        },
+        {
+          "period": "first",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 100,
+          "unit_expenses_yen": {
+            "lodging": 3000,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 1105000.0
+        },
+        {
+          "period": "second",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 100,
+          "unit_expenses_yen": {
+            "lodging": 3000,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 1105000.0
+        }
+      ],
+      "staff_unit_expenses_yen": {
+        "lodging": 7000,
+        "meals": 9450,
+        "vegetarian": 1600,
+        "heat": 1000,
+        "kit": 700,
+        "insurance": 800,
+        "visa_admin": 300
+      },
+      "assumptions": {
+        "fx": 170,
+        "country_mix": {
+          "A": 0.45,
+          "B": 0.35,
+          "C": 0.12,
+          "Cx": 0.08
+        },
+        "registration_distribution": [
+          0.5,
+          0.3,
+          0.2
+        ],
+        "capacity": 257,
+        "private_youth_full": 20,
+        "lodging_night_yen": 1000,
+        "hotel_credit_night_yen": 1000,
+        "meal_price_yen": 450,
+        "full_meal_allowance": 21,
+        "short_meal_allowance": 11,
+        "meal_counts_are_confirmed": false,
+        "short_vegetarian_heat_fraction": 0.5,
+        "nonmember_share": 0.0,
+        "nonmember_full_euro": 50,
+        "nonmember_short_euro": 50,
+        "day_older_share": 0.5,
+        "payment_rate": 0.038,
+        "reserve_rate": 0.12,
+        "site_older_cap": "施設内の36歳以上一般参加者に約2割の目安。分母未定のため人数上限へ変換しない",
+        "hotel_older_cap": "施設内と同じ厳しい年齢人数上限なし",
+        "hotel_breakfast_automatic_deduction": false
+      }
+    },
+    {
+      "label": "有料日帰り受付2日",
+      "version": "v7_20260921",
+      "ordinary_registration": 350,
+      "ordinary_period_counts": {
+        "full": 150,
+        "first": 100,
+        "second": 100
+      },
+      "ordinary_age_counts": {
+        "base": 350,
+        "36_40": 0,
+        "41_plus": 0
+      },
+      "free_or_actual_cost_staff": 15,
+      "age_composition_is_forecast": false,
+      "capacity_routed_hotel_full": 8,
+      "hotel_registration": 8,
+      "hotel_period_counts": {
+        "full": 8,
+        "first": 0,
+        "second": 0
+      },
+      "nightly_attendance_including_hotel_and_staff": [
+        265,
+        265,
+        265,
+        165,
+        265,
+        265,
+        265
+      ],
+      "nightly_onsite_including_staff": [
+        257,
+        257,
+        257,
+        157,
+        257,
+        257,
+        257
+      ],
+      "nightly_hotel": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      "onsite_bed_nights": 1699,
+      "meal_allowance_total": 5665,
+      "quantity_notice": "泊数は実滞在、食数は予算仮定。",
+      "paid_day_person_days": 80,
+      "free_day_person_days": 300,
+      "average_basic_fee_euro": 295.61312499999997,
+      "average_basic_fee_yen": 50254.23125,
+      "average_by_country_euro": {
+        "A": 342.0625,
+        "B": 287.5,
+        "C": 239.5,
+        "Cx": 154.0
+      },
+      "income_yen": {
+        "full_basic": 7538134.6875,
+        "first_basic": 3517796.1875,
+        "second_basic": 3517796.1875,
+        "age_uplift": 0.0,
+        "private_youth": 502542.3125,
+        "nonmember": 0.0,
+        "paid_day": 440000.0,
+        "hotel_lodging_credit": -56000,
+        "helpers_actual_cost_recovery": 0,
+        "grants": 0,
+        "deficit_support": 0
+      },
+      "variable_expense_components_yen": {
+        "lodging": 1699000.0,
+        "meals": 2549250.0,
+        "vegetarian": 424000.0,
+        "heat": 265000.0,
+        "kit": 255500.0,
+        "insurance": 292000.0,
+        "visa_admin": 109500.0
+      },
+      "expenses_yen": {
+        "ordinary_and_staff_variable": 5594250.0,
+        "day_reception": 304000,
+        "fixed_common": 4500000,
+        "tejo_support": 2000000,
+        "excursion_support": 400000,
+        "payment_fees": 587490.23625,
+        "reserve": 1606288.8283499999
+      },
+      "expense_subtotal_before_reserve_yen": 13385740.23625,
+      "revenue_yen": 15460269.375,
+      "expenses_total_yen": 14992029.0646,
+      "balance_yen": 468240.31039999984,
+      "revenue": 15460269.375,
+      "cost": 14992029.0646,
+      "balance": 468240.31039999984,
+      "occupancy": [
+        257,
+        257,
+        257,
+        157,
+        257,
+        257,
+        257
+      ],
+      "cohorts": [
+        {
+          "period": "full",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 142,
+          "unit_expenses_yen": {
+            "lodging": 7000,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 2960700
+        },
+        {
+          "period": "full",
+          "age": "base",
+          "lodging": "hotel",
+          "count": 8,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 110800
+        },
+        {
+          "period": "first",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 100,
+          "unit_expenses_yen": {
+            "lodging": 3000,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 1105000.0
+        },
+        {
+          "period": "second",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 100,
+          "unit_expenses_yen": {
+            "lodging": 3000,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 1105000.0
+        }
+      ],
+      "staff_unit_expenses_yen": {
+        "lodging": 7000,
+        "meals": 9450,
+        "vegetarian": 1600,
+        "heat": 1000,
+        "kit": 700,
+        "insurance": 800,
+        "visa_admin": 300
+      },
+      "assumptions": {
+        "fx": 170,
+        "country_mix": {
+          "A": 0.45,
+          "B": 0.35,
+          "C": 0.12,
+          "Cx": 0.08
+        },
+        "registration_distribution": [
+          0.5,
+          0.3,
+          0.2
+        ],
+        "capacity": 257,
+        "private_youth_full": 20,
+        "lodging_night_yen": 1000,
+        "hotel_credit_night_yen": 1000,
+        "meal_price_yen": 450,
+        "full_meal_allowance": 21,
+        "short_meal_allowance": 11,
+        "meal_counts_are_confirmed": false,
+        "short_vegetarian_heat_fraction": 0.5,
+        "nonmember_share": 0.0,
+        "nonmember_full_euro": 50,
+        "nonmember_short_euro": 50,
+        "day_older_share": 0.5,
+        "payment_rate": 0.038,
+        "reserve_rate": 0.12,
+        "site_older_cap": "施設内の36歳以上一般参加者に約2割の目安。分母未定のため人数上限へ変換しない",
+        "hotel_older_cap": "施設内と同じ厳しい年齢人数上限なし",
+        "hotel_breakfast_automatic_deduction": false
+      }
+    },
+    {
+      "label": "有料日帰り受付3日",
+      "version": "v7_20260921",
+      "ordinary_registration": 350,
+      "ordinary_period_counts": {
+        "full": 150,
+        "first": 100,
+        "second": 100
+      },
+      "ordinary_age_counts": {
+        "base": 350,
+        "36_40": 0,
+        "41_plus": 0
+      },
+      "free_or_actual_cost_staff": 15,
+      "age_composition_is_forecast": false,
+      "capacity_routed_hotel_full": 8,
+      "hotel_registration": 8,
+      "hotel_period_counts": {
+        "full": 8,
+        "first": 0,
+        "second": 0
+      },
+      "nightly_attendance_including_hotel_and_staff": [
+        265,
+        265,
+        265,
+        165,
+        265,
+        265,
+        265
+      ],
+      "nightly_onsite_including_staff": [
+        257,
+        257,
+        257,
+        157,
+        257,
+        257,
+        257
+      ],
+      "nightly_hotel": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      "onsite_bed_nights": 1699,
+      "meal_allowance_total": 5665,
+      "quantity_notice": "泊数は実滞在、食数は予算仮定。",
+      "paid_day_person_days": 120,
+      "free_day_person_days": 300,
+      "average_basic_fee_euro": 295.61312499999997,
+      "average_basic_fee_yen": 50254.23125,
+      "average_by_country_euro": {
+        "A": 342.0625,
+        "B": 287.5,
+        "C": 239.5,
+        "Cx": 154.0
+      },
+      "income_yen": {
+        "full_basic": 7538134.6875,
+        "first_basic": 3517796.1875,
+        "second_basic": 3517796.1875,
+        "age_uplift": 0.0,
+        "private_youth": 502542.3125,
+        "nonmember": 0.0,
+        "paid_day": 660000.0,
+        "hotel_lodging_credit": -56000,
+        "helpers_actual_cost_recovery": 0,
+        "grants": 0,
+        "deficit_support": 0
+      },
+      "variable_expense_components_yen": {
+        "lodging": 1699000.0,
+        "meals": 2549250.0,
+        "vegetarian": 424000.0,
+        "heat": 265000.0,
+        "kit": 255500.0,
+        "insurance": 292000.0,
+        "visa_admin": 109500.0
+      },
+      "expenses_yen": {
+        "ordinary_and_staff_variable": 5594250.0,
+        "day_reception": 336000,
+        "fixed_common": 4500000,
+        "tejo_support": 2000000,
+        "excursion_support": 400000,
+        "payment_fees": 595850.23625,
+        "reserve": 1611132.02835
+      },
+      "expense_subtotal_before_reserve_yen": 13426100.23625,
+      "revenue_yen": 15680269.375,
+      "expenses_total_yen": 15037232.2646,
+      "balance_yen": 643037.1104000006,
+      "revenue": 15680269.375,
+      "cost": 15037232.2646,
+      "balance": 643037.1104000006,
+      "occupancy": [
+        257,
+        257,
+        257,
+        157,
+        257,
+        257,
+        257
+      ],
+      "cohorts": [
+        {
+          "period": "full",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 142,
+          "unit_expenses_yen": {
+            "lodging": 7000,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 2960700
+        },
+        {
+          "period": "full",
+          "age": "base",
+          "lodging": "hotel",
+          "count": 8,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 110800
+        },
+        {
+          "period": "first",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 100,
+          "unit_expenses_yen": {
+            "lodging": 3000,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 1105000.0
+        },
+        {
+          "period": "second",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 100,
+          "unit_expenses_yen": {
+            "lodging": 3000,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 1105000.0
+        }
+      ],
+      "staff_unit_expenses_yen": {
+        "lodging": 7000,
+        "meals": 9450,
+        "vegetarian": 1600,
+        "heat": 1000,
+        "kit": 700,
+        "insurance": 800,
+        "visa_admin": 300
+      },
+      "assumptions": {
+        "fx": 170,
+        "country_mix": {
+          "A": 0.45,
+          "B": 0.35,
+          "C": 0.12,
+          "Cx": 0.08
+        },
+        "registration_distribution": [
+          0.5,
+          0.3,
+          0.2
+        ],
+        "capacity": 257,
+        "private_youth_full": 20,
+        "lodging_night_yen": 1000,
+        "hotel_credit_night_yen": 1000,
+        "meal_price_yen": 450,
+        "full_meal_allowance": 21,
+        "short_meal_allowance": 11,
+        "meal_counts_are_confirmed": false,
+        "short_vegetarian_heat_fraction": 0.5,
+        "nonmember_share": 0.0,
+        "nonmember_full_euro": 50,
+        "nonmember_short_euro": 50,
+        "day_older_share": 0.5,
+        "payment_rate": 0.038,
+        "reserve_rate": 0.12,
+        "site_older_cap": "施設内の36歳以上一般参加者に約2割の目安。分母未定のため人数上限へ変換しない",
+        "hotel_older_cap": "施設内と同じ厳しい年齢人数上限なし",
+        "hotel_breakfast_automatic_deduction": false
+      }
+    },
+    {
+      "label": "施設単価だけ上振れ：宿泊1800円・食事1日1900円相当",
+      "version": "v7_20260921",
+      "ordinary_registration": 350,
+      "ordinary_period_counts": {
+        "full": 150,
+        "first": 100,
+        "second": 100
+      },
+      "ordinary_age_counts": {
+        "base": 350,
+        "36_40": 0,
+        "41_plus": 0
+      },
+      "free_or_actual_cost_staff": 15,
+      "age_composition_is_forecast": false,
+      "capacity_routed_hotel_full": 8,
+      "hotel_registration": 8,
+      "hotel_period_counts": {
+        "full": 8,
+        "first": 0,
+        "second": 0
+      },
+      "nightly_attendance_including_hotel_and_staff": [
+        265,
+        265,
+        265,
+        165,
+        265,
+        265,
+        265
+      ],
+      "nightly_onsite_including_staff": [
+        257,
+        257,
+        257,
+        157,
+        257,
+        257,
+        257
+      ],
+      "nightly_hotel": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      "onsite_bed_nights": 1699,
+      "meal_allowance_total": 5665,
+      "quantity_notice": "泊数は実滞在、食数は予算仮定。",
+      "paid_day_person_days": 120,
+      "free_day_person_days": 300,
+      "average_basic_fee_euro": 295.61312499999997,
+      "average_basic_fee_yen": 50254.23125,
+      "average_by_country_euro": {
+        "A": 342.0625,
+        "B": 287.5,
+        "C": 239.5,
+        "Cx": 154.0
+      },
+      "income_yen": {
+        "full_basic": 7538134.6875,
+        "first_basic": 3517796.1875,
+        "second_basic": 3517796.1875,
+        "age_uplift": 0.0,
+        "private_youth": 502542.3125,
+        "nonmember": 0.0,
+        "paid_day": 660000.0,
+        "hotel_lodging_credit": -56000,
+        "helpers_actual_cost_recovery": 0,
+        "grants": 0,
+        "deficit_support": 0
+      },
+      "variable_expense_components_yen": {
+        "lodging": 3058200.0,
+        "meals": 3587833.333333334,
+        "vegetarian": 424000.0,
+        "heat": 265000.0,
+        "kit": 255500.0,
+        "insurance": 292000.0,
+        "visa_admin": 109500.0
+      },
+      "expenses_yen": {
+        "ordinary_and_staff_variable": 7992033.333333334,
+        "day_reception": 336000,
+        "fixed_common": 4500000,
+        "tejo_support": 2000000,
+        "excursion_support": 400000,
+        "payment_fees": 595850.23625,
+        "reserve": 1898866.02835
+      },
+      "expense_subtotal_before_reserve_yen": 15823883.569583334,
+      "revenue_yen": 15680269.375,
+      "expenses_total_yen": 17722749.597933333,
+      "balance_yen": -2042480.2229333334,
+      "revenue": 15680269.375,
+      "cost": 17722749.597933333,
+      "balance": -2042480.2229333334,
+      "occupancy": [
+        257,
+        257,
+        257,
+        157,
+        257,
+        257,
+        257
+      ],
+      "cohorts": [
+        {
+          "period": "full",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 142,
+          "unit_expenses_yen": {
+            "lodging": 12600,
+            "meals": 13300.0,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 4302600.0
+        },
+        {
+          "period": "full",
+          "age": "base",
+          "lodging": "hotel",
+          "count": 8,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 13300.0,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 141600.0
+        },
+        {
+          "period": "first",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 100,
+          "unit_expenses_yen": {
+            "lodging": 5400,
+            "meals": 6966.666666666667,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 1546666.6666666667
+        },
+        {
+          "period": "second",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 100,
+          "unit_expenses_yen": {
+            "lodging": 5400,
+            "meals": 6966.666666666667,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 1546666.6666666667
+        }
+      ],
+      "staff_unit_expenses_yen": {
+        "lodging": 12600,
+        "meals": 13300.0,
+        "vegetarian": 1600,
+        "heat": 1000,
+        "kit": 700,
+        "insurance": 800,
+        "visa_admin": 300
+      },
+      "assumptions": {
+        "fx": 170,
+        "country_mix": {
+          "A": 0.45,
+          "B": 0.35,
+          "C": 0.12,
+          "Cx": 0.08
+        },
+        "registration_distribution": [
+          0.5,
+          0.3,
+          0.2
+        ],
+        "capacity": 257,
+        "private_youth_full": 20,
+        "lodging_night_yen": 1800,
+        "hotel_credit_night_yen": 1000,
+        "meal_price_yen": 633.3333333333334,
+        "full_meal_allowance": 21,
+        "short_meal_allowance": 11,
+        "meal_counts_are_confirmed": false,
+        "short_vegetarian_heat_fraction": 0.5,
+        "nonmember_share": 0.0,
+        "nonmember_full_euro": 50,
+        "nonmember_short_euro": 50,
+        "day_older_share": 0.5,
+        "payment_rate": 0.038,
+        "reserve_rate": 0.12,
+        "site_older_cap": "施設内の36歳以上一般参加者に約2割の目安。分母未定のため人数上限へ変換しない",
+        "hotel_older_cap": "施設内と同じ厳しい年齢人数上限なし",
+        "hotel_breakfast_automatic_deduction": false
+      }
+    },
+    {
+      "label": "施設単価と共通費が上振れ：宿泊1800円・食事1日1900円相当・共通費25%増",
+      "version": "v7_20260921",
+      "ordinary_registration": 350,
+      "ordinary_period_counts": {
+        "full": 150,
+        "first": 100,
+        "second": 100
+      },
+      "ordinary_age_counts": {
+        "base": 350,
+        "36_40": 0,
+        "41_plus": 0
+      },
+      "free_or_actual_cost_staff": 15,
+      "age_composition_is_forecast": false,
+      "capacity_routed_hotel_full": 8,
+      "hotel_registration": 8,
+      "hotel_period_counts": {
+        "full": 8,
+        "first": 0,
+        "second": 0
+      },
+      "nightly_attendance_including_hotel_and_staff": [
+        265,
+        265,
+        265,
+        165,
+        265,
+        265,
+        265
+      ],
+      "nightly_onsite_including_staff": [
+        257,
+        257,
+        257,
+        157,
+        257,
+        257,
+        257
+      ],
+      "nightly_hotel": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      "onsite_bed_nights": 1699,
+      "meal_allowance_total": 5665,
+      "quantity_notice": "泊数は実滞在、食数は予算仮定。",
+      "paid_day_person_days": 120,
+      "free_day_person_days": 300,
+      "average_basic_fee_euro": 295.61312499999997,
+      "average_basic_fee_yen": 50254.23125,
+      "average_by_country_euro": {
+        "A": 342.0625,
+        "B": 287.5,
+        "C": 239.5,
+        "Cx": 154.0
+      },
+      "income_yen": {
+        "full_basic": 7538134.6875,
+        "first_basic": 3517796.1875,
+        "second_basic": 3517796.1875,
+        "age_uplift": 0.0,
+        "private_youth": 502542.3125,
+        "nonmember": 0.0,
+        "paid_day": 660000.0,
+        "hotel_lodging_credit": -56000,
+        "helpers_actual_cost_recovery": 0,
+        "grants": 0,
+        "deficit_support": 0
+      },
+      "variable_expense_components_yen": {
+        "lodging": 3058200.0,
+        "meals": 3587833.333333334,
+        "vegetarian": 424000.0,
+        "heat": 265000.0,
+        "kit": 255500.0,
+        "insurance": 292000.0,
+        "visa_admin": 109500.0
+      },
+      "expenses_yen": {
+        "ordinary_and_staff_variable": 7992033.333333334,
+        "day_reception": 336000,
+        "fixed_common": 5625000.0,
+        "tejo_support": 2000000,
+        "excursion_support": 400000,
+        "payment_fees": 595850.23625,
+        "reserve": 2033866.02835
+      },
+      "expense_subtotal_before_reserve_yen": 16948883.569583334,
+      "revenue_yen": 15680269.375,
+      "expenses_total_yen": 18982749.597933333,
+      "balance_yen": -3302480.2229333334,
+      "revenue": 15680269.375,
+      "cost": 18982749.597933333,
+      "balance": -3302480.2229333334,
+      "occupancy": [
+        257,
+        257,
+        257,
+        157,
+        257,
+        257,
+        257
+      ],
+      "cohorts": [
+        {
+          "period": "full",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 142,
+          "unit_expenses_yen": {
+            "lodging": 12600,
+            "meals": 13300.0,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 4302600.0
+        },
+        {
+          "period": "full",
+          "age": "base",
+          "lodging": "hotel",
+          "count": 8,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 13300.0,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 141600.0
+        },
+        {
+          "period": "first",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 100,
+          "unit_expenses_yen": {
+            "lodging": 5400,
+            "meals": 6966.666666666667,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 1546666.6666666667
+        },
+        {
+          "period": "second",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 100,
+          "unit_expenses_yen": {
+            "lodging": 5400,
+            "meals": 6966.666666666667,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 1546666.6666666667
+        }
+      ],
+      "staff_unit_expenses_yen": {
+        "lodging": 12600,
+        "meals": 13300.0,
+        "vegetarian": 1600,
+        "heat": 1000,
+        "kit": 700,
+        "insurance": 800,
+        "visa_admin": 300
+      },
+      "assumptions": {
+        "fx": 170,
+        "country_mix": {
+          "A": 0.45,
+          "B": 0.35,
+          "C": 0.12,
+          "Cx": 0.08
+        },
+        "registration_distribution": [
+          0.5,
+          0.3,
+          0.2
+        ],
+        "capacity": 257,
+        "private_youth_full": 20,
+        "lodging_night_yen": 1800,
+        "hotel_credit_night_yen": 1000,
+        "meal_price_yen": 633.3333333333334,
+        "full_meal_allowance": 21,
+        "short_meal_allowance": 11,
+        "meal_counts_are_confirmed": false,
+        "short_vegetarian_heat_fraction": 0.5,
+        "nonmember_share": 0.0,
+        "nonmember_full_euro": 50,
+        "nonmember_short_euro": 50,
+        "day_older_share": 0.5,
+        "payment_rate": 0.038,
+        "reserve_rate": 0.12,
+        "site_older_cap": "施設内の36歳以上一般参加者に約2割の目安。分母未定のため人数上限へ変換しない",
+        "hotel_older_cap": "施設内と同じ厳しい年齢人数上限なし",
+        "hotel_breakfast_automatic_deduction": false
+      }
+    },
+    {
+      "label": "国別構成EA仮定",
+      "version": "v7_20260921",
+      "ordinary_registration": 350,
+      "ordinary_period_counts": {
+        "full": 150,
+        "first": 100,
+        "second": 100
+      },
+      "ordinary_age_counts": {
+        "base": 350,
+        "36_40": 0,
+        "41_plus": 0
+      },
+      "free_or_actual_cost_staff": 15,
+      "age_composition_is_forecast": false,
+      "capacity_routed_hotel_full": 8,
+      "hotel_registration": 8,
+      "hotel_period_counts": {
+        "full": 8,
+        "first": 0,
+        "second": 0
+      },
+      "nightly_attendance_including_hotel_and_staff": [
+        265,
+        265,
+        265,
+        165,
+        265,
+        265,
+        265
+      ],
+      "nightly_onsite_including_staff": [
+        257,
+        257,
+        257,
+        157,
+        257,
+        257,
+        257
+      ],
+      "nightly_hotel": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      "onsite_bed_nights": 1699,
+      "meal_allowance_total": 5665,
+      "quantity_notice": "泊数は実滞在、食数は予算仮定。",
+      "paid_day_person_days": 120,
+      "free_day_person_days": 300,
+      "average_basic_fee_euro": 278.190625,
+      "average_basic_fee_yen": 47292.40625,
+      "average_by_country_euro": {
+        "A": 342.0625,
+        "B": 287.5,
+        "C": 239.5,
+        "Cx": 154.0
+      },
+      "income_yen": {
+        "full_basic": 7093860.9375,
+        "first_basic": 3310468.4375,
+        "second_basic": 3310468.4375,
+        "age_uplift": 0.0,
+        "private_youth": 472924.0625,
+        "nonmember": 0.0,
+        "paid_day": 660000.0,
+        "hotel_lodging_credit": -56000,
+        "helpers_actual_cost_recovery": 0,
+        "grants": 0,
+        "deficit_support": 0
+      },
+      "variable_expense_components_yen": {
+        "lodging": 1699000.0,
+        "meals": 2549250.0,
+        "vegetarian": 424000.0,
+        "heat": 265000.0,
+        "kit": 255500.0,
+        "insurance": 292000.0,
+        "visa_admin": 109500.0
+      },
+      "expenses_yen": {
+        "ordinary_and_staff_variable": 5594250.0,
+        "day_reception": 336000,
+        "fixed_common": 4500000,
+        "tejo_support": 2000000,
+        "excursion_support": 400000,
+        "payment_fees": 562085.43125,
+        "reserve": 1607080.25175
+      },
+      "expense_subtotal_before_reserve_yen": 13392335.43125,
+      "revenue_yen": 14791721.875,
+      "expenses_total_yen": 14999415.683,
+      "balance_yen": -207693.8080000002,
+      "revenue": 14791721.875,
+      "cost": 14999415.683,
+      "balance": -207693.8080000002,
+      "occupancy": [
+        257,
+        257,
+        257,
+        157,
+        257,
+        257,
+        257
+      ],
+      "cohorts": [
+        {
+          "period": "full",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 142,
+          "unit_expenses_yen": {
+            "lodging": 7000,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 2960700
+        },
+        {
+          "period": "full",
+          "age": "base",
+          "lodging": "hotel",
+          "count": 8,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 110800
+        },
+        {
+          "period": "first",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 100,
+          "unit_expenses_yen": {
+            "lodging": 3000,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 1105000.0
+        },
+        {
+          "period": "second",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 100,
+          "unit_expenses_yen": {
+            "lodging": 3000,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 1105000.0
+        }
+      ],
+      "staff_unit_expenses_yen": {
+        "lodging": 7000,
+        "meals": 9450,
+        "vegetarian": 1600,
+        "heat": 1000,
+        "kit": 700,
+        "insurance": 800,
+        "visa_admin": 300
+      },
+      "assumptions": {
+        "fx": 170,
+        "country_mix": {
+          "A": 0.25,
+          "B": 0.45,
+          "C": 0.2,
+          "Cx": 0.1
+        },
+        "registration_distribution": [
+          0.5,
+          0.3,
+          0.2
+        ],
+        "capacity": 257,
+        "private_youth_full": 20,
+        "lodging_night_yen": 1000,
+        "hotel_credit_night_yen": 1000,
+        "meal_price_yen": 450,
+        "full_meal_allowance": 21,
+        "short_meal_allowance": 11,
+        "meal_counts_are_confirmed": false,
+        "short_vegetarian_heat_fraction": 0.5,
+        "nonmember_share": 0.0,
+        "nonmember_full_euro": 50,
+        "nonmember_short_euro": 50,
+        "day_older_share": 0.5,
+        "payment_rate": 0.038,
+        "reserve_rate": 0.12,
+        "site_older_cap": "施設内の36歳以上一般参加者に約2割の目安。分母未定のため人数上限へ変換しない",
+        "hotel_older_cap": "施設内と同じ厳しい年齢人数上限なし",
+        "hotel_breakfast_automatic_deduction": false
+      }
+    },
+    {
+      "label": "全日125人・前後半各100人",
+      "version": "v7_20260921",
+      "ordinary_registration": 325,
+      "ordinary_period_counts": {
+        "full": 125,
+        "first": 100,
+        "second": 100
+      },
+      "ordinary_age_counts": {
+        "base": 325,
+        "36_40": 0,
+        "41_plus": 0
+      },
+      "free_or_actual_cost_staff": 15,
+      "age_composition_is_forecast": false,
+      "capacity_routed_hotel_full": 0,
+      "hotel_registration": 0,
+      "hotel_period_counts": {
+        "full": 0,
+        "first": 0,
+        "second": 0
+      },
+      "nightly_attendance_including_hotel_and_staff": [
+        240,
+        240,
+        240,
+        140,
+        240,
+        240,
+        240
+      ],
+      "nightly_onsite_including_staff": [
+        240,
+        240,
+        240,
+        140,
+        240,
+        240,
+        240
+      ],
+      "nightly_hotel": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "onsite_bed_nights": 1580,
+      "meal_allowance_total": 5140,
+      "quantity_notice": "泊数は実滞在、食数は予算仮定。",
+      "paid_day_person_days": 120,
+      "free_day_person_days": 300,
+      "average_basic_fee_euro": 295.61312499999997,
+      "average_basic_fee_yen": 50254.23125,
+      "average_by_country_euro": {
+        "A": 342.0625,
+        "B": 287.5,
+        "C": 239.5,
+        "Cx": 154.0
+      },
+      "income_yen": {
+        "full_basic": 6281778.90625,
+        "first_basic": 3517796.1875,
+        "second_basic": 3517796.1875,
+        "age_uplift": 0.0,
+        "private_youth": 502542.3125,
+        "nonmember": 0.0,
+        "paid_day": 660000.0,
+        "hotel_lodging_credit": 0,
+        "helpers_actual_cost_recovery": 0,
+        "grants": 0,
+        "deficit_support": 0
+      },
+      "variable_expense_components_yen": {
+        "lodging": 1580000.0,
+        "meals": 2313000.0,
+        "vegetarian": 384000.0,
+        "heat": 240000.0,
+        "kit": 238000.0,
+        "insurance": 272000.0,
+        "visa_admin": 102000.0
+      },
+      "expenses_yen": {
+        "ordinary_and_staff_variable": 5129000.0,
+        "day_reception": 336000,
+        "fixed_common": 4500000,
+        "tejo_support": 2000000,
+        "excursion_support": 400000,
+        "payment_fees": 550236.7165625,
+        "reserve": 1549828.4059875
+      },
+      "expense_subtotal_before_reserve_yen": 12915236.7165625,
+      "revenue_yen": 14479913.59375,
+      "expenses_total_yen": 14465065.12255,
+      "balance_yen": 14848.471200000495,
+      "revenue": 14479913.59375,
+      "cost": 14465065.12255,
+      "balance": 14848.471200000495,
+      "occupancy": [
+        240,
+        240,
+        240,
+        140,
+        240,
+        240,
+        240
+      ],
+      "cohorts": [
+        {
+          "period": "full",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 125,
+          "unit_expenses_yen": {
+            "lodging": 7000,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 2606250
+        },
+        {
+          "period": "first",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 100,
+          "unit_expenses_yen": {
+            "lodging": 3000,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 1105000.0
+        },
+        {
+          "period": "second",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 100,
+          "unit_expenses_yen": {
+            "lodging": 3000,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 1105000.0
+        }
+      ],
+      "staff_unit_expenses_yen": {
+        "lodging": 7000,
+        "meals": 9450,
+        "vegetarian": 1600,
+        "heat": 1000,
+        "kit": 700,
+        "insurance": 800,
+        "visa_admin": 300
+      },
+      "assumptions": {
+        "fx": 170,
+        "country_mix": {
+          "A": 0.45,
+          "B": 0.35,
+          "C": 0.12,
+          "Cx": 0.08
+        },
+        "registration_distribution": [
+          0.5,
+          0.3,
+          0.2
+        ],
+        "capacity": 257,
+        "private_youth_full": 20,
+        "lodging_night_yen": 1000,
+        "hotel_credit_night_yen": 1000,
+        "meal_price_yen": 450,
+        "full_meal_allowance": 21,
+        "short_meal_allowance": 11,
+        "meal_counts_are_confirmed": false,
+        "short_vegetarian_heat_fraction": 0.5,
+        "nonmember_share": 0.0,
+        "nonmember_full_euro": 50,
+        "nonmember_short_euro": 50,
+        "day_older_share": 0.5,
+        "payment_rate": 0.038,
+        "reserve_rate": 0.12,
+        "site_older_cap": "施設内の36歳以上一般参加者に約2割の目安。分母未定のため人数上限へ変換しない",
+        "hotel_older_cap": "施設内と同じ厳しい年齢人数上限なし",
+        "hotel_breakfast_automatic_deduction": false
+      }
+    },
+    {
+      "label": "全日150人・前後半各90人",
+      "version": "v7_20260921",
+      "ordinary_registration": 330,
+      "ordinary_period_counts": {
+        "full": 150,
+        "first": 90,
+        "second": 90
+      },
+      "ordinary_age_counts": {
+        "base": 330,
+        "36_40": 0,
+        "41_plus": 0
+      },
+      "free_or_actual_cost_staff": 15,
+      "age_composition_is_forecast": false,
+      "capacity_routed_hotel_full": 0,
+      "hotel_registration": 0,
+      "hotel_period_counts": {
+        "full": 0,
+        "first": 0,
+        "second": 0
+      },
+      "nightly_attendance_including_hotel_and_staff": [
+        255,
+        255,
+        255,
+        165,
+        255,
+        255,
+        255
+      ],
+      "nightly_onsite_including_staff": [
+        255,
+        255,
+        255,
+        165,
+        255,
+        255,
+        255
+      ],
+      "nightly_hotel": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "onsite_bed_nights": 1695,
+      "meal_allowance_total": 5445,
+      "quantity_notice": "泊数は実滞在、食数は予算仮定。",
+      "paid_day_person_days": 120,
+      "free_day_person_days": 300,
+      "average_basic_fee_euro": 295.61312499999997,
+      "average_basic_fee_yen": 50254.23125,
+      "average_by_country_euro": {
+        "A": 342.0625,
+        "B": 287.5,
+        "C": 239.5,
+        "Cx": 154.0
+      },
+      "income_yen": {
+        "full_basic": 7538134.6875,
+        "first_basic": 3166016.5687499996,
+        "second_basic": 3166016.5687499996,
+        "age_uplift": 0.0,
+        "private_youth": 502542.3125,
+        "nonmember": 0.0,
+        "paid_day": 660000.0,
+        "hotel_lodging_credit": 0,
+        "helpers_actual_cost_recovery": 0,
+        "grants": 0,
+        "deficit_support": 0
+      },
+      "variable_expense_components_yen": {
+        "lodging": 1695000.0,
+        "meals": 2450250.0,
+        "vegetarian": 408000.0,
+        "heat": 255000.0,
+        "kit": 241500.0,
+        "insurance": 276000.0,
+        "visa_admin": 103500.0
+      },
+      "expenses_yen": {
+        "ordinary_and_staff_variable": 5429250.0,
+        "day_reception": 336000,
+        "fixed_common": 4500000,
+        "tejo_support": 2000000,
+        "excursion_support": 400000,
+        "payment_fees": 571242.985225,
+        "reserve": 1588379.158227
+      },
+      "expense_subtotal_before_reserve_yen": 13236492.985225,
+      "revenue_yen": 15032710.1375,
+      "expenses_total_yen": 14824872.143452,
+      "balance_yen": 207837.99404799938,
+      "revenue": 15032710.1375,
+      "cost": 14824872.143452,
+      "balance": 207837.99404799938,
+      "occupancy": [
+        255,
+        255,
+        255,
+        165,
+        255,
+        255,
+        255
+      ],
+      "cohorts": [
+        {
+          "period": "full",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 150,
+          "unit_expenses_yen": {
+            "lodging": 7000,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 3127500
+        },
+        {
+          "period": "first",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 90,
+          "unit_expenses_yen": {
+            "lodging": 3000,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 994500.0
+        },
+        {
+          "period": "second",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 90,
+          "unit_expenses_yen": {
+            "lodging": 3000,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 994500.0
+        }
+      ],
+      "staff_unit_expenses_yen": {
+        "lodging": 7000,
+        "meals": 9450,
+        "vegetarian": 1600,
+        "heat": 1000,
+        "kit": 700,
+        "insurance": 800,
+        "visa_admin": 300
+      },
+      "assumptions": {
+        "fx": 170,
+        "country_mix": {
+          "A": 0.45,
+          "B": 0.35,
+          "C": 0.12,
+          "Cx": 0.08
+        },
+        "registration_distribution": [
+          0.5,
+          0.3,
+          0.2
+        ],
+        "capacity": 257,
+        "private_youth_full": 20,
+        "lodging_night_yen": 1000,
+        "hotel_credit_night_yen": 1000,
+        "meal_price_yen": 450,
+        "full_meal_allowance": 21,
+        "short_meal_allowance": 11,
+        "meal_counts_are_confirmed": false,
+        "short_vegetarian_heat_fraction": 0.5,
+        "nonmember_share": 0.0,
+        "nonmember_full_euro": 50,
+        "nonmember_short_euro": 50,
+        "day_older_share": 0.5,
+        "payment_rate": 0.038,
+        "reserve_rate": 0.12,
+        "site_older_cap": "施設内の36歳以上一般参加者に約2割の目安。分母未定のため人数上限へ変換しない",
+        "hotel_older_cap": "施設内と同じ厳しい年齢人数上限なし",
+        "hotel_breakfast_automatic_deduction": false
+      }
+    },
+    {
+      "label": "全日150人・前後半各75人",
+      "version": "v7_20260921",
+      "ordinary_registration": 300,
+      "ordinary_period_counts": {
+        "full": 150,
+        "first": 75,
+        "second": 75
+      },
+      "ordinary_age_counts": {
+        "base": 300,
+        "36_40": 0,
+        "41_plus": 0
+      },
+      "free_or_actual_cost_staff": 15,
+      "age_composition_is_forecast": false,
+      "capacity_routed_hotel_full": 0,
+      "hotel_registration": 0,
+      "hotel_period_counts": {
+        "full": 0,
+        "first": 0,
+        "second": 0
+      },
+      "nightly_attendance_including_hotel_and_staff": [
+        240,
+        240,
+        240,
+        165,
+        240,
+        240,
+        240
+      ],
+      "nightly_onsite_including_staff": [
+        240,
+        240,
+        240,
+        165,
+        240,
+        240,
+        240
+      ],
+      "nightly_hotel": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "onsite_bed_nights": 1605,
+      "meal_allowance_total": 5115,
+      "quantity_notice": "泊数は実滞在、食数は予算仮定。",
+      "paid_day_person_days": 120,
+      "free_day_person_days": 300,
+      "average_basic_fee_euro": 295.61312499999997,
+      "average_basic_fee_yen": 50254.23125,
+      "average_by_country_euro": {
+        "A": 342.0625,
+        "B": 287.5,
+        "C": 239.5,
+        "Cx": 154.0
+      },
+      "income_yen": {
+        "full_basic": 7538134.6875,
+        "first_basic": 2638347.140625,
+        "second_basic": 2638347.140625,
+        "age_uplift": 0.0,
+        "private_youth": 502542.3125,
+        "nonmember": 0.0,
+        "paid_day": 660000.0,
+        "hotel_lodging_credit": 0,
+        "helpers_actual_cost_recovery": 0,
+        "grants": 0,
+        "deficit_support": 0
+      },
+      "variable_expense_components_yen": {
+        "lodging": 1605000.0,
+        "meals": 2301750.0,
+        "vegetarian": 384000.0,
+        "heat": 240000.0,
+        "kit": 220500.0,
+        "insurance": 252000.0,
+        "visa_admin": 94500.0
+      },
+      "expenses_yen": {
+        "ordinary_and_staff_variable": 5097750.0,
+        "day_reception": 336000,
+        "fixed_common": 4500000,
+        "tejo_support": 2000000,
+        "excursion_support": 400000,
+        "payment_fees": 531140.1086875,
+        "reserve": 1543786.8130424998
+      },
+      "expense_subtotal_before_reserve_yen": 12864890.1086875,
+      "revenue_yen": 13977371.28125,
+      "expenses_total_yen": 14408676.92173,
+      "balance_yen": -431305.6404800005,
+      "revenue": 13977371.28125,
+      "cost": 14408676.92173,
+      "balance": -431305.6404800005,
+      "occupancy": [
+        240,
+        240,
+        240,
+        165,
+        240,
+        240,
+        240
+      ],
+      "cohorts": [
+        {
+          "period": "full",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 150,
+          "unit_expenses_yen": {
+            "lodging": 7000,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 3127500
+        },
+        {
+          "period": "first",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 75,
+          "unit_expenses_yen": {
+            "lodging": 3000,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 828750.0
+        },
+        {
+          "period": "second",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 75,
+          "unit_expenses_yen": {
+            "lodging": 3000,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 828750.0
+        }
+      ],
+      "staff_unit_expenses_yen": {
+        "lodging": 7000,
+        "meals": 9450,
+        "vegetarian": 1600,
+        "heat": 1000,
+        "kit": 700,
+        "insurance": 800,
+        "visa_admin": 300
+      },
+      "assumptions": {
+        "fx": 170,
+        "country_mix": {
+          "A": 0.45,
+          "B": 0.35,
+          "C": 0.12,
+          "Cx": 0.08
+        },
+        "registration_distribution": [
+          0.5,
+          0.3,
+          0.2
+        ],
+        "capacity": 257,
+        "private_youth_full": 20,
+        "lodging_night_yen": 1000,
+        "hotel_credit_night_yen": 1000,
+        "meal_price_yen": 450,
+        "full_meal_allowance": 21,
+        "short_meal_allowance": 11,
+        "meal_counts_are_confirmed": false,
+        "short_vegetarian_heat_fraction": 0.5,
+        "nonmember_share": 0.0,
+        "nonmember_full_euro": 50,
+        "nonmember_short_euro": 50,
+        "day_older_share": 0.5,
+        "payment_rate": 0.038,
+        "reserve_rate": 0.12,
+        "site_older_cap": "施設内の36歳以上一般参加者に約2割の目安。分母未定のため人数上限へ変換しない",
+        "hotel_older_cap": "施設内と同じ厳しい年齢人数上限なし",
+        "hotel_breakfast_automatic_deduction": false
+      }
+    },
+    {
+      "label": "円換算1ユーロ160円",
+      "version": "v7_20260921",
+      "ordinary_registration": 350,
+      "ordinary_period_counts": {
+        "full": 150,
+        "first": 100,
+        "second": 100
+      },
+      "ordinary_age_counts": {
+        "base": 350,
+        "36_40": 0,
+        "41_plus": 0
+      },
+      "free_or_actual_cost_staff": 15,
+      "age_composition_is_forecast": false,
+      "capacity_routed_hotel_full": 8,
+      "hotel_registration": 8,
+      "hotel_period_counts": {
+        "full": 8,
+        "first": 0,
+        "second": 0
+      },
+      "nightly_attendance_including_hotel_and_staff": [
+        265,
+        265,
+        265,
+        165,
+        265,
+        265,
+        265
+      ],
+      "nightly_onsite_including_staff": [
+        257,
+        257,
+        257,
+        157,
+        257,
+        257,
+        257
+      ],
+      "nightly_hotel": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      "onsite_bed_nights": 1699,
+      "meal_allowance_total": 5665,
+      "quantity_notice": "泊数は実滞在、食数は予算仮定。",
+      "paid_day_person_days": 120,
+      "free_day_person_days": 300,
+      "average_basic_fee_euro": 295.61312499999997,
+      "average_basic_fee_yen": 47298.09999999999,
+      "average_by_country_euro": {
+        "A": 342.0625,
+        "B": 287.5,
+        "C": 239.5,
+        "Cx": 154.0
+      },
+      "income_yen": {
+        "full_basic": 7094714.999999999,
+        "first_basic": 3310866.9999999995,
+        "second_basic": 3310866.9999999995,
+        "age_uplift": 0.0,
+        "private_youth": 472980.9999999999,
+        "nonmember": 0.0,
+        "paid_day": 660000.0,
+        "hotel_lodging_credit": -56000,
+        "helpers_actual_cost_recovery": 0,
+        "grants": 0,
+        "deficit_support": 0
+      },
+      "variable_expense_components_yen": {
+        "lodging": 1699000.0,
+        "meals": 2549250.0,
+        "vegetarian": 424000.0,
+        "heat": 265000.0,
+        "kit": 255500.0,
+        "insurance": 292000.0,
+        "visa_admin": 109500.0
+      },
+      "expenses_yen": {
+        "ordinary_and_staff_variable": 5594250.0,
+        "day_reception": 336000,
+        "fixed_common": 4500000,
+        "tejo_support": 2000000,
+        "excursion_support": 400000,
+        "payment_fees": 562150.34,
+        "reserve": 1607088.0407999998
+      },
+      "expense_subtotal_before_reserve_yen": 13392400.34,
+      "revenue_yen": 14793429.999999998,
+      "expenses_total_yen": 14999488.3808,
+      "balance_yen": -206058.38080000132,
+      "revenue": 14793429.999999998,
+      "cost": 14999488.3808,
+      "balance": -206058.38080000132,
+      "occupancy": [
+        257,
+        257,
+        257,
+        157,
+        257,
+        257,
+        257
+      ],
+      "cohorts": [
+        {
+          "period": "full",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 142,
+          "unit_expenses_yen": {
+            "lodging": 7000,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 2960700
+        },
+        {
+          "period": "full",
+          "age": "base",
+          "lodging": "hotel",
+          "count": 8,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 110800
+        },
+        {
+          "period": "first",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 100,
+          "unit_expenses_yen": {
+            "lodging": 3000,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 1105000.0
+        },
+        {
+          "period": "second",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 100,
+          "unit_expenses_yen": {
+            "lodging": 3000,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 1105000.0
+        }
+      ],
+      "staff_unit_expenses_yen": {
+        "lodging": 7000,
+        "meals": 9450,
+        "vegetarian": 1600,
+        "heat": 1000,
+        "kit": 700,
+        "insurance": 800,
+        "visa_admin": 300
+      },
+      "assumptions": {
+        "fx": 160,
+        "country_mix": {
+          "A": 0.45,
+          "B": 0.35,
+          "C": 0.12,
+          "Cx": 0.08
+        },
+        "registration_distribution": [
+          0.5,
+          0.3,
+          0.2
+        ],
+        "capacity": 257,
+        "private_youth_full": 20,
+        "lodging_night_yen": 1000,
+        "hotel_credit_night_yen": 1000,
+        "meal_price_yen": 450,
+        "full_meal_allowance": 21,
+        "short_meal_allowance": 11,
+        "meal_counts_are_confirmed": false,
+        "short_vegetarian_heat_fraction": 0.5,
+        "nonmember_share": 0.0,
+        "nonmember_full_euro": 50,
+        "nonmember_short_euro": 50,
+        "day_older_share": 0.5,
+        "payment_rate": 0.038,
+        "reserve_rate": 0.12,
+        "site_older_cap": "施設内の36歳以上一般参加者に約2割の目安。分母未定のため人数上限へ変換しない",
+        "hotel_older_cap": "施設内と同じ厳しい年齢人数上限なし",
+        "hotel_breakfast_automatic_deduction": false
+      }
+    },
+    {
+      "label": "円換算1ユーロ179円",
+      "version": "v7_20260921",
+      "ordinary_registration": 350,
+      "ordinary_period_counts": {
+        "full": 150,
+        "first": 100,
+        "second": 100
+      },
+      "ordinary_age_counts": {
+        "base": 350,
+        "36_40": 0,
+        "41_plus": 0
+      },
+      "free_or_actual_cost_staff": 15,
+      "age_composition_is_forecast": false,
+      "capacity_routed_hotel_full": 8,
+      "hotel_registration": 8,
+      "hotel_period_counts": {
+        "full": 8,
+        "first": 0,
+        "second": 0
+      },
+      "nightly_attendance_including_hotel_and_staff": [
+        265,
+        265,
+        265,
+        165,
+        265,
+        265,
+        265
+      ],
+      "nightly_onsite_including_staff": [
+        257,
+        257,
+        257,
+        157,
+        257,
+        257,
+        257
+      ],
+      "nightly_hotel": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      "onsite_bed_nights": 1699,
+      "meal_allowance_total": 5665,
+      "quantity_notice": "泊数は実滞在、食数は予算仮定。",
+      "paid_day_person_days": 120,
+      "free_day_person_days": 300,
+      "average_basic_fee_euro": 295.61312499999997,
+      "average_basic_fee_yen": 52914.74937499999,
+      "average_by_country_euro": {
+        "A": 342.0625,
+        "B": 287.5,
+        "C": 239.5,
+        "Cx": 154.0
+      },
+      "income_yen": {
+        "full_basic": 7937212.406249999,
+        "first_basic": 3704032.4562499993,
+        "second_basic": 3704032.4562499993,
+        "age_uplift": 0.0,
+        "private_youth": 529147.4937499999,
+        "nonmember": 0.0,
+        "paid_day": 660000.0,
+        "hotel_lodging_credit": -56000,
+        "helpers_actual_cost_recovery": 0,
+        "grants": 0,
+        "deficit_support": 0
+      },
+      "variable_expense_components_yen": {
+        "lodging": 1699000.0,
+        "meals": 2549250.0,
+        "vegetarian": 424000.0,
+        "heat": 265000.0,
+        "kit": 255500.0,
+        "insurance": 292000.0,
+        "visa_admin": 109500.0
+      },
+      "expenses_yen": {
+        "ordinary_and_staff_variable": 5594250.0,
+        "day_reception": 336000,
+        "fixed_common": 4500000,
+        "tejo_support": 2000000,
+        "excursion_support": 400000,
+        "payment_fees": 626180.1428749999,
+        "reserve": 1614771.617145
+      },
+      "expense_subtotal_before_reserve_yen": 13456430.142875,
+      "revenue_yen": 16478424.812499998,
+      "expenses_total_yen": 15071201.760019999,
+      "balance_yen": 1407223.0524799991,
+      "revenue": 16478424.812499998,
+      "cost": 15071201.760019999,
+      "balance": 1407223.0524799991,
+      "occupancy": [
+        257,
+        257,
+        257,
+        157,
+        257,
+        257,
+        257
+      ],
+      "cohorts": [
+        {
+          "period": "full",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 142,
+          "unit_expenses_yen": {
+            "lodging": 7000,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 2960700
+        },
+        {
+          "period": "full",
+          "age": "base",
+          "lodging": "hotel",
+          "count": 8,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 110800
+        },
+        {
+          "period": "first",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 100,
+          "unit_expenses_yen": {
+            "lodging": 3000,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 1105000.0
+        },
+        {
+          "period": "second",
+          "age": "base",
+          "lodging": "onsite",
+          "count": 100,
+          "unit_expenses_yen": {
+            "lodging": 3000,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 1105000.0
+        }
+      ],
+      "staff_unit_expenses_yen": {
+        "lodging": 7000,
+        "meals": 9450,
+        "vegetarian": 1600,
+        "heat": 1000,
+        "kit": 700,
+        "insurance": 800,
+        "visa_admin": 300
+      },
+      "assumptions": {
+        "fx": 179,
+        "country_mix": {
+          "A": 0.45,
+          "B": 0.35,
+          "C": 0.12,
+          "Cx": 0.08
+        },
+        "registration_distribution": [
+          0.5,
+          0.3,
+          0.2
+        ],
+        "capacity": 257,
+        "private_youth_full": 20,
+        "lodging_night_yen": 1000,
+        "hotel_credit_night_yen": 1000,
+        "meal_price_yen": 450,
+        "full_meal_allowance": 21,
+        "short_meal_allowance": 11,
+        "meal_counts_are_confirmed": false,
+        "short_vegetarian_heat_fraction": 0.5,
+        "nonmember_share": 0.0,
+        "nonmember_full_euro": 50,
+        "nonmember_short_euro": 50,
+        "day_older_share": 0.5,
+        "payment_rate": 0.038,
+        "reserve_rate": 0.12,
+        "site_older_cap": "施設内の36歳以上一般参加者に約2割の目安。分母未定のため人数上限へ変換しない",
+        "hotel_older_cap": "施設内と同じ厳しい年齢人数上限なし",
+        "hotel_breakfast_automatic_deduction": false
+      }
+    }
+  ]
+}
