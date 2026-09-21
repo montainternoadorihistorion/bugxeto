@@ -1,7 +1,7 @@
 {
   "version": "v7_20260921",
   "revision": "年齢料金改定版：16歳以下0.7、17～24歳0.8、25～35歳1、36歳以上1.5",
-  "notice": "主催側の年齢構成見込み5:40:40:15に基づく中心試算はplanning_caseが指すcombined_scenariosの先頭。期間配分・ホテル配置・提供単価等は仮定。scenariosの従来25ケースは需要予測ではなく比較用として維持。",
+  "notice": "主催側の年齢構成見込み5:40:40:15とTEJO会員30%・非会員70%に基づく基本の見通しはplanning_caseが指すcombined_scenariosの先頭。会員割合の各年齢・期間への一律適用、期間配分・ホテル配置・提供単価等は仮定。短期差額50ユーロは未確定の仮置きで、35ユーロの場合も比較。scenariosの従来25ケースは需要予測ではなく比較用として維持。",
   "base_age_key": "25_35",
   "age_factors": {
     "16_or_under": 0.7,
@@ -231,7 +231,7 @@
     "private_full": "(C-50ユーロ)×0.5を追加。35歳以下に同額で、年齢倍率は掛けない",
     "hotel": "年齢・会員・期間反映後の料金から会場内の未利用宿泊分を控除。ホテル代は本人別払い"
   },
-  "membership_notice": "全日の会員差額50ユーロとpatrono適用条件はTEJO調整前。短期差額50/35ユーロは未確定。比較予算は非会員割合0で増収を置かない。",
+  "membership_notice": "全日の会員差額50ユーロとpatrono適用条件はTEJO調整前。最新の見通しは一般参加350人の会員30%・非会員70%を反映。短期差額50/35ユーロは未確定のため50を仮置きし、35も比較する。日帰り・免除スタッフに差額を加算しない。従来25参考ケースは非会員割合0のまま保持。",
   "full_fee_examples_B_week12_euro": {
     "16_or_under": {
       "nonmember": 245.0,
@@ -6774,17 +6774,44 @@
     "period_split_assumption": "全日150人へ8/60/60/22、前半・後半各100人へ5/40/40/15と仮配分。年齢別の参加期間について主催側が別途予測した値ではない",
     "hotel_assignment_assumption": "36歳以上52人を全員ホテル泊に仮置き（全日22・前半15・後半15）。施設内の受入れ可能性を否定するものではない",
     "private_youth_full": 20,
-    "membership_assumption": "全員が会員割引対象の場合を置き、非会員差額による増収は先取りしない",
+    "membership_assumption": "主催側の見込みに基づき、一般参加350人のTEJO会員を30%・105人、非会員を70%・245人とする。確定登録人数ではない",
+    "membership_scope": "全日150人・前半100人・後半100人の一般参加者350人。日帰り参加者と参加費免除の運営スタッフを含めない",
+    "member_share": 0.3,
+    "nonmember_share": 0.7,
+    "membership_counts": {
+      "member": 105,
+      "nonmember": 245
+    },
+    "period_membership_counts": {
+      "full": {
+        "member": 45,
+        "nonmember": 105
+      },
+      "first": {
+        "member": 30,
+        "nonmember": 70
+      },
+      "second": {
+        "member": 30,
+        "nonmember": 70
+      }
+    },
+    "membership_distribution_assumption": "各年齢・参加期間・国区分・申込時期に会員30%・非会員70%を一律適用する仮定。年齢ごとの会員人数を整数で確定したものではない",
+    "full_membership_difference_euro": 50,
+    "short_membership_difference_assumption_euro": 50,
+    "short_membership_difference_is_confirmed": false,
+    "short_membership_difference_comparison_euro": 35,
+    "short_membership_difference_notice": "短期差額は未確定。基本と従来の8条件比較は50ユーロを仮置きし、35ユーロの場合を9番目に比較する。今回の会員割合訂正による料金決定ではない",
     "common_average_assumption": "全期間・全年齢・個室利用者の国構成と申込時期を共通とする。実際の内訳が分かれば分けて更新する"
   },
   "planning_case": {
     "collection": "combined_scenarios",
     "index": 0,
-    "label": "中心試算：年齢比5:40:40:15を350人へ反映"
+    "label": "基本の見通し：年齢比5:40:40:15、TEJO会員30%・非会員70%"
   },
   "combined_scenarios": [
     {
-      "label": "中心試算：年齢比5:40:40:15を350人へ反映",
+      "label": "基本の見通し：年齢比5:40:40:15、TEJO会員30%・非会員70%",
       "version": "v7_20260921",
       "revision": "年齢料金改定版：16歳以下0.7、17～24歳0.8、25～35歳1、36歳以上1.5",
       "base_age_key": "25_35",
@@ -6864,7 +6891,7 @@
         "age_discount": -1627492.2056249997,
         "age_surcharge": 1263215.9718749998,
         "private_youth": 502542.3125,
-        "nonmember": 0.0,
+        "nonmember": 2082500.0,
         "paid_day": 660000.0,
         "hotel_lodging_credit": -244000,
         "helpers_actual_cost_recovery": 0,
@@ -6886,16 +6913,16 @@
         "fixed_common": 4500000,
         "tejo_support": 2000000,
         "excursion_support": 400000,
-        "payment_fees": 574863.7393675,
-        "reserve": 1586053.6487240999
+        "payment_fees": 653998.7393675,
+        "reserve": 1595549.8487241
       },
-      "expense_subtotal_before_reserve_yen": 13217113.7393675,
-      "revenue_yen": 15127993.14125,
-      "expenses_total_yen": 14803167.3880916,
-      "balance_yen": 324825.75315839984,
-      "revenue": 15127993.14125,
-      "cost": 14803167.3880916,
-      "balance": 324825.75315839984,
+      "expense_subtotal_before_reserve_yen": 13296248.7393675,
+      "revenue_yen": 17210493.14125,
+      "expenses_total_yen": 14891798.5880916,
+      "balance_yen": 2318694.5531583987,
+      "revenue": 17210493.14125,
+      "cost": 14891798.5880916,
+      "balance": 2318694.5531583987,
       "occupancy": [
         228,
         228,
@@ -7142,7 +7169,7 @@
         "short_meal_allowance": 11,
         "meal_counts_are_confirmed": false,
         "short_vegetarian_heat_fraction": 0.5,
-        "nonmember_share": 0.0,
+        "nonmember_share": 0.7,
         "nonmember_full_euro": 50,
         "nonmember_short_euro": 50,
         "day_older_share": 0.5,
@@ -7165,15 +7192,21 @@
       "period_age_split_is_assumption": true,
       "planning_case_kind": "central_planning_case",
       "changed_parameters_from_planning_case": {},
-      "comparison_notice": "年齢比は主催側の見込み。各期への配分と36歳以上52人全員のホテル配置は仮置き。条件変更は収支への影響を見る比較であり、その条件の需要予測・正式見積もりではない。",
-      "balance_before_reserve_yen": 1910879.4018824995,
-      "reserve_yen": 1586053.6487240999,
-      "balance_after_reserve_yen": 324825.75315839984,
+      "comparison_notice": "年齢比は主催側の見込み。各期への配分と36歳以上52人全員のホテル配置は仮置き。TEJO会員30%・非会員70%は主催側の見込みで、各年齢・期間への一律適用は仮定。短期の非会員差額50/35ユーロは未確定。条件変更は収支への影響を見る比較であり、その条件の需要予測・正式見積もりではない。",
+      "balance_before_reserve_yen": 3914244.4018824995,
+      "reserve_yen": 1595549.8487241,
+      "balance_after_reserve_yen": 2318694.5531583987,
       "member_fee_by_period_before_lodging_adjustments_yen": {
         "full": 7338370.30125,
         "first": 3435540.2637499995,
         "second": 3435540.2637499995
-      }
+      },
+      "mixed_membership_fee_by_period_before_lodging_adjustments_yen": {
+        "full": 8230870.30125,
+        "first": 4030540.2637499995,
+        "second": 4030540.2637499995
+      },
+      "period_fee_summary_notice": "member_fee_by_periodは一般参加者全員に会員料金を適用した比較額。mixed_membership_fee_by_periodは会員30%・非会員70%を反映した見通し。いずれもホテル宿泊差引き・個室追加・日帰り収入を含まない。"
     },
     {
       "label": "有料個室0人",
@@ -7256,7 +7289,7 @@
         "age_discount": -1627492.2056249997,
         "age_surcharge": 1263215.9718749998,
         "private_youth": 0.0,
-        "nonmember": 0.0,
+        "nonmember": 2082500.0,
         "paid_day": 660000.0,
         "hotel_lodging_credit": -244000,
         "helpers_actual_cost_recovery": 0,
@@ -7278,16 +7311,16 @@
         "fixed_common": 4500000,
         "tejo_support": 2000000,
         "excursion_support": 400000,
-        "payment_fees": 555767.1314925,
-        "reserve": 1583762.0557791
+        "payment_fees": 634902.1314925,
+        "reserve": 1593258.2557790999
       },
-      "expense_subtotal_before_reserve_yen": 13198017.1314925,
-      "revenue_yen": 14625450.82875,
-      "expenses_total_yen": 14781779.1872716,
-      "balance_yen": -156328.35852160119,
-      "revenue": 14625450.82875,
-      "cost": 14781779.1872716,
-      "balance": -156328.35852160119,
+      "expense_subtotal_before_reserve_yen": 13277152.1314925,
+      "revenue_yen": 16707950.82875,
+      "expenses_total_yen": 14870410.3872716,
+      "balance_yen": 1837540.4414783996,
+      "revenue": 16707950.82875,
+      "cost": 14870410.3872716,
+      "balance": 1837540.4414783996,
       "occupancy": [
         228,
         228,
@@ -7534,7 +7567,7 @@
         "short_meal_allowance": 11,
         "meal_counts_are_confirmed": false,
         "short_vegetarian_heat_fraction": 0.5,
-        "nonmember_share": 0.0,
+        "nonmember_share": 0.7,
         "nonmember_full_euro": 50,
         "nonmember_short_euro": 50,
         "day_older_share": 0.5,
@@ -7559,15 +7592,21 @@
       "changed_parameters_from_planning_case": {
         "private_youth_full": 0
       },
-      "comparison_notice": "年齢比は主催側の見込み。各期への配分と36歳以上52人全員のホテル配置は仮置き。条件変更は収支への影響を見る比較であり、その条件の需要予測・正式見積もりではない。",
-      "balance_before_reserve_yen": 1427433.6972575001,
-      "reserve_yen": 1583762.0557791,
-      "balance_after_reserve_yen": -156328.35852160119,
+      "comparison_notice": "年齢比は主催側の見込み。各期への配分と36歳以上52人全員のホテル配置は仮置き。TEJO会員30%・非会員70%は主催側の見込みで、各年齢・期間への一律適用は仮定。短期の非会員差額50/35ユーロは未確定。条件変更は収支への影響を見る比較であり、その条件の需要予測・正式見積もりではない。",
+      "balance_before_reserve_yen": 3430798.6972575,
+      "reserve_yen": 1593258.2557790999,
+      "balance_after_reserve_yen": 1837540.4414783996,
       "member_fee_by_period_before_lodging_adjustments_yen": {
         "full": 7338370.30125,
         "first": 3435540.2637499995,
         "second": 3435540.2637499995
-      }
+      },
+      "mixed_membership_fee_by_period_before_lodging_adjustments_yen": {
+        "full": 8230870.30125,
+        "first": 4030540.2637499995,
+        "second": 4030540.2637499995
+      },
+      "period_fee_summary_notice": "member_fee_by_periodは一般参加者全員に会員料金を適用した比較額。mixed_membership_fee_by_periodは会員30%・非会員70%を反映した見通し。いずれもホテル宿泊差引き・個室追加・日帰り収入を含まない。"
     },
     {
       "label": "平均食事550円",
@@ -7650,7 +7689,7 @@
         "age_discount": -1627492.2056249997,
         "age_surcharge": 1263215.9718749998,
         "private_youth": 502542.3125,
-        "nonmember": 0.0,
+        "nonmember": 2082500.0,
         "paid_day": 660000.0,
         "hotel_lodging_credit": -244000,
         "helpers_actual_cost_recovery": 0,
@@ -7672,16 +7711,16 @@
         "fixed_common": 4500000,
         "tejo_support": 2000000,
         "excursion_support": 400000,
-        "payment_fees": 574863.7393675,
-        "reserve": 1654033.6487240999
+        "payment_fees": 653998.7393675,
+        "reserve": 1663529.8487241
       },
-      "expense_subtotal_before_reserve_yen": 13783613.7393675,
-      "revenue_yen": 15127993.14125,
-      "expenses_total_yen": 15437647.3880916,
-      "balance_yen": -309654.24684160016,
-      "revenue": 15127993.14125,
-      "cost": 15437647.3880916,
-      "balance": -309654.24684160016,
+      "expense_subtotal_before_reserve_yen": 13862748.7393675,
+      "revenue_yen": 17210493.14125,
+      "expenses_total_yen": 15526278.5880916,
+      "balance_yen": 1684214.5531583987,
+      "revenue": 17210493.14125,
+      "cost": 15526278.5880916,
+      "balance": 1684214.5531583987,
       "occupancy": [
         228,
         228,
@@ -7928,7 +7967,7 @@
         "short_meal_allowance": 11,
         "meal_counts_are_confirmed": false,
         "short_vegetarian_heat_fraction": 0.5,
-        "nonmember_share": 0.0,
+        "nonmember_share": 0.7,
         "nonmember_full_euro": 50,
         "nonmember_short_euro": 50,
         "day_older_share": 0.5,
@@ -7953,15 +7992,21 @@
       "changed_parameters_from_planning_case": {
         "meal_price": 550
       },
-      "comparison_notice": "年齢比は主催側の見込み。各期への配分と36歳以上52人全員のホテル配置は仮置き。条件変更は収支への影響を見る比較であり、その条件の需要予測・正式見積もりではない。",
-      "balance_before_reserve_yen": 1344379.4018824995,
-      "reserve_yen": 1654033.6487240999,
-      "balance_after_reserve_yen": -309654.24684160016,
+      "comparison_notice": "年齢比は主催側の見込み。各期への配分と36歳以上52人全員のホテル配置は仮置き。TEJO会員30%・非会員70%は主催側の見込みで、各年齢・期間への一律適用は仮定。短期の非会員差額50/35ユーロは未確定。条件変更は収支への影響を見る比較であり、その条件の需要予測・正式見積もりではない。",
+      "balance_before_reserve_yen": 3347744.4018824995,
+      "reserve_yen": 1663529.8487241,
+      "balance_after_reserve_yen": 1684214.5531583987,
       "member_fee_by_period_before_lodging_adjustments_yen": {
         "full": 7338370.30125,
         "first": 3435540.2637499995,
         "second": 3435540.2637499995
-      }
+      },
+      "mixed_membership_fee_by_period_before_lodging_adjustments_yen": {
+        "full": 8230870.30125,
+        "first": 4030540.2637499995,
+        "second": 4030540.2637499995
+      },
+      "period_fee_summary_notice": "member_fee_by_periodは一般参加者全員に会員料金を適用した比較額。mixed_membership_fee_by_periodは会員30%・非会員70%を反映した見通し。いずれもホテル宿泊差引き・個室追加・日帰り収入を含まない。"
     },
     {
       "label": "複合：個室0人・食事550円・日帰り2日",
@@ -8044,7 +8089,7 @@
         "age_discount": -1627492.2056249997,
         "age_surcharge": 1263215.9718749998,
         "private_youth": 0.0,
-        "nonmember": 0.0,
+        "nonmember": 2082500.0,
         "paid_day": 440000.0,
         "hotel_lodging_credit": -244000,
         "helpers_actual_cost_recovery": 0,
@@ -8066,16 +8111,16 @@
         "fixed_common": 4500000,
         "tejo_support": 2000000,
         "excursion_support": 400000,
-        "payment_fees": 547407.1314925,
-        "reserve": 1646898.8557790997
+        "payment_fees": 626542.1314925,
+        "reserve": 1656395.0557791
       },
-      "expense_subtotal_before_reserve_yen": 13724157.1314925,
-      "revenue_yen": 14405450.82875,
-      "expenses_total_yen": 15371055.9872716,
-      "balance_yen": -965605.1585216001,
-      "revenue": 14405450.82875,
-      "cost": 15371055.9872716,
-      "balance": -965605.1585216001,
+      "expense_subtotal_before_reserve_yen": 13803292.1314925,
+      "revenue_yen": 16487950.82875,
+      "expenses_total_yen": 15459687.1872716,
+      "balance_yen": 1028263.6414783988,
+      "revenue": 16487950.82875,
+      "cost": 15459687.1872716,
+      "balance": 1028263.6414783988,
       "occupancy": [
         228,
         228,
@@ -8322,7 +8367,7 @@
         "short_meal_allowance": 11,
         "meal_counts_are_confirmed": false,
         "short_vegetarian_heat_fraction": 0.5,
-        "nonmember_share": 0.0,
+        "nonmember_share": 0.7,
         "nonmember_full_euro": 50,
         "nonmember_short_euro": 50,
         "day_older_share": 0.5,
@@ -8349,15 +8394,21 @@
         "meal_price": 550,
         "paid_days": 2
       },
-      "comparison_notice": "年齢比は主催側の見込み。各期への配分と36歳以上52人全員のホテル配置は仮置き。条件変更は収支への影響を見る比較であり、その条件の需要予測・正式見積もりではない。",
-      "balance_before_reserve_yen": 681293.6972575001,
-      "reserve_yen": 1646898.8557790997,
-      "balance_after_reserve_yen": -965605.1585216001,
+      "comparison_notice": "年齢比は主催側の見込み。各期への配分と36歳以上52人全員のホテル配置は仮置き。TEJO会員30%・非会員70%は主催側の見込みで、各年齢・期間への一律適用は仮定。短期の非会員差額50/35ユーロは未確定。条件変更は収支への影響を見る比較であり、その条件の需要予測・正式見積もりではない。",
+      "balance_before_reserve_yen": 2684658.6972575,
+      "reserve_yen": 1656395.0557791,
+      "balance_after_reserve_yen": 1028263.6414783988,
       "member_fee_by_period_before_lodging_adjustments_yen": {
         "full": 7338370.30125,
         "first": 3435540.2637499995,
         "second": 3435540.2637499995
-      }
+      },
+      "mixed_membership_fee_by_period_before_lodging_adjustments_yen": {
+        "full": 8230870.30125,
+        "first": 4030540.2637499995,
+        "second": 4030540.2637499995
+      },
+      "period_fee_summary_notice": "member_fee_by_periodは一般参加者全員に会員料金を適用した比較額。mixed_membership_fee_by_periodは会員30%・非会員70%を反映した見通し。いずれもホテル宿泊差引き・個室追加・日帰り収入を含まない。"
     },
     {
       "label": "東アジア寄りの国構成を置く比較",
@@ -8440,7 +8491,7 @@
         "age_discount": -1545449.6531249997,
         "age_surcharge": 1199536.734375,
         "private_youth": 472924.0625,
-        "nonmember": 0.0,
+        "nonmember": 2082500.0,
         "paid_day": 660000.0,
         "hotel_lodging_credit": -244000,
         "helpers_actual_cost_recovery": 0,
@@ -8462,16 +8513,16 @@
         "fixed_common": 4500000,
         "tejo_support": 2000000,
         "excursion_support": 400000,
-        "payment_fees": 541796.7403375,
-        "reserve": 1582085.6088405
+        "payment_fees": 620931.7403375,
+        "reserve": 1591581.8088405
       },
-      "expense_subtotal_before_reserve_yen": 13184046.7403375,
-      "revenue_yen": 14257808.95625,
-      "expenses_total_yen": 14766132.349178,
-      "balance_yen": -508323.3929279987,
-      "revenue": 14257808.95625,
-      "cost": 14766132.349178,
-      "balance": -508323.3929279987,
+      "expense_subtotal_before_reserve_yen": 13263181.7403375,
+      "revenue_yen": 16340308.95625,
+      "expenses_total_yen": 14854763.549178,
+      "balance_yen": 1485545.4070720002,
+      "revenue": 16340308.95625,
+      "cost": 14854763.549178,
+      "balance": 1485545.4070720002,
       "occupancy": [
         228,
         228,
@@ -8718,7 +8769,7 @@
         "short_meal_allowance": 11,
         "meal_counts_are_confirmed": false,
         "short_vegetarian_heat_fraction": 0.5,
-        "nonmember_share": 0.0,
+        "nonmember_share": 0.7,
         "nonmember_full_euro": 50,
         "nonmember_short_euro": 50,
         "day_older_share": 0.5,
@@ -8748,15 +8799,21 @@
           "Cx": 0.1
         }
       },
-      "comparison_notice": "年齢比は主催側の見込み。各期への配分と36歳以上52人全員のホテル配置は仮置き。条件変更は収支への影響を見る比較であり、その条件の需要予測・正式見積もりではない。",
-      "balance_before_reserve_yen": 1073762.2159125004,
-      "reserve_yen": 1582085.6088405,
-      "balance_after_reserve_yen": -508323.3929279987,
+      "comparison_notice": "年齢比は主催側の見込み。各期への配分と36歳以上52人全員のホテル配置は仮置き。TEJO会員30%・非会員70%は主催側の見込みで、各年齢・期間への一律適用は仮定。短期の非会員差額50/35ユーロは未確定。条件変更は収支への影響を見る比較であり、その条件の需要予測・正式見積もりではない。",
+      "balance_before_reserve_yen": 3077127.2159125004,
+      "reserve_yen": 1591581.8088405,
+      "balance_after_reserve_yen": 1485545.4070720002,
       "member_fee_by_period_before_lodging_adjustments_yen": {
         "full": 6904166.75625,
         "first": 3232359.06875,
         "second": 3232359.06875
-      }
+      },
+      "mixed_membership_fee_by_period_before_lodging_adjustments_yen": {
+        "full": 7796666.75625,
+        "first": 3827359.06875,
+        "second": 3827359.06875
+      },
+      "period_fee_summary_notice": "member_fee_by_periodは一般参加者全員に会員料金を適用した比較額。mixed_membership_fee_by_periodは会員30%・非会員70%を反映した見通し。いずれもホテル宿泊差引き・個室追加・日帰り収入を含まない。"
     },
     {
       "label": "早期申込70％・中期20％・後期10％を置く比較",
@@ -8839,7 +8896,7 @@
         "age_discount": -1551268.21125,
         "age_surcharge": 1204052.94375,
         "private_youth": 475024.6250000001,
-        "nonmember": 0.0,
+        "nonmember": 2082500.0,
         "paid_day": 660000.0,
         "hotel_lodging_credit": -244000,
         "helpers_actual_cost_recovery": 0,
@@ -8861,16 +8918,16 @@
         "fixed_common": 4500000,
         "tejo_support": 2000000,
         "excursion_support": 400000,
-        "payment_fees": 544141.8923350001,
-        "reserve": 1582367.0270802
+        "payment_fees": 623276.8923350001,
+        "reserve": 1591863.2270801999
       },
-      "expense_subtotal_before_reserve_yen": 13186391.892335,
-      "revenue_yen": 14319523.482500002,
-      "expenses_total_yen": 14768758.9194152,
-      "balance_yen": -449235.43691519834,
-      "revenue": 14319523.482500002,
-      "cost": 14768758.9194152,
-      "balance": -449235.43691519834,
+      "expense_subtotal_before_reserve_yen": 13265526.892335,
+      "revenue_yen": 16402023.482500002,
+      "expenses_total_yen": 14857390.1194152,
+      "balance_yen": 1544633.3630848024,
+      "revenue": 16402023.482500002,
+      "cost": 14857390.1194152,
+      "balance": 1544633.3630848024,
       "occupancy": [
         228,
         228,
@@ -9117,7 +9174,7 @@
         "short_meal_allowance": 11,
         "meal_counts_are_confirmed": false,
         "short_vegetarian_heat_fraction": 0.5,
-        "nonmember_share": 0.0,
+        "nonmember_share": 0.7,
         "nonmember_full_euro": 50,
         "nonmember_short_euro": 50,
         "day_older_share": 0.5,
@@ -9146,15 +9203,21 @@
           0.1
         ]
       },
-      "comparison_notice": "年齢比は主催側の見込み。各期への配分と36歳以上52人全員のホテル配置は仮置き。条件変更は収支への影響を見る比較であり、その条件の需要予測・正式見積もりではない。",
-      "balance_before_reserve_yen": 1133131.5901650023,
-      "reserve_yen": 1582367.0270802,
-      "balance_after_reserve_yen": -449235.43691519834,
+      "comparison_notice": "年齢比は主催側の見込み。各期への配分と36歳以上52人全員のホテル配置は仮置き。TEJO会員30%・非会員70%は主催側の見込みで、各年齢・期間への一律適用は仮定。短期の非会員差額50/35ユーロは未確定。条件変更は収支への影響を見る比較であり、その条件の需要予測・正式見積もりではない。",
+      "balance_before_reserve_yen": 3136496.5901650023,
+      "reserve_yen": 1591863.2270801999,
+      "balance_after_reserve_yen": 1544633.3630848024,
       "member_fee_by_period_before_lodging_adjustments_yen": {
         "full": 6934961.002500001,
         "first": 3246768.9275,
         "second": 3246768.9275
-      }
+      },
+      "mixed_membership_fee_by_period_before_lodging_adjustments_yen": {
+        "full": 7827461.002500001,
+        "first": 3841768.9275,
+        "second": 3841768.9275
+      },
+      "period_fee_summary_notice": "member_fee_by_periodは一般参加者全員に会員料金を適用した比較額。mixed_membership_fee_by_periodは会員30%・非会員70%を反映した見通し。いずれもホテル宿泊差引き・個室追加・日帰り収入を含まない。"
     },
     {
       "label": "無料運営25人",
@@ -9237,7 +9300,7 @@
         "age_discount": -1627492.2056249997,
         "age_surcharge": 1263215.9718749998,
         "private_youth": 502542.3125,
-        "nonmember": 0.0,
+        "nonmember": 2082500.0,
         "paid_day": 660000.0,
         "hotel_lodging_credit": -244000,
         "helpers_actual_cost_recovery": 0,
@@ -9259,16 +9322,16 @@
         "fixed_common": 4500000,
         "tejo_support": 2000000,
         "excursion_support": 400000,
-        "payment_fees": 574863.7393675,
-        "reserve": 1611073.6487240999
+        "payment_fees": 653998.7393675,
+        "reserve": 1620569.8487241
       },
-      "expense_subtotal_before_reserve_yen": 13425613.7393675,
-      "revenue_yen": 15127993.14125,
-      "expenses_total_yen": 15036687.3880916,
-      "balance_yen": 91305.75315839984,
-      "revenue": 15127993.14125,
-      "cost": 15036687.3880916,
-      "balance": 91305.75315839984,
+      "expense_subtotal_before_reserve_yen": 13504748.7393675,
+      "revenue_yen": 17210493.14125,
+      "expenses_total_yen": 15125318.5880916,
+      "balance_yen": 2085174.5531583987,
+      "revenue": 17210493.14125,
+      "cost": 15125318.5880916,
+      "balance": 2085174.5531583987,
       "occupancy": [
         238,
         238,
@@ -9515,7 +9578,7 @@
         "short_meal_allowance": 11,
         "meal_counts_are_confirmed": false,
         "short_vegetarian_heat_fraction": 0.5,
-        "nonmember_share": 0.0,
+        "nonmember_share": 0.7,
         "nonmember_full_euro": 50,
         "nonmember_short_euro": 50,
         "day_older_share": 0.5,
@@ -9540,15 +9603,21 @@
       "changed_parameters_from_planning_case": {
         "staff_full": 25
       },
-      "comparison_notice": "年齢比は主催側の見込み。各期への配分と36歳以上52人全員のホテル配置は仮置き。条件変更は収支への影響を見る比較であり、その条件の需要予測・正式見積もりではない。",
-      "balance_before_reserve_yen": 1702379.4018824995,
-      "reserve_yen": 1611073.6487240999,
-      "balance_after_reserve_yen": 91305.75315839984,
+      "comparison_notice": "年齢比は主催側の見込み。各期への配分と36歳以上52人全員のホテル配置は仮置き。TEJO会員30%・非会員70%は主催側の見込みで、各年齢・期間への一律適用は仮定。短期の非会員差額50/35ユーロは未確定。条件変更は収支への影響を見る比較であり、その条件の需要予測・正式見積もりではない。",
+      "balance_before_reserve_yen": 3705744.4018824995,
+      "reserve_yen": 1620569.8487241,
+      "balance_after_reserve_yen": 2085174.5531583987,
       "member_fee_by_period_before_lodging_adjustments_yen": {
         "full": 7338370.30125,
         "first": 3435540.2637499995,
         "second": 3435540.2637499995
-      }
+      },
+      "mixed_membership_fee_by_period_before_lodging_adjustments_yen": {
+        "full": 8230870.30125,
+        "first": 4030540.2637499995,
+        "second": 4030540.2637499995
+      },
+      "period_fee_summary_notice": "member_fee_by_periodは一般参加者全員に会員料金を適用した比較額。mixed_membership_fee_by_periodは会員30%・非会員70%を反映した見通し。いずれもホテル宿泊差引き・個室追加・日帰り収入を含まない。"
     },
     {
       "label": "施設単価上振れ：宿泊1800円・食事1日1900円相当・ホテル控除1800円",
@@ -9631,7 +9700,7 @@
         "age_discount": -1627492.2056249997,
         "age_surcharge": 1263215.9718749998,
         "private_youth": 502542.3125,
-        "nonmember": 0.0,
+        "nonmember": 2082500.0,
         "paid_day": 660000.0,
         "hotel_lodging_credit": -439200,
         "helpers_actual_cost_recovery": 0,
@@ -9653,16 +9722,16 @@
         "fixed_common": 4500000,
         "tejo_support": 2000000,
         "excursion_support": 400000,
-        "payment_fees": 567446.1393675,
-        "reserve": 1854849.5367241
+        "payment_fees": 646581.1393675,
+        "reserve": 1864345.7367240998
       },
-      "expense_subtotal_before_reserve_yen": 15457079.472700832,
-      "revenue_yen": 14932793.14125,
-      "expenses_total_yen": 17311929.009424932,
-      "balance_yen": -2379135.868174933,
-      "revenue": 14932793.14125,
-      "cost": 17311929.009424932,
-      "balance": -2379135.868174933,
+      "expense_subtotal_before_reserve_yen": 15536214.472700832,
+      "revenue_yen": 17015293.14125,
+      "expenses_total_yen": 17400560.20942493,
+      "balance_yen": -385267.06817493215,
+      "revenue": 17015293.14125,
+      "cost": 17400560.20942493,
+      "balance": -385267.06817493215,
       "occupancy": [
         228,
         228,
@@ -9909,7 +9978,7 @@
         "short_meal_allowance": 11,
         "meal_counts_are_confirmed": false,
         "short_vegetarian_heat_fraction": 0.5,
-        "nonmember_share": 0.0,
+        "nonmember_share": 0.7,
         "nonmember_full_euro": 50,
         "nonmember_short_euro": 50,
         "day_older_share": 0.5,
@@ -9936,15 +10005,421 @@
         "meal_price": 633.3333333333334,
         "hotel_refund_night": 1800
       },
-      "comparison_notice": "年齢比は主催側の見込み。各期への配分と36歳以上52人全員のホテル配置は仮置き。条件変更は収支への影響を見る比較であり、その条件の需要予測・正式見積もりではない。",
-      "balance_before_reserve_yen": -524286.331450833,
-      "reserve_yen": 1854849.5367241,
-      "balance_after_reserve_yen": -2379135.868174933,
+      "comparison_notice": "年齢比は主催側の見込み。各期への配分と36歳以上52人全員のホテル配置は仮置き。TEJO会員30%・非会員70%は主催側の見込みで、各年齢・期間への一律適用は仮定。短期の非会員差額50/35ユーロは未確定。条件変更は収支への影響を見る比較であり、その条件の需要予測・正式見積もりではない。",
+      "balance_before_reserve_yen": 1479078.668549167,
+      "reserve_yen": 1864345.7367240998,
+      "balance_after_reserve_yen": -385267.06817493215,
       "member_fee_by_period_before_lodging_adjustments_yen": {
         "full": 7338370.30125,
         "first": 3435540.2637499995,
         "second": 3435540.2637499995
-      }
+      },
+      "mixed_membership_fee_by_period_before_lodging_adjustments_yen": {
+        "full": 8230870.30125,
+        "first": 4030540.2637499995,
+        "second": 4030540.2637499995
+      },
+      "period_fee_summary_notice": "member_fee_by_periodは一般参加者全員に会員料金を適用した比較額。mixed_membership_fee_by_periodは会員30%・非会員70%を反映した見通し。いずれもホテル宿泊差引き・個室追加・日帰り収入を含まない。"
+    },
+    {
+      "label": "短期の非会員差額を35ユーロとする比較（料金未確定）",
+      "version": "v7_20260921",
+      "revision": "年齢料金改定版：16歳以下0.7、17～24歳0.8、25～35歳1、36歳以上1.5",
+      "base_age_key": "25_35",
+      "ordinary_registration": 350,
+      "ordinary_period_counts": {
+        "full": 150,
+        "first": 100,
+        "second": 100
+      },
+      "ordinary_age_counts": {
+        "16_or_under": 18,
+        "17_24": 140,
+        "25_35": 140,
+        "36_plus": 52
+      },
+      "free_or_actual_cost_staff": 15,
+      "age_composition_is_forecast": true,
+      "capacity_routed_hotel_full": 0,
+      "hotel_registration": 52,
+      "hotel_period_counts": {
+        "full": 22,
+        "first": 15,
+        "second": 15
+      },
+      "nightly_attendance_including_hotel_and_staff": [
+        265,
+        265,
+        265,
+        165,
+        265,
+        265,
+        265
+      ],
+      "nightly_onsite_including_staff": [
+        228,
+        228,
+        228,
+        143,
+        228,
+        228,
+        228
+      ],
+      "nightly_hotel": [
+        37,
+        37,
+        37,
+        22,
+        37,
+        37,
+        37
+      ],
+      "onsite_bed_nights": 1511,
+      "meal_allowance_total": 5665,
+      "quantity_notice": "泊数は実滞在、食数は予算仮定。",
+      "paid_day_person_days": 120,
+      "free_day_person_days": 300,
+      "average_member_base_fee_euro": 295.61312499999997,
+      "average_member_base_fee_yen": 50254.23125,
+      "average_display_basic_fee_euro": 345.61312499999997,
+      "average_display_basic_fee_yen": 58754.23125,
+      "average_by_country_member_base_euro": {
+        "A": 342.0625,
+        "B": 287.5,
+        "C": 239.5,
+        "Cx": 154.0
+      },
+      "average_by_country_display_basic_euro": {
+        "A": 392.0625,
+        "B": 337.5,
+        "C": 289.5,
+        "Cx": 204.0
+      },
+      "income_yen": {
+        "full_basic": 7538134.6875,
+        "first_basic": 3517796.1875,
+        "second_basic": 3517796.1875,
+        "age_discount": -1627492.2056249997,
+        "age_surcharge": 1263215.9718749998,
+        "private_youth": 502542.3125,
+        "nonmember": 1725500.0,
+        "paid_day": 660000.0,
+        "hotel_lodging_credit": -244000,
+        "helpers_actual_cost_recovery": 0,
+        "grants": 0,
+        "deficit_support": 0
+      },
+      "variable_expense_components_yen": {
+        "lodging": 1511000.0,
+        "meals": 2549250.0,
+        "vegetarian": 424000.0,
+        "heat": 265000.0,
+        "kit": 255500.0,
+        "insurance": 292000.0,
+        "visa_admin": 109500.0
+      },
+      "expenses_yen": {
+        "ordinary_and_staff_variable": 5406250.0,
+        "day_reception": 336000,
+        "fixed_common": 4500000,
+        "tejo_support": 2000000,
+        "excursion_support": 400000,
+        "payment_fees": 640432.7393675,
+        "reserve": 1593921.9287240999
+      },
+      "expense_subtotal_before_reserve_yen": 13282682.7393675,
+      "revenue_yen": 16853493.14125,
+      "expenses_total_yen": 14876604.668091599,
+      "balance_yen": 1976888.4731584005,
+      "revenue": 16853493.14125,
+      "cost": 14876604.668091599,
+      "balance": 1976888.4731584005,
+      "occupancy": [
+        228,
+        228,
+        228,
+        143,
+        228,
+        228,
+        228
+      ],
+      "cohorts": [
+        {
+          "period": "full",
+          "age": "16_or_under",
+          "lodging": "onsite",
+          "count": 8,
+          "unit_expenses_yen": {
+            "lodging": 7000,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 166800,
+          "average_member_participation_fee_yen_before_lodging_adjustments": 32627.961874999997
+        },
+        {
+          "period": "full",
+          "age": "17_24",
+          "lodging": "onsite",
+          "count": 60,
+          "unit_expenses_yen": {
+            "lodging": 7000,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 1251000,
+          "average_member_participation_fee_yen_before_lodging_adjustments": 38503.384999999995
+        },
+        {
+          "period": "full",
+          "age": "25_35",
+          "lodging": "onsite",
+          "count": 60,
+          "unit_expenses_yen": {
+            "lodging": 7000,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 1251000,
+          "average_member_participation_fee_yen_before_lodging_adjustments": 50254.23125
+        },
+        {
+          "period": "full",
+          "age": "36_plus",
+          "lodging": "hotel",
+          "count": 22,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 1000,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 304700,
+          "average_member_participation_fee_yen_before_lodging_adjustments": 79631.34687499999
+        },
+        {
+          "period": "first",
+          "age": "16_or_under",
+          "lodging": "onsite",
+          "count": 5,
+          "unit_expenses_yen": {
+            "lodging": 3000,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 55250.0,
+          "average_member_participation_fee_yen_before_lodging_adjustments": 22839.573312499997
+        },
+        {
+          "period": "first",
+          "age": "17_24",
+          "lodging": "onsite",
+          "count": 40,
+          "unit_expenses_yen": {
+            "lodging": 3000,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 442000.0,
+          "average_member_participation_fee_yen_before_lodging_adjustments": 26952.369499999997
+        },
+        {
+          "period": "first",
+          "age": "25_35",
+          "lodging": "onsite",
+          "count": 40,
+          "unit_expenses_yen": {
+            "lodging": 3000,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 442000.0,
+          "average_member_participation_fee_yen_before_lodging_adjustments": 35177.96187499999
+        },
+        {
+          "period": "first",
+          "age": "36_plus",
+          "lodging": "hotel",
+          "count": 15,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 120750.0,
+          "average_member_participation_fee_yen_before_lodging_adjustments": 55741.94281249999
+        },
+        {
+          "period": "second",
+          "age": "16_or_under",
+          "lodging": "onsite",
+          "count": 5,
+          "unit_expenses_yen": {
+            "lodging": 3000,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 55250.0,
+          "average_member_participation_fee_yen_before_lodging_adjustments": 22839.573312499997
+        },
+        {
+          "period": "second",
+          "age": "17_24",
+          "lodging": "onsite",
+          "count": 40,
+          "unit_expenses_yen": {
+            "lodging": 3000,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 442000.0,
+          "average_member_participation_fee_yen_before_lodging_adjustments": 26952.369499999997
+        },
+        {
+          "period": "second",
+          "age": "25_35",
+          "lodging": "onsite",
+          "count": 40,
+          "unit_expenses_yen": {
+            "lodging": 3000,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 442000.0,
+          "average_member_participation_fee_yen_before_lodging_adjustments": 35177.96187499999
+        },
+        {
+          "period": "second",
+          "age": "36_plus",
+          "lodging": "hotel",
+          "count": 15,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 4950,
+            "vegetarian": 800.0,
+            "heat": 500.0,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 120750.0,
+          "average_member_participation_fee_yen_before_lodging_adjustments": 55741.94281249999
+        }
+      ],
+      "staff_unit_expenses_yen": {
+        "lodging": 7000,
+        "meals": 9450,
+        "vegetarian": 1600,
+        "heat": 1000,
+        "kit": 700,
+        "insurance": 800,
+        "visa_admin": 300
+      },
+      "assumptions": {
+        "fx": 170,
+        "country_mix": {
+          "A": 0.45,
+          "B": 0.35,
+          "C": 0.12,
+          "Cx": 0.08
+        },
+        "registration_distribution": [
+          0.5,
+          0.3,
+          0.2
+        ],
+        "capacity": 257,
+        "private_youth_full": 20,
+        "lodging_night_yen": 1000,
+        "hotel_credit_night_yen": 1000,
+        "meal_price_yen": 450,
+        "full_meal_allowance": 21,
+        "short_meal_allowance": 11,
+        "meal_counts_are_confirmed": false,
+        "short_vegetarian_heat_fraction": 0.5,
+        "nonmember_share": 0.7,
+        "nonmember_full_euro": 50,
+        "nonmember_short_euro": 35,
+        "day_older_share": 0.5,
+        "payment_rate": 0.038,
+        "reserve_rate": 0.12,
+        "age_factors": {
+          "16_or_under": 0.7,
+          "17_24": 0.8,
+          "25_35": 1.0,
+          "36_plus": 1.5
+        },
+        "age_factors_apply_to": "非会員・雑魚寝・食事付き・全日程・25～35歳の表示基本額C",
+        "private_addition_basis": "25～35歳の全日会員料金Bの50%。若年割引・年長割増は掛けない",
+        "young_participant_cost_discount": false,
+        "site_older_cap": "施設内の36歳以上一般参加者に約2割の目安。分母未定のため人数上限へ変換しない",
+        "hotel_older_cap": "施設内と同じ厳しい年齢人数上限なし",
+        "hotel_breakfast_automatic_deduction": false
+      },
+      "age_composition_basis": "主催側の年齢構成見込み。入金済み人数・実測値ではない",
+      "period_age_split_is_assumption": true,
+      "planning_case_kind": "sensitivity",
+      "changed_parameters_from_planning_case": {
+        "nonmember_short_euro": 35
+      },
+      "comparison_notice": "年齢比は主催側の見込み。各期への配分と36歳以上52人全員のホテル配置は仮置き。TEJO会員30%・非会員70%は主催側の見込みで、各年齢・期間への一律適用は仮定。短期の非会員差額50/35ユーロは未確定。条件変更は収支への影響を見る比較であり、その条件の需要予測・正式見積もりではない。",
+      "balance_before_reserve_yen": 3570810.4018824995,
+      "reserve_yen": 1593921.9287240999,
+      "balance_after_reserve_yen": 1976888.4731584005,
+      "member_fee_by_period_before_lodging_adjustments_yen": {
+        "full": 7338370.30125,
+        "first": 3435540.2637499995,
+        "second": 3435540.2637499995
+      },
+      "mixed_membership_fee_by_period_before_lodging_adjustments_yen": {
+        "full": 8230870.30125,
+        "first": 3852040.2637499995,
+        "second": 3852040.2637499995
+      },
+      "period_fee_summary_notice": "member_fee_by_periodは一般参加者全員に会員料金を適用した比較額。mixed_membership_fee_by_periodは会員30%・非会員70%を反映した見通し。いずれもホテル宿泊差引き・個室追加・日帰り収入を含まない。"
     }
   ]
 }
