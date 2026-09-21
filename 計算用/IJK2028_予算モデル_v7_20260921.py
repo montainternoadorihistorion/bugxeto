@@ -1,16 +1,19 @@
 # -*- coding: utf-8 -*-
-"""IJK 2028 予算モデル v7 / 2026-09-21（標準ライブラリのみ）。
+"""IJK 2028 予算モデル v7 / 2026-09-21 年齢料金改定版（標準ライブラリのみ）。
 
 実行: python IJK2028_予算モデル_v7_20260921.py --output-dir 任意の出力先
 省略時は本ファイルと同じフォルダに計算結果 JSON を作成する。
 
 最新方針:
-* 参加者向けの表示基本料金は非会員・雑魚寝・食事付き・全日程。
-  TABLEは従来の青年会員料金を保持し、表示時のみ全日の非会員分（現案50ユーロ）を足す。
-  年齢・短期・個室の計算対象は従来のTABLEのまま。表示変更で支払額と予算を変えない。
-  全日/短期の非会員加算額は仮入力。基準では非会員加算収入を置かない。
+* 表示基本料金Cは非会員・雑魚寝・食事付き・全日程・25～35歳。
+  TABLEは従来の25～35歳会員相当額Bを保持し、C=B+50ユーロ（現案）とする。
+  年齢倍率はCへ掛ける。全日会員料金=C×年齢倍率-50、非会員料金=C×年齢倍率。
+  短期会員料金=(C×年齢倍率-50)×0.7。短期非会員はその後に差額を足す。
+  短期の会員・非会員差額50/35ユーロは未確定。比較計算は非会員割合0で増収を置かない。
+  個室追加はBの50%を維持し、年齢割引・割増を掛けない。若年者の費用は減額しない。
 * 一般登録350人 = 全日150 + 前半100 + 後半100。36歳以上もこの内数。
-* 一般36～40歳は1.5倍、41歳以上は2倍。協力者・大本/EPAは倍率なしの実費/無料。
+* 年齢倍率は16歳以下0.7、17～24歳0.8、25～35歳1、36歳以上一律1.5。
+  協力者・大本/EPAは倍率なしの実費/無料。年齢は開催初日で判定する案。
 * 年長一般参加者は原則ホテル、施設内個室は青年のみ。施設内年長者の約2割という
   目安は分母未定のため計算上限にしない。ホテル泊には同じ厳しい年齢上限なし。
 * 全日7泊、短期3泊。ホテル代本人払い、施設内宿泊控除は仮に1泊1000円。
@@ -19,8 +22,9 @@
   ホテル客も原則全食を会場費用へ計上。ホテル朝食を理由とする自動控除はしない。
 * 菜食補完/暑さ対策は短期4日/全日8日の0.5倍。記念品/保険/査証事務は一人分。
 * 日帰りは第3・4・7日の有料各40人（仮）、無料延べ300人日（仮定）。
-* 年齢未定の基準は全員基本倍率による収入比較。40人/80人の年長者例は需要予測ではない。
-  基準の全日ホテル8人は定員不足の算術調整であり、実際のホテル需要予測ではない。
+* 年齢未反映参考値は全員25～35歳・会員相当額による比較値で、若年割引も未反映。
+  年長40/80人と若年を含む4ケースは感度分析であり、年齢構成の需要予測ではない。
+  参考値の全日ホテル8人は定員不足の算術調整であり、実際のホテル需要予測ではない。
 * 助成金/赤字補填は0。会場単価、個室有料20人、国別構成等はいずれも見積確定前。
 
 """
@@ -30,11 +34,13 @@ from __future__ import annotations
 import argparse
 import json
 from dataclasses import asdict, dataclass, replace
+from decimal import Decimal
 from pathlib import Path
-from typing import Iterable
+from typing import Iterable, Mapping
 
 
 VERSION = "v7_20260921"
+REVISION = "年齢料金改定版：16歳以下0.7、17～24歳0.8、25～35歳1、36歳以上1.5"
 TABLE = {
     "A": [265,275,280,290,300,305,315,325,335,340,350,360,365,375,385,390,400,410,420,425,435,445,450,460],
     "B": [230,235,245,250,255,260,270,275,280,285,295,300,305,310,320,325,330,335,345,350,355,360,370,375],
@@ -43,7 +49,9 @@ TABLE = {
 }
 MIX_JP = {"A": .45, "B": .35, "C": .12, "Cx": .08}
 MIX_EA = {"A": .25, "B": .45, "C": .20, "Cx": .10}
-AGE_FACTOR = {"base": 1., "36_40": 1.5, "41_plus": 2.}
+BASE_AGE_KEY = "25_35"
+AGE_FACTOR = {"16_or_under": .7, "17_24": .8, BASE_AGE_KEY: 1., "36_plus": 1.5}
+YOUTH_AGE_KEYS = frozenset(("16_or_under", "17_24", BASE_AGE_KEY))
 PERIOD_FACTOR = {"full": 1., "first": .7, "second": .7}
 NIGHTS = {"full": 7, "first": 3, "second": 3}
 NIGHT_MASK = {"full": (1,1,1,1,1,1,1), "first": (1,1,1,0,0,0,0), "second": (0,0,0,0,1,1,1)}
@@ -51,29 +59,79 @@ NIGHT_MASK = {"full": (1,1,1,1,1,1,1), "first": (1,1,1,0,0,0,0), "second": (0,0,
 
 @dataclass(frozen=True)
 class Cohort:
-    """一般参加者のみ。協力者は別枠。base は35歳以下または年齢未定比較用。"""
+    """一般参加者のみ。協力者は別枠。年齢区分はAGE_FACTORの4区分。"""
     period: str
     age: str
     lodging: str
     count: int
 
 
-def make_cohorts(full=150, first=100, second=100, *, older_full_each=0,
-                 older_first_each=0, older_second_each=0) -> list[Cohort]:
-    """each は36～40歳、41歳以上それぞれの人数。年長者は全員ホテルの仮例。"""
+def age_key_for_age(age_years):
+    """開催初日時点の満年齢を料金区分へ対応させる。36歳以上はすべて同じ区分。"""
+    if type(age_years) is not int or age_years < 0:
+        raise ValueError("年齢は0以上の整数")
+    if age_years <= 16:
+        return "16_or_under"
+    if age_years <= 24:
+        return "17_24"
+    if age_years <= 35:
+        return BASE_AGE_KEY
+    return "36_plus"
+
+
+def make_cohorts(full=150, first=100, second=100, *,
+                 age_counts: Mapping[str, Mapping[str, int]] | None=None) -> list[Cohort]:
+    """各期の総数の内訳を指定する。未指定の残数は25～35歳、36歳以上はホテル。
+
+    例: age_counts={"full": {"17_24": 40, "36_plus": 20},
+                    "first": {"17_24": 30, "36_plus": 10},
+                    "second": {"17_24": 30, "36_plus": 10}}
+    25_35を明記する場合は各期の人数合計も一致させる。宿泊先の個別指定にはCohortを使う。
+    """
+    age_counts = {} if age_counts is None else age_counts
+    if set(age_counts) - set(NIGHTS):
+        raise ValueError("年齢内訳の期間はfull/first/secondで指定してください")
     result = []
-    for period, total, each in (("full", full, older_full_each),
-                                ("first", first, older_first_each),
-                                ("second", second, older_second_each)):
-        if each < 0 or total < each * 2:
-            raise ValueError("年長参加者を含む一般参加総数の内訳にしてください")
-        result.append(Cohort(period, "base", "onsite", total - each * 2))
-        result.extend(Cohort(period, age, "hotel", each) for age in ("36_40", "41_plus"))
-    return [c for c in result if c.count]
+    for period, total in (("full", full), ("first", first), ("second", second)):
+        counts = dict(age_counts.get(period, {}))
+        if set(counts) - set(AGE_FACTOR):
+            raise ValueError("年齢内訳は16_or_under/17_24/25_35/36_plusで指定してください")
+        if any(type(n) is not int or n < 0 for n in (total, *counts.values())):
+            raise ValueError("人数は0以上の整数")
+        if BASE_AGE_KEY not in counts:
+            counts[BASE_AGE_KEY] = total - sum(counts.values())
+        if min(counts.values()) < 0 or sum(counts.values()) != total:
+            raise ValueError("各期の年齢内訳の合計を、一般参加総数と一致させてください")
+        for age in AGE_FACTOR:
+            count = counts.get(age, 0)
+            if count:
+                result.append(Cohort(period, age, "hotel" if age == "36_plus" else "onsite", count))
+    return result
+
+
+def participant_fee_euro(age, period="full", *, display_base_euro=350, member=True,
+                         member_discount_full_euro=50, nonmember_short_euro=50):
+    """表示基本額へ年齢倍率を掛け、全日会員差額を引いてから短期倍率を掛ける。
+
+    非会員には全日または短期の差額を最後に戻す。個室・ホテル控除・遠足はここに含めない。
+    """
+    if age not in AGE_FACTOR or period not in PERIOD_FACTOR:
+        raise ValueError("年齢・参加期間が不正です")
+    if min(display_base_euro, member_discount_full_euro, nonmember_short_euro) < 0:
+        raise ValueError("料金・会員差額を負にはできません")
+    # 通貨の例示で244.99999999999997等を出さず、未決定の価格丸めも加えない。
+    full_member = (Decimal(str(display_base_euro))*Decimal(str(AGE_FACTOR[age]))
+                   - Decimal(str(member_discount_full_euro)))
+    if full_member < 0:
+        raise ValueError("会員割引後の料金が負になる条件です")
+    fee = full_member*Decimal(str(PERIOD_FACTOR[period]))
+    if not member:
+        fee += Decimal(str(member_discount_full_euro if period == "full" else nonmember_short_euro))
+    return float(fee)
 
 
 def average_fee(mix=None, distribution=(.5, .3, .2)):
-    """申込週1～8/9～16/17～24の比率。各期間内は均等。"""
+    """25～35歳の全日会員相当額Bの平均。申込週3期間内は均等。"""
     mix = MIX_JP if mix is None else mix
     if set(mix) != set(TABLE) or abs(sum(mix.values()) - 1) > 1e-9:
         raise ValueError("国区分構成は A/B/C/Cx の合計1で指定してください")
@@ -92,13 +150,13 @@ def nightly_occupancy(cohorts, staff_full=15):
 
 
 def route_capacity_overflow(cohorts, capacity, staff_full):
-    """比較用に不足床数だけ全日基本倍率群をホテルへ移す。需要予測には使わない。"""
+    """比較用に不足床数だけ全日25～35歳群をホテルへ移す。若年群を自動振替しない。"""
     cohorts = list(cohorts)
     needed = max(0, max(nightly_occupancy(cohorts, staff_full)) - capacity)
     remaining = needed
     result = []
     for c in cohorts:
-        if c.period == "full" and c.age == "base" and c.lodging == "onsite":
+        if c.period == "full" and c.age == BASE_AGE_KEY and c.lodging == "onsite":
             moved = min(remaining, c.count)
             remaining -= moved
             if c.count > moved:
@@ -124,7 +182,9 @@ def unit_cost(period, lodging, *, lodging_night=1000, meal_price=450,
     }
 
 
-def scenario(label="年齢未定・基本倍率の比較基準", *, cohorts: Iterable[Cohort] | None=None,
+def scenario(label="年齢未反映参考値：全員25～35歳・会員相当（需要予測ではない）", *,
+             cohorts: Iterable[Cohort] | None=None,
+             age_counts: Mapping[str, Mapping[str, int]] | None=None,
              full=150, first=100, second=100, staff_full=15, capacity=257,
              private_youth_full=20, mix=None, fx=170, distribution=(.5,.3,.2),
              nonmember_share=0., nonmember_full_euro=50, nonmember_short_euro=50,
@@ -140,18 +200,21 @@ def scenario(label="年齢未定・基本倍率の比較基準", *, cohorts: Ite
     外部ホテル代と遠足事業費は本人払いの別会計。本体には遠足支援枠だけを計上。
     """
     mix = dict(MIX_JP if mix is None else mix)
-    cohorts = list(make_cohorts(full, first, second) if cohorts is None else cohorts)
+    if cohorts is not None and age_counts is not None:
+        raise ValueError("cohortsとage_countsは同時に指定できません")
+    cohorts = list(make_cohorts(full, first, second, age_counts=age_counts) if cohorts is None else cohorts)
     for c in cohorts:
         if c.period not in NIGHTS or c.age not in AGE_FACTOR or c.lodging not in ("onsite", "hotel"):
             raise ValueError(f"不正な参加区分: {c}")
-        if not isinstance(c.count, int) or c.count < 0:
+        if type(c.count) is not int or c.count < 0:
             raise ValueError("人数は0以上の整数")
     if not 0 <= nonmember_share <= 1 or not 0 <= older_day_share <= 1:
         raise ValueError("構成比は0～1")
     if paid_days not in (0,1,2,3):
         raise ValueError("有料日帰り受付は現日程の最大3日")
     if min(staff_full, private_youth_full, paid_per_day, free_day_person_days, helper_recovery_yen,
-           grants, deficit_support, lodging_night, meal_price, hotel_refund_night) < 0:
+           grants, deficit_support, lodging_night, meal_price, hotel_refund_night,
+           nonmember_full_euro, nonmember_short_euro) < 0:
         raise ValueError("人数・費用・収入を負にはできません")
     initial_registration = sum(c.count for c in cohorts)
     if auto_hotel_overflow:
@@ -162,11 +225,15 @@ def scenario(label="年齢未定・基本倍率の比較基準", *, cohorts: Ite
     if max(occupancy) > capacity:
         raise ValueError("施設内宿泊が作業仮定の定員を超えています")
     youth_full_onsite = sum(c.count for c in cohorts
-                            if c.period == "full" and c.age == "base" and c.lodging == "onsite")
+                            if c.period == "full" and c.age in YOUTH_AGE_KEYS and c.lodging == "onsite")
     if private_youth_full > youth_full_onsite:
         raise ValueError("個室加算は施設内全日の青年一般参加者数以下にしてください")
     avg_euro, by_country = average_fee(mix, distribution)
     avg_yen = avg_euro*fx
+    display_avg_euro = avg_euro + nonmember_full_euro
+    display_avg_yen = display_avg_euro*fx
+    age_adjustments = [c.count*display_avg_yen*PERIOD_FACTOR[c.period]*(AGE_FACTOR[c.age]-1)
+                       for c in cohorts]
     registration = sum(c.count for c in cohorts)
     assert registration == initial_registration  # ホテル移動や年齢倍率で人数を増やさない。
     counts = {p: sum(c.count for c in cohorts if c.period == p) for p in NIGHTS}
@@ -175,7 +242,8 @@ def scenario(label="年齢未定・基本倍率の比較基準", *, cohorts: Ite
         "full_basic": counts["full"]*avg_yen,
         "first_basic": counts["first"]*.7*avg_yen,
         "second_basic": counts["second"]*.7*avg_yen,
-        "age_uplift": sum(c.count*avg_yen*PERIOD_FACTOR[c.period]*(AGE_FACTOR[c.age]-1) for c in cohorts),
+        "age_discount": sum(min(0., amount) for amount in age_adjustments),
+        "age_surcharge": sum(max(0., amount) for amount in age_adjustments),
         "private_youth": private_youth_full*.5*avg_yen,
         "nonmember": sum(c.count*nonmember_share*fx*(nonmember_full_euro if c.period == "full"
                                                    else nonmember_short_euro) for c in cohorts),
@@ -197,6 +265,10 @@ def scenario(label="年齢未定・基本倍率の比較基準", *, cohorts: Ite
             components[k] += c.count*unit[k]
         row = asdict(c)
         row.update(unit_expenses_yen=unit, variable_expenses_yen=c.count*sum(unit.values()))
+        row["average_member_participation_fee_yen_before_lodging_adjustments"] = participant_fee_euro(
+            c.age, c.period, display_base_euro=display_avg_euro,
+            member_discount_full_euro=nonmember_full_euro,
+            nonmember_short_euro=nonmember_short_euro)*fx
         cohort_details.append(row)
     staff_unit = unit_cost("full", "onsite", **cost_kwargs)
     for k in components:
@@ -215,7 +287,8 @@ def scenario(label="年齢未定・基本倍率の比較基準", *, cohorts: Ite
     hotel_counts = {p: sum(c.count for c in cohorts if c.period == p and c.lodging == "hotel") for p in NIGHTS}
     gross_occupancy = [staff_full + sum(c.count*NIGHT_MASK[c.period][n] for c in cohorts) for n in range(7)]
     return {
-        "label": label, "version": VERSION,
+        "label": label, "version": VERSION, "revision": REVISION,
+        "base_age_key": BASE_AGE_KEY,
         "ordinary_registration": registration, "ordinary_period_counts": counts,
         "ordinary_age_counts": ages, "free_or_actual_cost_staff": staff_full,
         "age_composition_is_forecast": False,
@@ -229,8 +302,11 @@ def scenario(label="年齢未定・基本倍率の比較基準", *, cohorts: Ite
         "quantity_notice": "泊数は実滞在、食数は予算仮定。",
         "paid_day_person_days": paid_days*paid_per_day,
         "free_day_person_days": free_day_person_days,
-        "average_basic_fee_euro": avg_euro, "average_basic_fee_yen": avg_yen,
-        "average_by_country_euro": by_country,
+        "average_member_base_fee_euro": avg_euro, "average_member_base_fee_yen": avg_yen,
+        "average_display_basic_fee_euro": display_avg_euro,
+        "average_display_basic_fee_yen": display_avg_yen,
+        "average_by_country_member_base_euro": by_country,
+        "average_by_country_display_basic_euro": {g: v+nonmember_full_euro for g, v in by_country.items()},
         "income_yen": income, "variable_expense_components_yen": components,
         "expenses_yen": expenses, "expense_subtotal_before_reserve_yen": subtotal,
         "revenue_yen": revenue, "expenses_total_yen": cost, "balance_yen": revenue-cost,
@@ -246,6 +322,10 @@ def scenario(label="年齢未定・基本倍率の比較基準", *, cohorts: Ite
             "short_vegetarian_heat_fraction": .5, "nonmember_share": nonmember_share,
             "nonmember_full_euro": nonmember_full_euro, "nonmember_short_euro": nonmember_short_euro,
             "day_older_share": older_day_share, "payment_rate": fee_rate, "reserve_rate": reserve_rate,
+            "age_factors": AGE_FACTOR,
+            "age_factors_apply_to": "非会員・雑魚寝・食事付き・全日程・25～35歳の表示基本額C",
+            "private_addition_basis": "25～35歳の全日会員料金Bの50%。若年割引・年長割増は掛けない",
+            "young_participant_cost_discount": False,
             "site_older_cap": "施設内の36歳以上一般参加者に約2割の目安。分母未定のため人数上限へ変換しない",
             "hotel_older_cap": "施設内と同じ厳しい年齢人数上限なし",
             "hotel_breakfast_automatic_deduction": False,
@@ -253,16 +333,20 @@ def scenario(label="年齢未定・基本倍率の比較基準", *, cohorts: Ite
     }
 
 
-def hotel_fee_example(age, period, base_euro=300, fx=170, refund_night=1000):
-    return base_euro*fx*AGE_FACTOR[age]*PERIOD_FACTOR[period]-NIGHTS[period]*refund_night
+def hotel_fee_example(age, period, *, display_base_euro=350, member=True, fx=170,
+                      refund_night=1000, nonmember_short_euro=50):
+    return participant_fee_euro(age, period, display_base_euro=display_base_euro, member=member,
+                               nonmember_short_euro=nonmember_short_euro)*fx-NIGHTS[period]*refund_night
 
 
 def build_report():
     base = scenario()
     age40 = scenario("仮例：350人のうち年長40人がホテル泊（需要予測ではない）",
-                     cohorts=make_cohorts(older_full_each=10, older_first_each=5, older_second_each=5))
+                     age_counts={"full": {"36_plus": 20}, "first": {"36_plus": 10},
+                                 "second": {"36_plus": 10}})
     age80 = scenario("仮例：350人のうち年長80人がホテル泊（需要予測ではない）",
-                     cohorts=make_cohorts(older_full_each=20, older_first_each=10, older_second_each=10))
+                     age_counts={"full": {"36_plus": 40}, "first": {"36_plus": 20},
+                                 "second": {"36_plus": 20}})
     rows = [base, age40, age80]
     for n in (0,10,20):
         rows.append(scenario(f"青年の有料個室{n}人", private_youth_full=n))
@@ -279,43 +363,103 @@ def build_report():
     rows.append(scenario("全日150人・前後半各75人", first=75, second=75))
     for fx in (160,179):
         rows.append(scenario(f"円換算1ユーロ{fx}円", fx=fx))
-    examples = {f"{age}_{p}": hotel_fee_example(age, p)
-                for age in ("36_40", "41_plus") for p in ("full", "first")}
-    assert examples == {"36_40_full": 69500, "36_40_first": 50550,
-                        "41_plus_full": 95000, "41_plus_first": 68400}
+    younger_specs = [
+        ("感度①：17～24歳100人（40/30/30）、残り25～35歳（需要予測ではない）",
+         {"full": {"17_24": 40}, "first": {"17_24": 30}, "second": {"17_24": 30}}),
+        ("感度②：17～24歳100人と36歳以上40人（需要予測ではない）",
+         {"full": {"17_24": 40, "36_plus": 20}, "first": {"17_24": 30, "36_plus": 10},
+          "second": {"17_24": 30, "36_plus": 10}}),
+        ("感度③：17～24歳150人（60/45/45）と36歳以上40人（需要予測ではない）",
+         {"full": {"17_24": 60, "36_plus": 20}, "first": {"17_24": 45, "36_plus": 10},
+          "second": {"17_24": 45, "36_plus": 10}}),
+        ("感度④：②に16歳以下20人（10/5/5）を加え、25～35歳を減らす（需要予測ではない）",
+         {"full": {"16_or_under": 10, "17_24": 40, "36_plus": 20},
+          "first": {"16_or_under": 5, "17_24": 30, "36_plus": 10},
+          "second": {"16_or_under": 5, "17_24": 30, "36_plus": 10}}),
+    ]
+    young_rows = [scenario(label, age_counts=counts) for label, counts in younger_specs]
+    rows.extend(young_rows)
+    full_fee_examples = {
+        age: {"nonmember": participant_fee_euro(age, member=False),
+              "member": participant_fee_euro(age)} for age in AGE_FACTOR
+    }
+    short_fee_examples = {
+        age: {"nonmember_difference_50": participant_fee_euro(age, "first", member=False),
+              "nonmember_difference_35": participant_fee_euro(age, "first", member=False,
+                                                               nonmember_short_euro=35),
+              "member": participant_fee_euro(age, "first")} for age in AGE_FACTOR
+    }
+    examples = {f"36_plus_{label}_{membership}": hotel_fee_example("36_plus", period, member=member)
+                for label, period in (("full", "full"), ("short", "first"))
+                for membership, member in (("member", True), ("nonmember", False))}
+    expected_full_fees = {
+        "16_or_under": {"nonmember": 245., "member": 195.},
+        "17_24": {"nonmember": 280., "member": 230.},
+        "25_35": {"nonmember": 350., "member": 300.},
+        "36_plus": {"nonmember": 525., "member": 475.},
+    }
+    assert full_fee_examples == expected_full_fees
+    assert examples == {"36_plus_full_member": 73750., "36_plus_full_nonmember": 82250.,
+                        "36_plus_short_member": 53525., "36_plus_short_nonmember": 62025.}
     assert all(len(v) == 24 for v in TABLE.values())
-    assert all(row["ordinary_registration"] == 350 for row in (base, age40, age80))
+    assert len(rows) == 25
+    assert all(row["ordinary_registration"] == 350 for row in (base, age40, age80, *young_rows))
+    assert all(row["ordinary_period_counts"] == {"full": 150, "first": 100, "second": 100}
+               for row in young_rows)
     assert base["nightly_attendance_including_hotel_and_staff"] == [265,265,265,165,265,265,265]
     assert base["nightly_onsite_including_staff"] == [257,257,257,157,257,257,257]
     assert age40["nightly_onsite_including_staff"] == [235,235,235,145,235,235,235]
     assert age80["nightly_onsite_including_staff"] == [205,205,205,125,205,205,205]
-    assert all(max(row["nightly_onsite_including_staff"]) <= 257 for row in (base, age40, age80))
+    assert all(max(row["nightly_onsite_including_staff"]) <= 257 for row in (base, age40, age80, *young_rows))
     assert abs(base["balance_yen"] - 643037.1104) < .01
     assert base["income_yen"]["paid_day"] == 660000
+    # 若年の料金割引だけでは、宿泊・食事等の数量や支出を減らさない。
+    assert young_rows[0]["variable_expense_components_yen"] == base["variable_expense_components_yen"]
+    assert all(row["variable_expense_components_yen"] == age40["variable_expense_components_yen"]
+               for row in young_rows[1:])
+    assert all(row["income_yen"]["private_youth"] == base["income_yen"]["private_youth"]
+               for row in young_rows)
     # 同じ年齢・人数・定員で全日1人だけをホテルへ動かすと、宿泊支出と収入控除が同額動く。
     before = scenario("検証・全日100人", full=100)
-    after_cohorts = [Cohort("full","base","onsite",99), Cohort("full","base","hotel",1),
-                    Cohort("first","base","onsite",100), Cohort("second","base","onsite",100)]
+    after_cohorts = [Cohort("full",BASE_AGE_KEY,"onsite",99), Cohort("full",BASE_AGE_KEY,"hotel",1),
+                    Cohort("first",BASE_AGE_KEY,"onsite",100), Cohort("second",BASE_AGE_KEY,"onsite",100)]
     after = scenario("検証・1人ホテル", cohorts=after_cohorts)
     assert after["revenue_yen"] - before["revenue_yen"] == -7000
     assert after["variable_expense_components_yen"]["lodging"] - before["variable_expense_components_yen"]["lodging"] == -7000
     assert after["variable_expense_components_yen"]["meals"] == before["variable_expense_components_yen"]["meals"]
     # 個室人数は青年人数の範囲内だけ。年長者へ自動加算しない。
-    invalid = [Cohort("full", "41_plus", "onsite", 20)]
+    invalid = [Cohort("full", "36_plus", "onsite", 20)]
     try:
         scenario(cohorts=invalid, private_youth_full=1)
     except ValueError:
         pass
     else:
         raise AssertionError("年長一般参加者の個室を受け付けてしまった")
+    for age in YOUTH_AGE_KEYS:
+        private = scenario(cohorts=[Cohort("full", age, "onsite", 20)], private_youth_full=20)
+        assert private["income_yen"]["private_youth"] == base["income_yen"]["private_youth"]
     return {
-        "version": VERSION,
-        "notice": "需要予測ではなく現条件の比較計算。基準は年齢未定・全員基本倍率。年長40/80人例は任意の感度分析。",
-        "price_table_euro": TABLE,
-        "price_table_basis": "35歳以下・TEJO個人会員・会場内大部屋・食事付き・全日程の計算対象額。年齢・期間・個室はこの額をもとに計算する。",
-        "display_fee_notice": "参加者に表示する基本料金は非会員・雑魚寝・食事付き・全日程。price_table_euroに全日の非会員分（現案50ユーロ）を足して表示する。会員は同額の割引で従来の支払額を維持。全日/短期の非会員分は仮入力で、予算の計算結果は表示変更により変えない。",
+        "version": VERSION, "revision": REVISION,
+        "notice": "需要予測ではなく現条件の比較計算。年齢未反映参考値は全員25～35歳・会員相当とし、若年割引も年長加算も未反映。年長40/80人例と若年を含む4ケースは感度分析。",
+        "base_age_key": BASE_AGE_KEY,
+        "age_factors": AGE_FACTOR,
+        "price_table_euro": {g: [v+50 for v in values] for g, values in TABLE.items()},
+        "price_table_basis": "非会員・雑魚寝・食事付き・全日程・25～35歳の表示基本料金C。年齢倍率はこの額へ掛ける。",
+        "member_base_price_table_euro": TABLE,
+        "member_base_price_table_basis": "25～35歳の全日会員料金B。表示基本料金CはB+50ユーロの現案。個室追加はBの50%。",
+        "fee_formula": {
+            "full_nonmember": "C×年齢倍率",
+            "full_member": "C×年齢倍率-50ユーロ",
+            "short_member": "(C×年齢倍率-50ユーロ)×0.7",
+            "short_nonmember": "短期会員料金+短期差額（50/35ユーロは未確定）",
+            "private_full": "(C-50ユーロ)×0.5を追加。35歳以下に同額で、年齢倍率は掛けない",
+            "hotel": "年齢・会員・期間反映後の料金から会場内の未利用宿泊分を控除。ホテル代は本人別払い",
+        },
+        "membership_notice": "全日の会員差額50ユーロとpatrono適用条件はTEJO調整前。短期差額50/35ユーロは未確定。比較予算は非会員割合0で増収を置かない。",
+        "full_fee_examples_B_week12_euro": full_fee_examples,
+        "short_fee_examples_B_week12_euro": short_fee_examples,
         "hotel_fee_examples_B_week12_yen": examples,
-        "verification": "24週間料金表・年長者を内数とする登録総数・宿泊定員・基準収支・ホテル控除/費用同時減少・青年のみ個室を検証済み",
+        "verification": "24週間表示料金・4年齢区分の計算順・若年/年長を内数とする350人・各期人数・定員・年齢未反映参考値・若年費用不変・ホテル控除/費用同時減少・35歳以下のみ個室を検証済み",
         "scenarios": rows,
     }
 
