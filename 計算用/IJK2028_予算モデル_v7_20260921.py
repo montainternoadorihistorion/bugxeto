@@ -6,11 +6,12 @@
 
 最新方針:
 * 表示基本料金Cは非会員・雑魚寝・食事付き・全日程・25～35歳。
-  TABLEは従来の25～35歳会員相当額Bを保持し、C=B+50ユーロ（現案）とする。
+  TABLEは従来の25～35歳会員相当額Bを保持し、C=B+50ユーロとする。
   年齢倍率はCへ掛ける。全日会員料金=C×年齢倍率-50、非会員料金=C×年齢倍率。
-  短期会員料金=(C×年齢倍率-50)×0.7。短期非会員はその後に差額を足す。
-  短期の会員・非会員差額50/35ユーロは未確定。基本の見通しでは50ユーロを仮置きし、
-  35ユーロの場合も比較する。従来25参考ケースは非会員割合0のまま保持する。
+  短期は会員・非会員それぞれの全日料金×0.7。短期会員料金=(C×年齢倍率-50)×0.7、
+  短期非会員料金=C×年齢倍率×0.7となり、会員差額は35ユーロ。
+  主催側の料金方針は確定。TEJOの会員・patrono資格の適用条件は別途調整する。
+  従来25参考ケースは非会員割合0のまま保持する。
   個室追加はBの50%を維持し、年齢割引・割増を掛けない。若年者の費用は減額しない。
 * 一般登録350人 = 全日150 + 前半100 + 後半100。36歳以上もこの内数。
 * 年齢倍率は16歳以下0.7、17～24歳0.8、25～35歳1、36歳以上一律1.5。
@@ -31,8 +32,7 @@
   各期への配分と36歳以上52人全員のホテル配置は計算上の仮置き。
   一般参加350人のTEJO会員を主催側の見込みどおり30%（105人）、非会員70%（245人）
   とする。各年齢・期間へ一律の割合を適用する点は仮定。日帰り・免除スタッフには適用しない。
-  従来25ケースを比較用に維持し、基本と条件変更の8ケース、短期差額35ユーロの1ケースを
-  別配列へ保存する。
+  従来25ケースを比較用に維持し、基本と条件変更の8ケースを別配列へ保存する。
 
 """
 
@@ -117,14 +117,16 @@ def make_cohorts(full=150, first=100, second=100, *,
 
 
 def participant_fee_euro(age, period="full", *, display_base_euro=350, member=True,
-                         member_discount_full_euro=50, nonmember_short_euro=50):
-    """表示基本額へ年齢倍率を掛け、全日会員差額を引いてから短期倍率を掛ける。
+                         member_discount_full_euro=50, nonmember_short_euro=None):
+    """年齢・会員区分を反映した全日料金に、参加期間の倍率を掛ける。
 
-    非会員には全日または短期の差額を最後に戻す。個室・ホテル控除・遠足はここに含めない。
+    短期の会員差額は全日差額×0.7に追従する。nonmember_short_euroの明示指定は
+    過去の計算検証用であり、現在の料金方針では使わない。個室・ホテル控除・遠足は別。
     """
     if age not in AGE_FACTOR or period not in PERIOD_FACTOR:
         raise ValueError("年齢・参加期間が不正です")
-    if min(display_base_euro, member_discount_full_euro, nonmember_short_euro) < 0:
+    if min(display_base_euro, member_discount_full_euro) < 0 or (
+            nonmember_short_euro is not None and nonmember_short_euro < 0):
         raise ValueError("料金・会員差額を負にはできません")
     # 通貨の例示で244.99999999999997等を出さず、未決定の価格丸めも加えない。
     full_member = (Decimal(str(display_base_euro))*Decimal(str(AGE_FACTOR[age]))
@@ -133,7 +135,10 @@ def participant_fee_euro(age, period="full", *, display_base_euro=350, member=Tr
         raise ValueError("会員割引後の料金が負になる条件です")
     fee = full_member*Decimal(str(PERIOD_FACTOR[period]))
     if not member:
-        fee += Decimal(str(member_discount_full_euro if period == "full" else nonmember_short_euro))
+        difference = Decimal(str(member_discount_full_euro))*Decimal(str(PERIOD_FACTOR[period]))
+        if period != "full" and nonmember_short_euro is not None:
+            difference = Decimal(str(nonmember_short_euro))
+        fee += difference
     return float(fee)
 
 
@@ -202,8 +207,8 @@ def scenario(label="年齢未反映参考値：全員25～35歳・会員相当�
              grants=0, deficit_support=0, auto_hotel_overflow=True):
     """helpers の回収収入は実費/無料を直接円指定し、年齢倍率は決して掛けない。
 
-    従来の参考ケースを保持するため非会員割合の既定値は0。
-    最新の基本の見通しでは build_planning_cases が割合0.7と短期差額の仮置きを明示する。
+    従来の参考ケースを保持するため非会員割合の既定値は0、短期差額の既定値は50。
+    最新の基本の見通しでは build_planning_cases が割合0.7と確定した短期差額35を明示する。
     外部ホテル代と遠足事業費は本人払いの別会計。本体には遠足支援枠だけを計上。
     """
     mix = dict(MIX_JP if mix is None else mix)
@@ -341,16 +346,16 @@ def scenario(label="年齢未反映参考値：全員25～35歳・会員相当�
 
 
 def hotel_fee_example(age, period, *, display_base_euro=350, member=True, fx=170,
-                      refund_night=1000, nonmember_short_euro=50):
+                      refund_night=1000, nonmember_short_euro=None):
     return participant_fee_euro(age, period, display_base_euro=display_base_euro, member=member,
                                nonmember_short_euro=nonmember_short_euro)*fx-NIGHTS[period]*refund_night
 
 
 def build_planning_cases():
-    """主催側の年齢・会員構成見込みに基づく基本と条件変更、計9ケース。
+    """主催側の年齢・会員構成見込みに基づく基本と条件変更、計8ケース。
 
     350人への丸め・期間配分・36歳以上全員のホテル配置は仮定。既存の比較25ケースは変えない。
-    TEJO会員30%を各年齢・期間に一律適用。短期の非会員差額50ユーロは仮置きで、35も比較。
+    TEJO会員30%を各年齢・期間に一律適用。短期は各会員区分の全日料金×0.7。
     """
     age_counts = {
         "full": {"16_or_under": 8, "17_24": 60, "25_35": 60, "36_plus": 22},
@@ -368,12 +373,10 @@ def build_planning_cases():
         ("無料運営25人", {"staff_full": 25}),
         ("施設単価上振れ：宿泊1800円・食事1日1900円相当・ホテル控除1800円", {
             "lodging_night": 1800, "meal_price": 1900/3, "hotel_refund_night": 1800}),
-        ("短期の非会員差額を35ユーロとする比較（料金未確定）", {
-            "nonmember_short_euro": 35}),
     ]
     rows = []
     for index, (label, changed) in enumerate(specs):
-        parameters = {"nonmember_share": .7, "nonmember_short_euro": 50, **changed}
+        parameters = {"nonmember_share": .7, "nonmember_short_euro": 35, **changed}
         row = scenario(label, age_counts=age_counts, **parameters)
         row["age_composition_is_forecast"] = True
         row["age_composition_basis"] = "主催側の年齢構成見込み。入金済み人数・実測値ではない"
@@ -383,7 +386,7 @@ def build_planning_cases():
         row["comparison_notice"] = (
             "年齢比は主催側の見込み。各期への配分と36歳以上52人全員のホテル配置は仮置き。"
             "TEJO会員30%・非会員70%は主催側の見込みで、各年齢・期間への一律適用は仮定。"
-            "短期の非会員差額50/35ユーロは未確定。"
+            "短期は会員・非会員それぞれの全日料金の70%とする主催側方針を反映。"
             "条件変更は収支への影響を見る比較であり、その条件の需要予測・正式見積もりではない。")
         row["balance_before_reserve_yen"] = row["revenue_yen"]-row["expense_subtotal_before_reserve_yen"]
         row["reserve_yen"] = row["expenses_yen"]["reserve"]
@@ -426,20 +429,19 @@ def build_planning_cases():
             "second": {"member": 30, "nonmember": 70}},
         "membership_distribution_assumption": "各年齢・参加期間・国区分・申込時期に会員30%・非会員70%を一律適用する仮定。年齢ごとの会員人数を整数で確定したものではない",
         "full_membership_difference_euro": 50,
-        "short_membership_difference_assumption_euro": 50,
-        "short_membership_difference_is_confirmed": False,
-        "short_membership_difference_comparison_euro": 35,
-        "short_membership_difference_notice": "短期差額は未確定。基本と従来の8条件比較は50ユーロを仮置きし、35ユーロの場合を9番目に比較する。今回の会員割合訂正による料金決定ではない",
+        "short_membership_difference_euro": 35,
+        "short_membership_difference_is_confirmed": True,
+        "short_membership_difference_notice": "短期は会員・非会員それぞれの全日料金×0.7とする主催側方針が確定。全日差額50ユーロ×0.7で短期差額35ユーロ。TEJOの会員・patrono資格の適用条件は別途調整する",
         "common_average_assumption": "全期間・全年齢・個室利用者の国構成と申込時期を共通とする。実際の内訳が分かれば分けて更新する",
     }
-    assert len(rows) == 9
+    assert len(rows) == 8
     assert all(r["ordinary_registration"] == 350 for r in rows)
     assert all(r["ordinary_age_counts"] == assumptions["rounded_counts"] for r in rows)
     assert all(r["hotel_period_counts"] == {"full": 22, "first": 15, "second": 15} for r in rows)
     assert rows[0]["nightly_onsite_including_staff"] == [228, 228, 228, 143, 228, 228, 228]
     assert all(r["assumptions"]["nonmember_share"] == .7 for r in rows)
-    assert rows[0]["income_yen"]["nonmember"] == 2_082_500
-    assert rows[-1]["income_yen"]["nonmember"] == 1_725_500
+    assert all(r["assumptions"]["nonmember_short_euro"] == 35 for r in rows)
+    assert all(r["income_yen"]["nonmember"] == 1_725_500 for r in rows)
     return assumptions, rows
 
 
@@ -488,9 +490,7 @@ def build_report():
               "member": participant_fee_euro(age)} for age in AGE_FACTOR
     }
     short_fee_examples = {
-        age: {"nonmember_difference_50": participant_fee_euro(age, "first", member=False),
-              "nonmember_difference_35": participant_fee_euro(age, "first", member=False,
-                                                               nonmember_short_euro=35),
+        age: {"nonmember": participant_fee_euro(age, "first", member=False),
               "member": participant_fee_euro(age, "first")} for age in AGE_FACTOR
     }
     examples = {f"36_plus_{label}_{membership}": hotel_fee_example("36_plus", period, member=member)
@@ -503,8 +503,36 @@ def build_report():
         "36_plus": {"nonmember": 525., "member": 475.},
     }
     assert full_fee_examples == expected_full_fees
+    assert short_fee_examples == {
+        "16_or_under": {"nonmember": 171.5, "member": 136.5},
+        "17_24": {"nonmember": 196., "member": 161.},
+        "25_35": {"nonmember": 245., "member": 210.},
+        "36_plus": {"nonmember": 367.5, "member": 332.5},
+    }
+    # 全96基本料金・全4年齢区分・会員/非会員・前半/後半について70%を検証する。
+    for member_bases in TABLE.values():
+        for member_base in member_bases:
+            display_base = member_base+50
+            for age in AGE_FACTOR:
+                for member in (True, False):
+                    full_fee = Decimal(str(participant_fee_euro(
+                        age, display_base_euro=display_base, member=member)))
+                    for period in ("first", "second"):
+                        short_fee = Decimal(str(participant_fee_euro(
+                            age, period, display_base_euro=display_base, member=member)))
+                        assert short_fee == full_fee*Decimal("0.7")
+                for period, difference in (("full", 50), ("first", 35), ("second", 35)):
+                    fees = [Decimal(str(participant_fee_euro(
+                        age, period, display_base_euro=display_base, member=member)))
+                            for member in (False, True)]
+                    assert fees[0]-fees[1] == difference
+    # 差額を変えた感度検証でも、短期の既定値は全日差額×0.7に追従する。
+    assert participant_fee_euro("25_35", "first", member=False,
+                               member_discount_full_euro=80) == 245.
+    assert participant_fee_euro("25_35", "first", member=True,
+                               member_discount_full_euro=80) == 189.
     assert examples == {"36_plus_full_member": 73750., "36_plus_full_nonmember": 82250.,
-                        "36_plus_short_member": 53525., "36_plus_short_nonmember": 62025.}
+                        "36_plus_short_member": 53525., "36_plus_short_nonmember": 59475.}
     assert all(len(v) == 24 for v in TABLE.values())
     assert len(rows) == 25
     assert all(row["ordinary_registration"] == 350 for row in (base, age40, age80, *young_rows))
@@ -545,26 +573,26 @@ def build_report():
     planning_assumptions, combined_rows = build_planning_cases()
     return {
         "version": VERSION, "revision": REVISION,
-        "notice": "主催側の年齢構成見込み5:40:40:15とTEJO会員30%・非会員70%に基づく基本の見通しはplanning_caseが指すcombined_scenariosの先頭。会員割合の各年齢・期間への一律適用、期間配分・ホテル配置・提供単価等は仮定。短期差額50ユーロは未確定の仮置きで、35ユーロの場合も比較。scenariosの従来25ケースは需要予測ではなく比較用として維持。",
+        "notice": "主催側の年齢構成見込み5:40:40:15とTEJO会員30%・非会員70%に基づく基本の見通しはplanning_caseが指すcombined_scenariosの先頭。短期は会員・非会員それぞれの全日料金の70%とする主催側方針が確定。会員割合の各年齢・期間への一律適用、期間配分・ホテル配置・提供単価等は仮定。scenariosの従来25ケースは需要予測ではなく比較用として維持。",
         "base_age_key": BASE_AGE_KEY,
         "age_factors": AGE_FACTOR,
         "price_table_euro": {g: [v+50 for v in values] for g, values in TABLE.items()},
         "price_table_basis": "非会員・雑魚寝・食事付き・全日程・25～35歳の表示基本料金C。年齢倍率はこの額へ掛ける。",
         "member_base_price_table_euro": TABLE,
-        "member_base_price_table_basis": "25～35歳の全日会員料金B。表示基本料金CはB+50ユーロの現案。個室追加はBの50%。",
+        "member_base_price_table_basis": "25～35歳の全日会員料金B。表示基本料金CはB+50ユーロ。個室追加はBの50%。",
         "fee_formula": {
             "full_nonmember": "C×年齢倍率",
             "full_member": "C×年齢倍率-50ユーロ",
             "short_member": "(C×年齢倍率-50ユーロ)×0.7",
-            "short_nonmember": "短期会員料金+短期差額（50/35ユーロは未確定）",
+            "short_nonmember": "C×年齢倍率×0.7",
             "private_full": "(C-50ユーロ)×0.5を追加。35歳以下に同額で、年齢倍率は掛けない",
             "hotel": "年齢・会員・期間反映後の料金から会場内の未利用宿泊分を控除。ホテル代は本人別払い",
         },
-        "membership_notice": "全日の会員差額50ユーロとpatrono適用条件はTEJO調整前。最新の見通しは一般参加350人の会員30%・非会員70%を反映。短期差額50/35ユーロは未確定のため50を仮置きし、35も比較する。日帰り・免除スタッフに差額を加算しない。従来25参考ケースは非会員割合0のまま保持。",
+        "membership_notice": "主催側方針は全日会員割引50ユーロ、短期は会員・非会員それぞれの全日料金×0.7（会員差額35ユーロ）で確定。TEJOの会員・patrono資格の適用条件は別途調整する。最新の見通しは一般参加350人の会員30%・非会員70%を反映。日帰り・免除スタッフに差額を加算しない。従来25参考ケースは非会員割合0のまま保持。",
         "full_fee_examples_B_week12_euro": full_fee_examples,
         "short_fee_examples_B_week12_euro": short_fee_examples,
         "hotel_fee_examples_B_week12_yen": examples,
-        "verification": "24週間表示料金・4年齢区分の計算順・若年/年長を内数とする350人・各期人数・定員・年齢未反映参考値・若年費用不変・ホテル控除/費用同時減少・35歳以下のみ個室を検証済み",
+        "verification": "24週間表示料金・4年齢区分の計算順・全96基本料金における会員/非会員の前半/後半料金=全日料金×0.7・会員差額全日50/短期35・若年/年長を内数とする350人・各期人数・定員・年齢未反映参考値・若年費用不変・ホテル控除/費用同時減少・35歳以下のみ個室を検証済み",
         "scenarios": rows,
         "planning_assumptions": planning_assumptions,
         "planning_case": {"collection": "combined_scenarios", "index": 0, "label": combined_rows[0]["label"]},
