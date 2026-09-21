@@ -26,6 +26,9 @@
   年長40/80人と若年を含む4ケースは感度分析であり、年齢構成の需要予測ではない。
   参考値の全日ホテル8人は定員不足の算術調整であり、実際のホテル需要予測ではない。
 * 助成金/赤字補填は0。会場単価、個室有料20人、国別構成等はいずれも見積確定前。
+* 中心試算は主催側の年齢比5:40:40:15を350人へ丸めて18/140/140/52人。
+  各期への配分と36歳以上52人全員のホテル配置は計算上の仮置き。
+  従来25ケースを比較用に維持し、新中心と条件変更8ケースを別配列へ保存する。
 
 """
 
@@ -339,6 +342,68 @@ def hotel_fee_example(age, period, *, display_base_euro=350, member=True, fx=170
                                nonmember_short_euro=nonmember_short_euro)*fx-NIGHTS[period]*refund_night
 
 
+def build_planning_cases():
+    """主催側の年齢構成見込みに基づく中心試算と、条件を変えた比較8ケース。
+
+    350人への丸め・期間配分・36歳以上全員のホテル配置は仮定。既存の比較25ケースは変えない。
+    """
+    age_counts = {
+        "full": {"16_or_under": 8, "17_24": 60, "25_35": 60, "36_plus": 22},
+        "first": {"16_or_under": 5, "17_24": 40, "25_35": 40, "36_plus": 15},
+        "second": {"16_or_under": 5, "17_24": 40, "25_35": 40, "36_plus": 15},
+    }
+    specs = [
+        ("中心試算：年齢比5:40:40:15を350人へ反映", {}),
+        ("有料個室0人", {"private_youth_full": 0}),
+        ("平均食事550円", {"meal_price": 550}),
+        ("複合：個室0人・食事550円・日帰り2日", {
+            "private_youth_full": 0, "meal_price": 550, "paid_days": 2}),
+        ("東アジア寄りの国構成を置く比較", {"mix": MIX_EA}),
+        ("早期申込70％・中期20％・後期10％を置く比較", {"distribution": (.7, .2, .1)}),
+        ("無料運営25人", {"staff_full": 25}),
+        ("施設単価上振れ：宿泊1800円・食事1日1900円相当・ホテル控除1800円", {
+            "lodging_night": 1800, "meal_price": 1900/3, "hotel_refund_night": 1800}),
+    ]
+    rows = []
+    for index, (label, changed) in enumerate(specs):
+        row = scenario(label, age_counts=age_counts, **changed)
+        row["age_composition_is_forecast"] = True
+        row["age_composition_basis"] = "主催側の年齢構成見込み。入金済み人数・実測値ではない"
+        row["period_age_split_is_assumption"] = True
+        row["planning_case_kind"] = "central_planning_case" if index == 0 else "sensitivity"
+        row["changed_parameters_from_planning_case"] = changed
+        row["comparison_notice"] = (
+            "年齢比は主催側の見込み。各期への配分と36歳以上52人全員のホテル配置は仮置き。"
+            "条件変更は収支への影響を見る比較であり、その条件の需要予測・正式見積もりではない。")
+        row["balance_before_reserve_yen"] = row["revenue_yen"]-row["expense_subtotal_before_reserve_yen"]
+        row["reserve_yen"] = row["expenses_yen"]["reserve"]
+        row["balance_after_reserve_yen"] = row["balance_yen"]
+        row["member_fee_by_period_before_lodging_adjustments_yen"] = {
+            period: sum(c["count"]*c["average_member_participation_fee_yen_before_lodging_adjustments"]
+                        for c in row["cohorts"] if c["period"] == period)
+            for period in NIGHTS}
+        rows.append(row)
+    assumptions = {
+        "age_order": ["16_or_under", "17_24", "25_35", "36_plus"],
+        "user_ratio": {"16_or_under": 5, "17_24": 40, "25_35": 40, "36_plus": 15},
+        "user_ratio_notice": "主催側が示した年齢構成の見込み5:40:40:15。確定登録人数ではない",
+        "rounded_counts": {"16_or_under": 18, "17_24": 140, "25_35": 140, "36_plus": 52},
+        "rounding_notice": "350人に換算した17.5/140/140/52.5人を、合計350人となる18/140/140/52人へ丸めた",
+        "period_age_counts": age_counts,
+        "period_split_assumption": "全日150人へ8/60/60/22、前半・後半各100人へ5/40/40/15と仮配分。年齢別の参加期間について主催側が別途予測した値ではない",
+        "hotel_assignment_assumption": "36歳以上52人を全員ホテル泊に仮置き（全日22・前半15・後半15）。施設内の受入れ可能性を否定するものではない",
+        "private_youth_full": 20,
+        "membership_assumption": "全員が会員割引対象の場合を置き、非会員差額による増収は先取りしない",
+        "common_average_assumption": "全期間・全年齢・個室利用者の国構成と申込時期を共通とする。実際の内訳が分かれば分けて更新する",
+    }
+    assert len(rows) == 8
+    assert all(r["ordinary_registration"] == 350 for r in rows)
+    assert all(r["ordinary_age_counts"] == assumptions["rounded_counts"] for r in rows)
+    assert all(r["hotel_period_counts"] == {"full": 22, "first": 15, "second": 15} for r in rows)
+    assert rows[0]["nightly_onsite_including_staff"] == [228, 228, 228, 143, 228, 228, 228]
+    return assumptions, rows
+
+
 def build_report():
     base = scenario()
     age40 = scenario("仮例：350人のうち年長40人がホテル泊（需要予測ではない）",
@@ -438,9 +503,10 @@ def build_report():
     for age in YOUTH_AGE_KEYS:
         private = scenario(cohorts=[Cohort("full", age, "onsite", 20)], private_youth_full=20)
         assert private["income_yen"]["private_youth"] == base["income_yen"]["private_youth"]
+    planning_assumptions, combined_rows = build_planning_cases()
     return {
         "version": VERSION, "revision": REVISION,
-        "notice": "需要予測ではなく現条件の比較計算。年齢未反映参考値は全員25～35歳・会員相当とし、若年割引も年長加算も未反映。年長40/80人例と若年を含む4ケースは感度分析。",
+        "notice": "主催側の年齢構成見込み5:40:40:15に基づく中心試算はplanning_caseが指すcombined_scenariosの先頭。期間配分・ホテル配置・提供単価等は仮定。scenariosの従来25ケースは需要予測ではなく比較用として維持。",
         "base_age_key": BASE_AGE_KEY,
         "age_factors": AGE_FACTOR,
         "price_table_euro": {g: [v+50 for v in values] for g, values in TABLE.items()},
@@ -461,6 +527,9 @@ def build_report():
         "hotel_fee_examples_B_week12_yen": examples,
         "verification": "24週間表示料金・4年齢区分の計算順・若年/年長を内数とする350人・各期人数・定員・年齢未反映参考値・若年費用不変・ホテル控除/費用同時減少・35歳以下のみ個室を検証済み",
         "scenarios": rows,
+        "planning_assumptions": planning_assumptions,
+        "planning_case": {"collection": "combined_scenarios", "index": 0, "label": combined_rows[0]["label"]},
+        "combined_scenarios": combined_rows,
     }
 
 
@@ -474,6 +543,8 @@ def main():
     json_path.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
     for row in report["scenarios"]:
         print(f"{row['label']}: 収入{row['revenue_yen']/10000:.2f}万円、支出{row['expenses_total_yen']/10000:.2f}万円、収支{row['balance_yen']/10000:+.2f}万円")
+    for row in report["combined_scenarios"]:
+        print(f"{row['label']}: 予備費前{row['balance_before_reserve_yen']/10000:+.2f}万円、予備費{row['reserve_yen']/10000:.2f}万円、予備費後{row['balance_after_reserve_yen']/10000:+.2f}万円")
     print(f"検証完了: {json_path.name}")
 
 
