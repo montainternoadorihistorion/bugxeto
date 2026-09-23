@@ -7,9 +7,10 @@
 会員30%、年齢5:40:40:15を8/60/60/22人へ丸め、36歳以上22人はホテルの仮配置。
 料金の定義・96価格・年齢倍率・ホテル最低額/短期上限・個室条件はv7と同じ。
 会場資料の227人は大部屋205人と小部屋22人を含む資料上の合計。確定利用定員ではない。
-別館を含む個室20室の現認と、計算上の有料個室20人は区別する。追加で20人を登録数へ足さない。
-Wi-Fi10万円と暑さ対策300円/全日人は小額化の検討単価で、見積・契約額ではない。
-追加縮小案は共通費300万円・TEJO等100万円・遠足支援30万円の未決定の比較。
+見学後の最新内訳は完全個室がLUMO館4室・別館15室程度。約19室として予算では19人分を置く。
+有料個室19人は150人の内数。初期資料の小部屋8室を完全個室8室とは扱わない。
+音響60万円・Wi-Fi10万円・暑さ対策約5万円は主催側が妥当とした予算目安で、見積・契約額ではない。
+追加縮小案全体の共通費300万円・TEJO等100万円・遠足支援30万円は引き続き検討中。
 旧350人の資料・モデルは過去資料へ保存し、ここでは旧料金の参考25ケースを出力しない。
 """
 
@@ -25,7 +26,7 @@ from typing import Iterable, Mapping
 
 
 VERSION = "v8_20260923"
-REVISION = "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案。大本への宿泊・施設合計100万円の条件付き比較と青年・TEJOによる会計管理を追記"
+REVISION = "一般参加150人・全日7泊8日、運営15人別枠。完全個室はLUMO4室・別館15室程度、有料19人で計算。音響60万円・通信10万円・暑さ対策約5万円を主催側の予算目安として採用。縮小案全体は検討中。宿泊・施設合計100万円は条件付き比較。青年・TEJOによる会計管理"
 DISPLAY_TABLE_OFFSET_EURO = 50  # TABLEの旧会員相当額Bから、確定済みの表示基本料金Cへの固定差額。
 TABLE = {
     "A": [265,275,280,290,300,305,315,325,335,340,350,360,365,375,385,390,400,410,420,425,435,445,450,460],
@@ -271,7 +272,7 @@ def scenario(label="150人・8日間の暫定基準案", *,
              cohorts: Iterable[Cohort] | None=None,
              age_counts: Mapping[str, Mapping[str, int]] | None=None,
              full=150, first=0, second=0, staff_full=15, capacity=227,
-             private_youth_full=20, private_youth_first=0, private_youth_second=0, private_room_limit=20,
+             private_youth_full=19, private_youth_first=0, private_youth_second=0, private_room_limit=19,
              private_addition_night=3000, private_pricing="per_night",
              private_extra_cost_night=0, mix=None, fx=170, distribution=(.5,.3,.2),
              nonmember_share=.7, nonmember_full_euro=50, nonmember_short_euro=None,
@@ -540,7 +541,7 @@ def hotel_fee_example(age, period, *, display_base_euro=350, member=True, fx=170
 
 
 
-# 金額は円。共通費の内訳は本文と同じ。追加縮小案は主催側の承認済み費目ではない。
+# 金額は円。音響60万円・通信10万円は主催側の予算目安。その他の縮小額は検討中。
 COMMON_BUDGETS = {
     "baseline": {"会場・光熱・清掃": 600000, "音響・照明": 800000,
         "通信・Wi-Fi": 100000, "講師・文化企画・材料": 400000,
@@ -562,7 +563,7 @@ def build_report():
     assert sum(COMMON_BUDGETS["lean_proposal"].values()) == 3000000
     lean = {"fixed": 3000000, "tejo": 1000000, "excursion": 300000}
     specs = [
-        ("baseline", "暫定基準：一般全日150人・運営15人、Wi-Fiと暑さ対策を小額化", {}),
+        ("baseline", "比較用の暫定基準：音響80万円等を維持、一般全日150人・運営15人", {}),
         ("previous_costs_at_150", "比較：150人で以前の支出枠を維持", {"fixed": 4500000, "heat_full_yen": 1000}),
         ("lean_proposal", "追加縮小の検討案：共通費300万・TEJO等100万・遠足支援30万", lean),
         ("lean_private_10", "追加縮小案・有料個室10人", {**lean, "private_youth_full": 10}),
@@ -604,15 +605,22 @@ def build_report():
     return {
         "version": VERSION, "revision": REVISION, "date": "2026-09-23",
         "user_confirmed": {"ordinary_full": 150, "days": 8, "staff_is_separate": True,
-            "observed_private_rooms": 20, "private_rooms_include_annex": True, "short_price_fraction": .7,
+            "observed_private_rooms": 19, "private_rooms_include_annex": True,
+            "complete_private_rooms_by_building": {"lumo": 4, "annex": 15},
+            "private_room_counts_are_approximate": True,
+            "private_room_count_basis": "主催側の見学後の最新説明。完全個室はLUMO館4室・別館15室程度。従来の合計20室という説明を具体化し、予算では19室を採用",
+            "sound_budget_target_yen": 600000, "wifi_budget_target_yen": 100000,
+            "heat_budget_target_approx_yen": 50000,
+            "equipment_budget_target_notice": "主催側が妥当とした規模の目安。見積・契約額の確定や縮小案全体の承認ではない",
+            "short_price_fraction": .7,
             "age_ratio": [5,40,40,15], "member_share": .3,
             "oomoto_reported_charge_basis": "修行の宿泊費＋施設利用費",
             "reported_budget_management": "主催側が伺った意向：青年主体で、TEJOの既存銀行口座と連携して財政管理"},
         "provisional": {"staff_full": 15, "age_counts": [8,60,60,22],
-            "hotel_full": 22, "paid_private_people": 20,
+            "hotel_full": 22, "paid_private_people": 19,
             "free_day_person_days": 300, "onsite_capacity_document_total": 227,
             "capacity_is_authorized_for_2028": False,
-            "room_allocation_notice": "20室は別館等を含むと主催側確認。20室の存在と、全室を有料個室として販売できることは別。建物別内訳・スタッフ等の取り置き・単独使用による定員減を確認する",
+            "room_allocation_notice": "完全個室はLUMO4室・別館15室程度として19室を採用。有料19人は仮定で、取り置きと希望人数を反映する。旧資料の小部屋8室とは区別し、施設定員227人へ19室分を足さない",
             "heat_notice": "300円/全日人は既存冷房等を使う前提の追加消耗品枠。新規冷房工事や全日分の飲料購入を賄う見積もりではない",
             "lean_proposal_is_approved": False,
             "oomoto_100man_estimate": "主催側の感触であり正式提示額ではない。宿泊＋施設合計・食事別の場合を条件付き比較",

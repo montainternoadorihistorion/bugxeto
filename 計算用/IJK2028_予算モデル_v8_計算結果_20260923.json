@@ -1,13 +1,23 @@
 {
   "version": "v8_20260923",
-  "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案。大本への宿泊・施設合計100万円の条件付き比較と青年・TEJOによる会計管理を追記",
+  "revision": "一般参加150人・全日7泊8日、運営15人別枠。完全個室はLUMO4室・別館15室程度、有料19人で計算。音響60万円・通信10万円・暑さ対策約5万円を主催側の予算目安として採用。縮小案全体は検討中。宿泊・施設合計100万円は条件付き比較。青年・TEJOによる会計管理",
   "date": "2026-09-23",
   "user_confirmed": {
     "ordinary_full": 150,
     "days": 8,
     "staff_is_separate": true,
-    "observed_private_rooms": 20,
+    "observed_private_rooms": 19,
     "private_rooms_include_annex": true,
+    "complete_private_rooms_by_building": {
+      "lumo": 4,
+      "annex": 15
+    },
+    "private_room_counts_are_approximate": true,
+    "private_room_count_basis": "主催側の見学後の最新説明。完全個室はLUMO館4室・別館15室程度。従来の合計20室という説明を具体化し、予算では19室を採用",
+    "sound_budget_target_yen": 600000,
+    "wifi_budget_target_yen": 100000,
+    "heat_budget_target_approx_yen": 50000,
+    "equipment_budget_target_notice": "主催側が妥当とした規模の目安。見積・契約額の確定や縮小案全体の承認ではない",
     "short_price_fraction": 0.7,
     "age_ratio": [
       5,
@@ -28,11 +38,11 @@
       22
     ],
     "hotel_full": 22,
-    "paid_private_people": 20,
+    "paid_private_people": 19,
     "free_day_person_days": 300,
     "onsite_capacity_document_total": 227,
     "capacity_is_authorized_for_2028": false,
-    "room_allocation_notice": "20室は別館等を含むと主催側確認。20室の存在と、全室を有料個室として販売できることは別。建物別内訳・スタッフ等の取り置き・単独使用による定員減を確認する",
+    "room_allocation_notice": "完全個室はLUMO4室・別館15室程度として19室を採用。有料19人は仮定で、取り置きと希望人数を反映する。旧資料の小部屋8室とは区別し、施設定員227人へ19室分を足さない",
     "heat_notice": "300円/全日人は既存冷房等を使う前提の追加消耗品枠。新規冷房工事や全日分の飲料購入を賄う見積もりではない",
     "lean_proposal_is_approved": false,
     "oomoto_100man_estimate": "主催側の感触であり正式提示額ではない。宿泊＋施設合計・食事別の場合を条件付き比較",
@@ -179,9 +189,9 @@
   },
   "planning_cases": [
     {
-      "label": "暫定基準：一般全日150人・運営15人、Wi-Fiと暑さ対策を小額化",
+      "label": "比較用の暫定基準：音響80万円等を維持、一般全日150人・運営15人",
       "version": "v8_20260923",
-      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案。大本への宿泊・施設合計100万円の条件付き比較と青年・TEJOによる会計管理を追記",
+      "revision": "一般参加150人・全日7泊8日、運営15人別枠。完全個室はLUMO4室・別館15室程度、有料19人で計算。音響60万円・通信10万円・暑さ対策約5万円を主催側の予算目安として採用。縮小案全体は検討中。宿泊・施設合計100万円は条件付き比較。青年・TEJOによる会計管理",
       "base_age_key": "25_35",
       "ordinary_registration": 150,
       "ordinary_period_counts": {
@@ -258,7 +268,7 @@
         "second_basic": 0.0,
         "age_discount": -846060.9299999998,
         "age_surcharge": 646296.54375,
-        "private_youth": 420000,
+        "private_youth": 399000,
         "nonmember": 892500.0,
         "paid_day": 660000.0,
         "hotel_lodging_credit": -308000,
@@ -282,16 +292,16 @@
         "fixed_common": 4150000,
         "tejo_support": 2000000,
         "excursion_support": 400000,
-        "payment_fees": 342109.07144749997,
-        "reserve": 1247863.0885736998
+        "payment_fees": 341311.07144749997,
+        "reserve": 1247767.3285736998
       },
-      "expense_subtotal_before_reserve_yen": 10398859.0714475,
-      "revenue_yen": 9002870.30125,
-      "expenses_total_yen": 11646722.160021199,
-      "balance_yen": -2643851.8587711994,
-      "revenue": 9002870.30125,
-      "cost": 11646722.160021199,
-      "balance": -2643851.8587711994,
+      "expense_subtotal_before_reserve_yen": 10398061.0714475,
+      "revenue_yen": 8981870.30125,
+      "expenses_total_yen": 11645828.4000212,
+      "balance_yen": -2663958.0987711996,
+      "revenue": 8981870.30125,
+      "cost": 11645828.4000212,
+      "balance": -2663958.0987711996,
       "occupancy": [
         143,
         143,
@@ -394,8 +404,8 @@
           0.2
         ],
         "capacity": 227,
-        "private_room_limit": 20,
-        "private_youth_full": 20,
+        "private_room_limit": 19,
+        "private_youth_full": 19,
         "private_youth_first": 0,
         "private_youth_second": 0,
         "private_pricing": "per_night",
@@ -441,14 +451,14 @@
       },
       "case_id": "baseline",
       "changed_parameters_from_baseline": {},
-      "balance_before_reserve_yen": -1395988.7701974995,
-      "reserve_yen": 1247863.0885736998,
-      "balance_after_reserve_yen": -2643851.8587711994
+      "balance_before_reserve_yen": -1416190.7701974995,
+      "reserve_yen": 1247767.3285736998,
+      "balance_after_reserve_yen": -2663958.0987711996
     },
     {
       "label": "比較：150人で以前の支出枠を維持",
       "version": "v8_20260923",
-      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案。大本への宿泊・施設合計100万円の条件付き比較と青年・TEJOによる会計管理を追記",
+      "revision": "一般参加150人・全日7泊8日、運営15人別枠。完全個室はLUMO4室・別館15室程度、有料19人で計算。音響60万円・通信10万円・暑さ対策約5万円を主催側の予算目安として採用。縮小案全体は検討中。宿泊・施設合計100万円は条件付き比較。青年・TEJOによる会計管理",
       "base_age_key": "25_35",
       "ordinary_registration": 150,
       "ordinary_period_counts": {
@@ -525,7 +535,7 @@
         "second_basic": 0.0,
         "age_discount": -846060.9299999998,
         "age_surcharge": 646296.54375,
-        "private_youth": 420000,
+        "private_youth": 399000,
         "nonmember": 892500.0,
         "paid_day": 660000.0,
         "hotel_lodging_credit": -308000,
@@ -549,16 +559,16 @@
         "fixed_common": 4500000,
         "tejo_support": 2000000,
         "excursion_support": 400000,
-        "payment_fees": 342109.07144749997,
-        "reserve": 1303723.0885736998
+        "payment_fees": 341311.07144749997,
+        "reserve": 1303627.3285736998
       },
-      "expense_subtotal_before_reserve_yen": 10864359.0714475,
-      "revenue_yen": 9002870.30125,
-      "expenses_total_yen": 12168082.160021199,
-      "balance_yen": -3165211.8587711994,
-      "revenue": 9002870.30125,
-      "cost": 12168082.160021199,
-      "balance": -3165211.8587711994,
+      "expense_subtotal_before_reserve_yen": 10863561.0714475,
+      "revenue_yen": 8981870.30125,
+      "expenses_total_yen": 12167188.4000212,
+      "balance_yen": -3185318.0987711996,
+      "revenue": 8981870.30125,
+      "cost": 12167188.4000212,
+      "balance": -3185318.0987711996,
       "occupancy": [
         143,
         143,
@@ -661,8 +671,8 @@
           0.2
         ],
         "capacity": 227,
-        "private_room_limit": 20,
-        "private_youth_full": 20,
+        "private_room_limit": 19,
+        "private_youth_full": 19,
         "private_youth_first": 0,
         "private_youth_second": 0,
         "private_pricing": "per_night",
@@ -711,14 +721,14 @@
         "fixed": 4500000,
         "heat_full_yen": 1000
       },
-      "balance_before_reserve_yen": -1861488.7701974995,
-      "reserve_yen": 1303723.0885736998,
-      "balance_after_reserve_yen": -3165211.8587711994
+      "balance_before_reserve_yen": -1881690.7701974995,
+      "reserve_yen": 1303627.3285736998,
+      "balance_after_reserve_yen": -3185318.0987711996
     },
     {
       "label": "追加縮小の検討案：共通費300万・TEJO等100万・遠足支援30万",
       "version": "v8_20260923",
-      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案。大本への宿泊・施設合計100万円の条件付き比較と青年・TEJOによる会計管理を追記",
+      "revision": "一般参加150人・全日7泊8日、運営15人別枠。完全個室はLUMO4室・別館15室程度、有料19人で計算。音響60万円・通信10万円・暑さ対策約5万円を主催側の予算目安として採用。縮小案全体は検討中。宿泊・施設合計100万円は条件付き比較。青年・TEJOによる会計管理",
       "base_age_key": "25_35",
       "ordinary_registration": 150,
       "ordinary_period_counts": {
@@ -795,7 +805,7 @@
         "second_basic": 0.0,
         "age_discount": -846060.9299999998,
         "age_surcharge": 646296.54375,
-        "private_youth": 420000,
+        "private_youth": 399000,
         "nonmember": 892500.0,
         "paid_day": 660000.0,
         "hotel_lodging_credit": -308000,
@@ -819,16 +829,16 @@
         "fixed_common": 3000000,
         "tejo_support": 1000000,
         "excursion_support": 300000,
-        "payment_fees": 342109.07144749997,
-        "reserve": 977863.0885736999
+        "payment_fees": 341311.07144749997,
+        "reserve": 977767.3285736999
       },
-      "expense_subtotal_before_reserve_yen": 8148859.0714475,
-      "revenue_yen": 9002870.30125,
-      "expenses_total_yen": 9126722.1600212,
-      "balance_yen": -123851.85877120122,
-      "revenue": 9002870.30125,
-      "cost": 9126722.1600212,
-      "balance": -123851.85877120122,
+      "expense_subtotal_before_reserve_yen": 8148061.0714475,
+      "revenue_yen": 8981870.30125,
+      "expenses_total_yen": 9125828.4000212,
+      "balance_yen": -143958.09877119958,
+      "revenue": 8981870.30125,
+      "cost": 9125828.4000212,
+      "balance": -143958.09877119958,
       "occupancy": [
         143,
         143,
@@ -931,8 +941,8 @@
           0.2
         ],
         "capacity": 227,
-        "private_room_limit": 20,
-        "private_youth_full": 20,
+        "private_room_limit": 19,
+        "private_youth_full": 19,
         "private_youth_first": 0,
         "private_youth_second": 0,
         "private_pricing": "per_night",
@@ -982,14 +992,14 @@
         "tejo": 1000000,
         "excursion": 300000
       },
-      "balance_before_reserve_yen": 854011.2298024995,
-      "reserve_yen": 977863.0885736999,
-      "balance_after_reserve_yen": -123851.85877120122
+      "balance_before_reserve_yen": 833809.2298024995,
+      "reserve_yen": 977767.3285736999,
+      "balance_after_reserve_yen": -143958.09877119958
     },
     {
       "label": "追加縮小案・有料個室10人",
       "version": "v8_20260923",
-      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案。大本への宿泊・施設合計100万円の条件付き比較と青年・TEJOによる会計管理を追記",
+      "revision": "一般参加150人・全日7泊8日、運営15人別枠。完全個室はLUMO4室・別館15室程度、有料19人で計算。音響60万円・通信10万円・暑さ対策約5万円を主催側の予算目安として採用。縮小案全体は検討中。宿泊・施設合計100万円は条件付き比較。青年・TEJOによる会計管理",
       "base_age_key": "25_35",
       "ordinary_registration": 150,
       "ordinary_period_counts": {
@@ -1202,7 +1212,7 @@
           0.2
         ],
         "capacity": 227,
-        "private_room_limit": 20,
+        "private_room_limit": 19,
         "private_youth_full": 10,
         "private_youth_first": 0,
         "private_youth_second": 0,
@@ -1261,7 +1271,7 @@
     {
       "label": "追加縮小案・有料個室0人",
       "version": "v8_20260923",
-      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案。大本への宿泊・施設合計100万円の条件付き比較と青年・TEJOによる会計管理を追記",
+      "revision": "一般参加150人・全日7泊8日、運営15人別枠。完全個室はLUMO4室・別館15室程度、有料19人で計算。音響60万円・通信10万円・暑さ対策約5万円を主催側の予算目安として採用。縮小案全体は検討中。宿泊・施設合計100万円は条件付き比較。青年・TEJOによる会計管理",
       "base_age_key": "25_35",
       "ordinary_registration": 150,
       "ordinary_period_counts": {
@@ -1474,7 +1484,7 @@
           0.2
         ],
         "capacity": 227,
-        "private_room_limit": 20,
+        "private_room_limit": 19,
         "private_youth_full": 0,
         "private_youth_first": 0,
         "private_youth_second": 0,
@@ -1533,7 +1543,7 @@
     {
       "label": "追加縮小案・食事550円",
       "version": "v8_20260923",
-      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案。大本への宿泊・施設合計100万円の条件付き比較と青年・TEJOによる会計管理を追記",
+      "revision": "一般参加150人・全日7泊8日、運営15人別枠。完全個室はLUMO4室・別館15室程度、有料19人で計算。音響60万円・通信10万円・暑さ対策約5万円を主催側の予算目安として採用。縮小案全体は検討中。宿泊・施設合計100万円は条件付き比較。青年・TEJOによる会計管理",
       "base_age_key": "25_35",
       "ordinary_registration": 150,
       "ordinary_period_counts": {
@@ -1610,7 +1620,7 @@
         "second_basic": 0.0,
         "age_discount": -846060.9299999998,
         "age_surcharge": 646296.54375,
-        "private_youth": 420000,
+        "private_youth": 399000,
         "nonmember": 892500.0,
         "paid_day": 660000.0,
         "hotel_lodging_credit": -308000,
@@ -1634,16 +1644,16 @@
         "fixed_common": 3000000,
         "tejo_support": 1000000,
         "excursion_support": 300000,
-        "payment_fees": 342109.07144749997,
-        "reserve": 1019443.0885736998
+        "payment_fees": 341311.07144749997,
+        "reserve": 1019347.3285736998
       },
-      "expense_subtotal_before_reserve_yen": 8495359.0714475,
-      "revenue_yen": 9002870.30125,
-      "expenses_total_yen": 9514802.160021199,
-      "balance_yen": -511931.85877119936,
-      "revenue": 9002870.30125,
-      "cost": 9514802.160021199,
-      "balance": -511931.85877119936,
+      "expense_subtotal_before_reserve_yen": 8494561.0714475,
+      "revenue_yen": 8981870.30125,
+      "expenses_total_yen": 9513908.4000212,
+      "balance_yen": -532038.0987711996,
+      "revenue": 8981870.30125,
+      "cost": 9513908.4000212,
+      "balance": -532038.0987711996,
       "occupancy": [
         143,
         143,
@@ -1746,8 +1756,8 @@
           0.2
         ],
         "capacity": 227,
-        "private_room_limit": 20,
-        "private_youth_full": 20,
+        "private_room_limit": 19,
+        "private_youth_full": 19,
         "private_youth_first": 0,
         "private_youth_second": 0,
         "private_pricing": "per_night",
@@ -1798,14 +1808,14 @@
         "excursion": 300000,
         "meal_price": 550
       },
-      "balance_before_reserve_yen": 507511.22980250046,
-      "reserve_yen": 1019443.0885736998,
-      "balance_after_reserve_yen": -511931.85877119936
+      "balance_before_reserve_yen": 487309.22980250046,
+      "reserve_yen": 1019347.3285736998,
+      "balance_after_reserve_yen": -532038.0987711996
     },
     {
       "label": "追加縮小案・日帰り受付2日",
       "version": "v8_20260923",
-      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案。大本への宿泊・施設合計100万円の条件付き比較と青年・TEJOによる会計管理を追記",
+      "revision": "一般参加150人・全日7泊8日、運営15人別枠。完全個室はLUMO4室・別館15室程度、有料19人で計算。音響60万円・通信10万円・暑さ対策約5万円を主催側の予算目安として採用。縮小案全体は検討中。宿泊・施設合計100万円は条件付き比較。青年・TEJOによる会計管理",
       "base_age_key": "25_35",
       "ordinary_registration": 150,
       "ordinary_period_counts": {
@@ -1882,7 +1892,7 @@
         "second_basic": 0.0,
         "age_discount": -846060.9299999998,
         "age_surcharge": 646296.54375,
-        "private_youth": 420000,
+        "private_youth": 399000,
         "nonmember": 892500.0,
         "paid_day": 440000.0,
         "hotel_lodging_credit": -308000,
@@ -1906,16 +1916,16 @@
         "fixed_common": 3000000,
         "tejo_support": 1000000,
         "excursion_support": 300000,
-        "payment_fees": 333749.07144749997,
-        "reserve": 973019.8885737
+        "payment_fees": 332951.07144749997,
+        "reserve": 972924.1285737
       },
-      "expense_subtotal_before_reserve_yen": 8108499.0714475,
-      "revenue_yen": 8782870.30125,
-      "expenses_total_yen": 9081518.9600212,
-      "balance_yen": -298648.6587712001,
-      "revenue": 8782870.30125,
-      "cost": 9081518.9600212,
-      "balance": -298648.6587712001,
+      "expense_subtotal_before_reserve_yen": 8107701.0714475,
+      "revenue_yen": 8761870.30125,
+      "expenses_total_yen": 9080625.2000212,
+      "balance_yen": -318754.8987712003,
+      "revenue": 8761870.30125,
+      "cost": 9080625.2000212,
+      "balance": -318754.8987712003,
       "occupancy": [
         143,
         143,
@@ -2018,8 +2028,8 @@
           0.2
         ],
         "capacity": 227,
-        "private_room_limit": 20,
-        "private_youth_full": 20,
+        "private_room_limit": 19,
+        "private_youth_full": 19,
         "private_youth_first": 0,
         "private_youth_second": 0,
         "private_pricing": "per_night",
@@ -2070,14 +2080,14 @@
         "excursion": 300000,
         "paid_days": 2
       },
-      "balance_before_reserve_yen": 674371.2298024995,
-      "reserve_yen": 973019.8885737,
-      "balance_after_reserve_yen": -298648.6587712001
+      "balance_before_reserve_yen": 654169.2298024995,
+      "reserve_yen": 972924.1285737,
+      "balance_after_reserve_yen": -318754.8987712003
     },
     {
       "label": "追加縮小案・会員50%",
       "version": "v8_20260923",
-      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案。大本への宿泊・施設合計100万円の条件付き比較と青年・TEJOによる会計管理を追記",
+      "revision": "一般参加150人・全日7泊8日、運営15人別枠。完全個室はLUMO4室・別館15室程度、有料19人で計算。音響60万円・通信10万円・暑さ対策約5万円を主催側の予算目安として採用。縮小案全体は検討中。宿泊・施設合計100万円は条件付き比較。青年・TEJOによる会計管理",
       "base_age_key": "25_35",
       "ordinary_registration": 150,
       "ordinary_period_counts": {
@@ -2154,7 +2164,7 @@
         "second_basic": 0.0,
         "age_discount": -846060.9299999998,
         "age_surcharge": 646296.54375,
-        "private_youth": 420000,
+        "private_youth": 399000,
         "nonmember": 637500.0,
         "paid_day": 660000.0,
         "hotel_lodging_credit": -308000,
@@ -2178,16 +2188,16 @@
         "fixed_common": 3000000,
         "tejo_support": 1000000,
         "excursion_support": 300000,
-        "payment_fees": 332419.07144749997,
-        "reserve": 976700.2885737
+        "payment_fees": 331621.07144749997,
+        "reserve": 976604.5285737
       },
-      "expense_subtotal_before_reserve_yen": 8139169.0714475,
-      "revenue_yen": 8747870.30125,
-      "expenses_total_yen": 9115869.3600212,
-      "balance_yen": -367999.0587712005,
-      "revenue": 8747870.30125,
-      "cost": 9115869.3600212,
-      "balance": -367999.0587712005,
+      "expense_subtotal_before_reserve_yen": 8138371.0714475,
+      "revenue_yen": 8726870.30125,
+      "expenses_total_yen": 9114975.6000212,
+      "balance_yen": -388105.2987712007,
+      "revenue": 8726870.30125,
+      "cost": 9114975.6000212,
+      "balance": -388105.2987712007,
       "occupancy": [
         143,
         143,
@@ -2290,8 +2300,8 @@
           0.2
         ],
         "capacity": 227,
-        "private_room_limit": 20,
-        "private_youth_full": 20,
+        "private_room_limit": 19,
+        "private_youth_full": 19,
         "private_youth_first": 0,
         "private_youth_second": 0,
         "private_pricing": "per_night",
@@ -2342,14 +2352,14 @@
         "excursion": 300000,
         "nonmember_share": 0.5
       },
-      "balance_before_reserve_yen": 608701.2298024995,
-      "reserve_yen": 976700.2885737,
-      "balance_after_reserve_yen": -367999.0587712005
+      "balance_before_reserve_yen": 588499.2298024995,
+      "reserve_yen": 976604.5285737,
+      "balance_after_reserve_yen": -388105.2987712007
     },
     {
       "label": "追加縮小案・会員70%",
       "version": "v8_20260923",
-      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案。大本への宿泊・施設合計100万円の条件付き比較と青年・TEJOによる会計管理を追記",
+      "revision": "一般参加150人・全日7泊8日、運営15人別枠。完全個室はLUMO4室・別館15室程度、有料19人で計算。音響60万円・通信10万円・暑さ対策約5万円を主催側の予算目安として採用。縮小案全体は検討中。宿泊・施設合計100万円は条件付き比較。青年・TEJOによる会計管理",
       "base_age_key": "25_35",
       "ordinary_registration": 150,
       "ordinary_period_counts": {
@@ -2426,7 +2436,7 @@
         "second_basic": 0.0,
         "age_discount": -846060.9299999998,
         "age_surcharge": 646296.54375,
-        "private_youth": 420000,
+        "private_youth": 399000,
         "nonmember": 382500.0,
         "paid_day": 660000.0,
         "hotel_lodging_credit": -308000,
@@ -2450,16 +2460,16 @@
         "fixed_common": 3000000,
         "tejo_support": 1000000,
         "excursion_support": 300000,
-        "payment_fees": 322729.07144749997,
-        "reserve": 975537.4885737
+        "payment_fees": 321931.07144749997,
+        "reserve": 975441.7285737
       },
-      "expense_subtotal_before_reserve_yen": 8129479.0714475,
-      "revenue_yen": 8492870.30125,
-      "expenses_total_yen": 9105016.5600212,
-      "balance_yen": -612146.2587711997,
-      "revenue": 8492870.30125,
-      "cost": 9105016.5600212,
-      "balance": -612146.2587711997,
+      "expense_subtotal_before_reserve_yen": 8128681.0714475,
+      "revenue_yen": 8471870.30125,
+      "expenses_total_yen": 9104122.8000212,
+      "balance_yen": -632252.4987712,
+      "revenue": 8471870.30125,
+      "cost": 9104122.8000212,
+      "balance": -632252.4987712,
       "occupancy": [
         143,
         143,
@@ -2562,8 +2572,8 @@
           0.2
         ],
         "capacity": 227,
-        "private_room_limit": 20,
-        "private_youth_full": 20,
+        "private_room_limit": 19,
+        "private_youth_full": 19,
         "private_youth_first": 0,
         "private_youth_second": 0,
         "private_pricing": "per_night",
@@ -2614,14 +2624,14 @@
         "excursion": 300000,
         "nonmember_share": 0.3
       },
-      "balance_before_reserve_yen": 363391.2298024995,
-      "reserve_yen": 975537.4885737,
-      "balance_after_reserve_yen": -612146.2587711997
+      "balance_before_reserve_yen": 343189.2298024995,
+      "reserve_yen": 975441.7285737,
+      "balance_after_reserve_yen": -632252.4987712
     },
     {
       "label": "追加縮小案・運営25人",
       "version": "v8_20260923",
-      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案。大本への宿泊・施設合計100万円の条件付き比較と青年・TEJOによる会計管理を追記",
+      "revision": "一般参加150人・全日7泊8日、運営15人別枠。完全個室はLUMO4室・別館15室程度、有料19人で計算。音響60万円・通信10万円・暑さ対策約5万円を主催側の予算目安として採用。縮小案全体は検討中。宿泊・施設合計100万円は条件付き比較。青年・TEJOによる会計管理",
       "base_age_key": "25_35",
       "ordinary_registration": 150,
       "ordinary_period_counts": {
@@ -2698,7 +2708,7 @@
         "second_basic": 0.0,
         "age_discount": -846060.9299999998,
         "age_surcharge": 646296.54375,
-        "private_youth": 420000,
+        "private_youth": 399000,
         "nonmember": 892500.0,
         "paid_day": 660000.0,
         "hotel_lodging_credit": -308000,
@@ -2722,16 +2732,16 @@
         "fixed_common": 3000000,
         "tejo_support": 1000000,
         "excursion_support": 300000,
-        "payment_fees": 342109.07144749997,
-        "reserve": 1002043.0885736999
+        "payment_fees": 341311.07144749997,
+        "reserve": 1001947.3285736999
       },
-      "expense_subtotal_before_reserve_yen": 8350359.0714475,
-      "revenue_yen": 9002870.30125,
-      "expenses_total_yen": 9352402.1600212,
-      "balance_yen": -349531.8587712012,
-      "revenue": 9002870.30125,
-      "cost": 9352402.1600212,
-      "balance": -349531.8587712012,
+      "expense_subtotal_before_reserve_yen": 8349561.0714475,
+      "revenue_yen": 8981870.30125,
+      "expenses_total_yen": 9351508.4000212,
+      "balance_yen": -369638.0987711996,
+      "revenue": 8981870.30125,
+      "cost": 9351508.4000212,
+      "balance": -369638.0987711996,
       "occupancy": [
         153,
         153,
@@ -2834,8 +2844,8 @@
           0.2
         ],
         "capacity": 227,
-        "private_room_limit": 20,
-        "private_youth_full": 20,
+        "private_room_limit": 19,
+        "private_youth_full": 19,
         "private_youth_first": 0,
         "private_youth_second": 0,
         "private_pricing": "per_night",
@@ -2886,14 +2896,14 @@
         "excursion": 300000,
         "staff_full": 25
       },
-      "balance_before_reserve_yen": 652511.2298024995,
-      "reserve_yen": 1002043.0885736999,
-      "balance_after_reserve_yen": -349531.8587712012
+      "balance_before_reserve_yen": 632309.2298024995,
+      "reserve_yen": 1001947.3285736999,
+      "balance_after_reserve_yen": -369638.0987711996
     },
     {
       "label": "追加縮小案・1ユーロ160円",
       "version": "v8_20260923",
-      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案。大本への宿泊・施設合計100万円の条件付き比較と青年・TEJOによる会計管理を追記",
+      "revision": "一般参加150人・全日7泊8日、運営15人別枠。完全個室はLUMO4室・別館15室程度、有料19人で計算。音響60万円・通信10万円・暑さ対策約5万円を主催側の予算目安として採用。縮小案全体は検討中。宿泊・施設合計100万円は条件付き比較。青年・TEJOによる会計管理",
       "base_age_key": "25_35",
       "ordinary_registration": 150,
       "ordinary_period_counts": {
@@ -2970,7 +2980,7 @@
         "second_basic": 0.0,
         "age_discount": -796292.6399999997,
         "age_surcharge": 608279.0999999999,
-        "private_youth": 420000,
+        "private_youth": 399000,
         "nonmember": 840000.0,
         "paid_day": 660000.0,
         "hotel_lodging_credit": -308000,
@@ -2994,16 +3004,16 @@
         "fixed_common": 3000000,
         "tejo_support": 1000000,
         "excursion_support": 300000,
-        "payment_fees": 323710.65547999996,
-        "reserve": 975655.2786575999
+        "payment_fees": 322912.65547999996,
+        "reserve": 975559.5186576
       },
-      "expense_subtotal_before_reserve_yen": 8130460.65548,
-      "revenue_yen": 8518701.459999999,
-      "expenses_total_yen": 9106115.9341376,
-      "balance_yen": -587414.4741376005,
-      "revenue": 8518701.459999999,
-      "cost": 9106115.9341376,
-      "balance": -587414.4741376005,
+      "expense_subtotal_before_reserve_yen": 8129662.65548,
+      "revenue_yen": 8497701.459999999,
+      "expenses_total_yen": 9105222.1741376,
+      "balance_yen": -607520.7141376007,
+      "revenue": 8497701.459999999,
+      "cost": 9105222.1741376,
+      "balance": -607520.7141376007,
       "occupancy": [
         143,
         143,
@@ -3106,8 +3116,8 @@
           0.2
         ],
         "capacity": 227,
-        "private_room_limit": 20,
-        "private_youth_full": 20,
+        "private_room_limit": 19,
+        "private_youth_full": 19,
         "private_youth_first": 0,
         "private_youth_second": 0,
         "private_pricing": "per_night",
@@ -3158,14 +3168,14 @@
         "excursion": 300000,
         "fx": 160
       },
-      "balance_before_reserve_yen": 388240.80451999884,
-      "reserve_yen": 975655.2786575999,
-      "balance_after_reserve_yen": -587414.4741376005
+      "balance_before_reserve_yen": 368038.80451999884,
+      "reserve_yen": 975559.5186576,
+      "balance_after_reserve_yen": -607520.7141376007
     },
     {
       "label": "追加縮小案・個室追加原価1000円/人泊",
       "version": "v8_20260923",
-      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案。大本への宿泊・施設合計100万円の条件付き比較と青年・TEJOによる会計管理を追記",
+      "revision": "一般参加150人・全日7泊8日、運営15人別枠。完全個室はLUMO4室・別館15室程度、有料19人で計算。音響60万円・通信10万円・暑さ対策約5万円を主催側の予算目安として採用。縮小案全体は検討中。宿泊・施設合計100万円は条件付き比較。青年・TEJOによる会計管理",
       "base_age_key": "25_35",
       "ordinary_registration": 150,
       "ordinary_period_counts": {
@@ -3242,7 +3252,7 @@
         "second_basic": 0.0,
         "age_discount": -846060.9299999998,
         "age_surcharge": 646296.54375,
-        "private_youth": 420000,
+        "private_youth": 399000,
         "nonmember": 892500.0,
         "paid_day": 660000.0,
         "hotel_lodging_credit": -308000,
@@ -3259,24 +3269,24 @@
         "kit": 115500.0,
         "insurance": 132000.0,
         "visa_admin": 49500.0,
-        "private_extra_lodging": 140000
+        "private_extra_lodging": 133000
       },
       "expenses_yen": {
-        "ordinary_and_staff_variable": 3310750.0,
+        "ordinary_and_staff_variable": 3303750.0,
         "day_reception": 336000,
         "fixed_common": 3000000,
         "tejo_support": 1000000,
         "excursion_support": 300000,
-        "payment_fees": 342109.07144749997,
-        "reserve": 994663.0885736999
+        "payment_fees": 341311.07144749997,
+        "reserve": 993727.3285736999
       },
-      "expense_subtotal_before_reserve_yen": 8288859.0714475,
-      "revenue_yen": 9002870.30125,
-      "expenses_total_yen": 9283522.1600212,
-      "balance_yen": -280651.8587712012,
-      "revenue": 9002870.30125,
-      "cost": 9283522.1600212,
-      "balance": -280651.8587712012,
+      "expense_subtotal_before_reserve_yen": 8281061.0714475,
+      "revenue_yen": 8981870.30125,
+      "expenses_total_yen": 9274788.4000212,
+      "balance_yen": -292918.0987711996,
+      "revenue": 8981870.30125,
+      "cost": 9274788.4000212,
+      "balance": -292918.0987711996,
       "occupancy": [
         143,
         143,
@@ -3379,8 +3389,8 @@
           0.2
         ],
         "capacity": 227,
-        "private_room_limit": 20,
-        "private_youth_full": 20,
+        "private_room_limit": 19,
+        "private_youth_full": 19,
         "private_youth_first": 0,
         "private_youth_second": 0,
         "private_pricing": "per_night",
@@ -3431,14 +3441,14 @@
         "excursion": 300000,
         "private_extra_cost_night": 1000
       },
-      "balance_before_reserve_yen": 714011.2298024995,
-      "reserve_yen": 994663.0885736999,
-      "balance_after_reserve_yen": -280651.8587712012
+      "balance_before_reserve_yen": 700809.2298024995,
+      "reserve_yen": 993727.3285736999,
+      "balance_after_reserve_yen": -292918.0987711996
     },
     {
       "label": "追加縮小案・宿泊1800円/泊・食事1900円/日相当",
       "version": "v8_20260923",
-      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案。大本への宿泊・施設合計100万円の条件付き比較と青年・TEJOによる会計管理を追記",
+      "revision": "一般参加150人・全日7泊8日、運営15人別枠。完全個室はLUMO4室・別館15室程度、有料19人で計算。音響60万円・通信10万円・暑さ対策約5万円を主催側の予算目安として採用。縮小案全体は検討中。宿泊・施設合計100万円は条件付き比較。青年・TEJOによる会計管理",
       "base_age_key": "25_35",
       "ordinary_registration": 150,
       "ordinary_period_counts": {
@@ -3515,7 +3525,7 @@
         "second_basic": 0.0,
         "age_discount": -846060.9299999998,
         "age_surcharge": 646296.54375,
-        "private_youth": 420000,
+        "private_youth": 399000,
         "nonmember": 892500.0,
         "paid_day": 660000.0,
         "hotel_lodging_credit": -308000,
@@ -3539,16 +3549,16 @@
         "fixed_common": 3000000,
         "tejo_support": 1000000,
         "excursion_support": 300000,
-        "payment_fees": 342109.07144749997,
-        "reserve": 1150189.0885736998
+        "payment_fees": 341311.07144749997,
+        "reserve": 1150093.3285736998
       },
-      "expense_subtotal_before_reserve_yen": 9584909.0714475,
-      "revenue_yen": 9002870.30125,
-      "expenses_total_yen": 10735098.160021199,
-      "balance_yen": -1732227.8587711994,
-      "revenue": 9002870.30125,
-      "cost": 10735098.160021199,
-      "balance": -1732227.8587711994,
+      "expense_subtotal_before_reserve_yen": 9584111.0714475,
+      "revenue_yen": 8981870.30125,
+      "expenses_total_yen": 10734204.4000212,
+      "balance_yen": -1752334.0987711996,
+      "revenue": 8981870.30125,
+      "cost": 10734204.4000212,
+      "balance": -1752334.0987711996,
       "occupancy": [
         143,
         143,
@@ -3651,8 +3661,8 @@
           0.2
         ],
         "capacity": 227,
-        "private_room_limit": 20,
-        "private_youth_full": 20,
+        "private_room_limit": 19,
+        "private_youth_full": 19,
         "private_youth_first": 0,
         "private_youth_second": 0,
         "private_pricing": "per_night",
@@ -3704,14 +3714,14 @@
         "lodging_night": 1800,
         "meal_price": 633.3333333333334
       },
-      "balance_before_reserve_yen": -582038.7701974995,
-      "reserve_yen": 1150189.0885736998,
-      "balance_after_reserve_yen": -1732227.8587711994
+      "balance_before_reserve_yen": -602240.7701974995,
+      "reserve_yen": 1150093.3285736998,
+      "balance_after_reserve_yen": -1752334.0987711996
     },
     {
       "label": "追加縮小案・無料来場90人日への見直し例",
       "version": "v8_20260923",
-      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案。大本への宿泊・施設合計100万円の条件付き比較と青年・TEJOによる会計管理を追記",
+      "revision": "一般参加150人・全日7泊8日、運営15人別枠。完全個室はLUMO4室・別館15室程度、有料19人で計算。音響60万円・通信10万円・暑さ対策約5万円を主催側の予算目安として採用。縮小案全体は検討中。宿泊・施設合計100万円は条件付き比較。青年・TEJOによる会計管理",
       "base_age_key": "25_35",
       "ordinary_registration": 150,
       "ordinary_period_counts": {
@@ -3788,7 +3798,7 @@
         "second_basic": 0.0,
         "age_discount": -846060.9299999998,
         "age_surcharge": 646296.54375,
-        "private_youth": 420000,
+        "private_youth": 399000,
         "nonmember": 892500.0,
         "paid_day": 660000.0,
         "hotel_lodging_credit": -308000,
@@ -3812,16 +3822,16 @@
         "fixed_common": 3000000,
         "tejo_support": 1000000,
         "excursion_support": 300000,
-        "payment_fees": 342109.07144749997,
-        "reserve": 957703.0885736999
+        "payment_fees": 341311.07144749997,
+        "reserve": 957607.3285736999
       },
-      "expense_subtotal_before_reserve_yen": 7980859.0714475,
-      "revenue_yen": 9002870.30125,
-      "expenses_total_yen": 8938562.1600212,
-      "balance_yen": 64308.14122879878,
-      "revenue": 9002870.30125,
-      "cost": 8938562.1600212,
-      "balance": 64308.14122879878,
+      "expense_subtotal_before_reserve_yen": 7980061.0714475,
+      "revenue_yen": 8981870.30125,
+      "expenses_total_yen": 8937668.4000212,
+      "balance_yen": 44201.901228800416,
+      "revenue": 8981870.30125,
+      "cost": 8937668.4000212,
+      "balance": 44201.901228800416,
       "occupancy": [
         143,
         143,
@@ -3924,8 +3934,8 @@
           0.2
         ],
         "capacity": 227,
-        "private_room_limit": 20,
-        "private_youth_full": 20,
+        "private_room_limit": 19,
+        "private_youth_full": 19,
         "private_youth_first": 0,
         "private_youth_second": 0,
         "private_pricing": "per_night",
@@ -3976,14 +3986,14 @@
         "excursion": 300000,
         "free_day_person_days": 90
       },
-      "balance_before_reserve_yen": 1022011.2298024995,
-      "reserve_yen": 957703.0885736999,
-      "balance_after_reserve_yen": 64308.14122879878
+      "balance_before_reserve_yen": 1001809.2298024995,
+      "reserve_yen": 957607.3285736999,
+      "balance_after_reserve_yen": 44201.901228800416
     },
     {
       "label": "追加縮小案・全日120人、運営15人",
       "version": "v8_20260923",
-      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案。大本への宿泊・施設合計100万円の条件付き比較と青年・TEJOによる会計管理を追記",
+      "revision": "一般参加150人・全日7泊8日、運営15人別枠。完全個室はLUMO4室・別館15室程度、有料19人で計算。音響60万円・通信10万円・暑さ対策約5万円を主催側の予算目安として採用。縮小案全体は検討中。宿泊・施設合計100万円は条件付き比較。青年・TEJOによる会計管理",
       "base_age_key": "25_35",
       "ordinary_registration": 120,
       "ordinary_period_counts": {
@@ -4060,7 +4070,7 @@
         "second_basic": 0.0,
         "age_discount": -669798.2362499997,
         "age_surcharge": 528788.0812499999,
-        "private_youth": 420000,
+        "private_youth": 399000,
         "nonmember": 713999.9999999999,
         "paid_day": 660000.0,
         "hotel_lodging_credit": -252000,
@@ -4084,16 +4094,16 @@
         "fixed_common": 3000000,
         "tejo_support": 1000000,
         "excursion_support": 300000,
-        "payment_fees": 282396.90861,
-        "reserve": 901517.6290332
+        "payment_fees": 281598.90861,
+        "reserve": 901421.8690332
       },
-      "expense_subtotal_before_reserve_yen": 7512646.90861,
-      "revenue_yen": 7431497.595,
-      "expenses_total_yen": 8414164.5376432,
-      "balance_yen": -982666.9426432,
-      "revenue": 7431497.595,
-      "cost": 8414164.5376432,
-      "balance": -982666.9426432,
+      "expense_subtotal_before_reserve_yen": 7511848.90861,
+      "revenue_yen": 7410497.595,
+      "expenses_total_yen": 8413270.7776432,
+      "balance_yen": -1002773.1826432003,
+      "revenue": 7410497.595,
+      "cost": 8413270.7776432,
+      "balance": -1002773.1826432003,
       "occupancy": [
         117,
         117,
@@ -4196,8 +4206,8 @@
           0.2
         ],
         "capacity": 227,
-        "private_room_limit": 20,
-        "private_youth_full": 20,
+        "private_room_limit": 19,
+        "private_youth_full": 19,
         "private_youth_first": 0,
         "private_youth_second": 0,
         "private_pricing": "per_night",
@@ -4256,14 +4266,14 @@
           }
         }
       },
-      "balance_before_reserve_yen": -81149.31361000054,
-      "reserve_yen": 901517.6290332,
-      "balance_after_reserve_yen": -982666.9426432
+      "balance_before_reserve_yen": -101351.31361000054,
+      "reserve_yen": 901421.8690332,
+      "balance_after_reserve_yen": -1002773.1826432003
     },
     {
       "label": "追加縮小案・会員50%・個室10人・食事550円・日帰り2日",
       "version": "v8_20260923",
-      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案。大本への宿泊・施設合計100万円の条件付き比較と青年・TEJOによる会計管理を追記",
+      "revision": "一般参加150人・全日7泊8日、運営15人別枠。完全個室はLUMO4室・別館15室程度、有料19人で計算。音響60万円・通信10万円・暑さ対策約5万円を主催側の予算目安として採用。縮小案全体は検討中。宿泊・施設合計100万円は条件付き比較。青年・TEJOによる会計管理",
       "base_age_key": "25_35",
       "ordinary_registration": 150,
       "ordinary_period_counts": {
@@ -4476,7 +4486,7 @@
           0.2
         ],
         "capacity": 227,
-        "private_room_limit": 20,
+        "private_room_limit": 19,
         "private_youth_full": 10,
         "private_youth_first": 0,
         "private_youth_second": 0,
@@ -4538,7 +4548,7 @@
     {
       "label": "条件付き：宿泊・施設合計100万、従来の会場等60万も全て範囲内",
       "version": "v8_20260923",
-      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案。大本への宿泊・施設合計100万円の条件付き比較と青年・TEJOによる会計管理を追記",
+      "revision": "一般参加150人・全日7泊8日、運営15人別枠。完全個室はLUMO4室・別館15室程度、有料19人で計算。音響60万円・通信10万円・暑さ対策約5万円を主催側の予算目安として採用。縮小案全体は検討中。宿泊・施設合計100万円は条件付き比較。青年・TEJOによる会計管理",
       "base_age_key": "25_35",
       "ordinary_registration": 150,
       "ordinary_period_counts": {
@@ -4615,7 +4625,7 @@
         "second_basic": 0.0,
         "age_discount": -846060.9299999998,
         "age_surcharge": 646296.54375,
-        "private_youth": 420000,
+        "private_youth": 399000,
         "nonmember": 892500.0,
         "paid_day": 660000.0,
         "hotel_lodging_credit": -308000,
@@ -4639,17 +4649,17 @@
         "fixed_common": 3550000,
         "tejo_support": 2000000,
         "excursion_support": 400000,
-        "payment_fees": 342109.07144749997,
+        "payment_fees": 341311.07144749997,
         "oomoto_lodging_and_venue_total": 1000000,
-        "reserve": 1175743.0885736998
+        "reserve": 1175647.3285736998
       },
-      "expense_subtotal_before_reserve_yen": 9797859.0714475,
-      "revenue_yen": 9002870.30125,
-      "expenses_total_yen": 10973602.160021199,
-      "balance_yen": -1970731.8587711994,
-      "revenue": 9002870.30125,
-      "cost": 10973602.160021199,
-      "balance": -1970731.8587711994,
+      "expense_subtotal_before_reserve_yen": 9797061.0714475,
+      "revenue_yen": 8981870.30125,
+      "expenses_total_yen": 10972708.4000212,
+      "balance_yen": -1990838.0987711996,
+      "revenue": 8981870.30125,
+      "cost": 10972708.4000212,
+      "balance": -1990838.0987711996,
       "occupancy": [
         143,
         143,
@@ -4752,8 +4762,8 @@
           0.2
         ],
         "capacity": 227,
-        "private_room_limit": 20,
-        "private_youth_full": 20,
+        "private_room_limit": 19,
+        "private_youth_full": 19,
         "private_youth_first": 0,
         "private_youth_second": 0,
         "private_pricing": "per_night",
@@ -4802,14 +4812,14 @@
         "oomoto_total_yen": 1000000,
         "common_covered_yen": 600000
       },
-      "balance_before_reserve_yen": -794988.7701974995,
-      "reserve_yen": 1175743.0885736998,
-      "balance_after_reserve_yen": -1970731.8587711994
+      "balance_before_reserve_yen": -815190.7701974995,
+      "reserve_yen": 1175647.3285736998,
+      "balance_after_reserve_yen": -1990838.0987711996
     },
     {
       "label": "条件付き：追加縮小案で宿泊・施設合計100万、会場等45万も全て範囲内",
       "version": "v8_20260923",
-      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案。大本への宿泊・施設合計100万円の条件付き比較と青年・TEJOによる会計管理を追記",
+      "revision": "一般参加150人・全日7泊8日、運営15人別枠。完全個室はLUMO4室・別館15室程度、有料19人で計算。音響60万円・通信10万円・暑さ対策約5万円を主催側の予算目安として採用。縮小案全体は検討中。宿泊・施設合計100万円は条件付き比較。青年・TEJOによる会計管理",
       "base_age_key": "25_35",
       "ordinary_registration": 150,
       "ordinary_period_counts": {
@@ -4886,7 +4896,7 @@
         "second_basic": 0.0,
         "age_discount": -846060.9299999998,
         "age_surcharge": 646296.54375,
-        "private_youth": 420000,
+        "private_youth": 399000,
         "nonmember": 892500.0,
         "paid_day": 660000.0,
         "hotel_lodging_credit": -308000,
@@ -4910,17 +4920,17 @@
         "fixed_common": 2550000,
         "tejo_support": 1000000,
         "excursion_support": 300000,
-        "payment_fees": 342109.07144749997,
+        "payment_fees": 341311.07144749997,
         "oomoto_lodging_and_venue_total": 1000000,
-        "reserve": 923743.0885736999
+        "reserve": 923647.3285736999
       },
-      "expense_subtotal_before_reserve_yen": 7697859.0714475,
-      "revenue_yen": 9002870.30125,
-      "expenses_total_yen": 8621602.1600212,
-      "balance_yen": 381268.1412287988,
-      "revenue": 9002870.30125,
-      "cost": 8621602.1600212,
-      "balance": 381268.1412287988,
+      "expense_subtotal_before_reserve_yen": 7697061.0714475,
+      "revenue_yen": 8981870.30125,
+      "expenses_total_yen": 8620708.4000212,
+      "balance_yen": 361161.9012288004,
+      "revenue": 8981870.30125,
+      "cost": 8620708.4000212,
+      "balance": 361161.9012288004,
       "occupancy": [
         143,
         143,
@@ -5023,8 +5033,8 @@
           0.2
         ],
         "capacity": 227,
-        "private_room_limit": 20,
-        "private_youth_full": 20,
+        "private_room_limit": 19,
+        "private_youth_full": 19,
         "private_youth_first": 0,
         "private_youth_second": 0,
         "private_pricing": "per_night",
@@ -5076,14 +5086,14 @@
         "oomoto_total_yen": 1000000,
         "common_covered_yen": 450000
       },
-      "balance_before_reserve_yen": 1305011.2298024995,
-      "reserve_yen": 923743.0885736999,
-      "balance_after_reserve_yen": 381268.1412287988
+      "balance_before_reserve_yen": 1284809.2298024995,
+      "reserve_yen": 923647.3285736999,
+      "balance_after_reserve_yen": 361161.9012288004
     },
     {
       "label": "条件付き：追加縮小案で宿泊・施設100万、総額外の光熱・清掃等10万",
       "version": "v8_20260923",
-      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案。大本への宿泊・施設合計100万円の条件付き比較と青年・TEJOによる会計管理を追記",
+      "revision": "一般参加150人・全日7泊8日、運営15人別枠。完全個室はLUMO4室・別館15室程度、有料19人で計算。音響60万円・通信10万円・暑さ対策約5万円を主催側の予算目安として採用。縮小案全体は検討中。宿泊・施設合計100万円は条件付き比較。青年・TEJOによる会計管理",
       "base_age_key": "25_35",
       "ordinary_registration": 150,
       "ordinary_period_counts": {
@@ -5160,7 +5170,7 @@
         "second_basic": 0.0,
         "age_discount": -846060.9299999998,
         "age_surcharge": 646296.54375,
-        "private_youth": 420000,
+        "private_youth": 399000,
         "nonmember": 892500.0,
         "paid_day": 660000.0,
         "hotel_lodging_credit": -308000,
@@ -5184,17 +5194,17 @@
         "fixed_common": 2650000,
         "tejo_support": 1000000,
         "excursion_support": 300000,
-        "payment_fees": 342109.07144749997,
+        "payment_fees": 341311.07144749997,
         "oomoto_lodging_and_venue_total": 1000000,
-        "reserve": 935743.0885736999
+        "reserve": 935647.3285736999
       },
-      "expense_subtotal_before_reserve_yen": 7797859.0714475,
-      "revenue_yen": 9002870.30125,
-      "expenses_total_yen": 8733602.1600212,
-      "balance_yen": 269268.1412287988,
-      "revenue": 9002870.30125,
-      "cost": 8733602.1600212,
-      "balance": 269268.1412287988,
+      "expense_subtotal_before_reserve_yen": 7797061.0714475,
+      "revenue_yen": 8981870.30125,
+      "expenses_total_yen": 8732708.4000212,
+      "balance_yen": 249161.90122880042,
+      "revenue": 8981870.30125,
+      "cost": 8732708.4000212,
+      "balance": 249161.90122880042,
       "occupancy": [
         143,
         143,
@@ -5297,8 +5307,8 @@
           0.2
         ],
         "capacity": 227,
-        "private_room_limit": 20,
-        "private_youth_full": 20,
+        "private_room_limit": 19,
+        "private_youth_full": 19,
         "private_youth_first": 0,
         "private_youth_second": 0,
         "private_pricing": "per_night",
@@ -5350,14 +5360,14 @@
         "oomoto_total_yen": 1000000,
         "common_covered_yen": 350000
       },
-      "balance_before_reserve_yen": 1205011.2298024995,
-      "reserve_yen": 935743.0885736999,
-      "balance_after_reserve_yen": 269268.1412287988
+      "balance_before_reserve_yen": 1184809.2298024995,
+      "reserve_yen": 935647.3285736999,
+      "balance_after_reserve_yen": 249161.90122880042
     },
     {
       "label": "条件付き：追加縮小案で宿泊・施設合計120万、会場等45万も範囲内",
       "version": "v8_20260923",
-      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案。大本への宿泊・施設合計100万円の条件付き比較と青年・TEJOによる会計管理を追記",
+      "revision": "一般参加150人・全日7泊8日、運営15人別枠。完全個室はLUMO4室・別館15室程度、有料19人で計算。音響60万円・通信10万円・暑さ対策約5万円を主催側の予算目安として採用。縮小案全体は検討中。宿泊・施設合計100万円は条件付き比較。青年・TEJOによる会計管理",
       "base_age_key": "25_35",
       "ordinary_registration": 150,
       "ordinary_period_counts": {
@@ -5434,7 +5444,7 @@
         "second_basic": 0.0,
         "age_discount": -846060.9299999998,
         "age_surcharge": 646296.54375,
-        "private_youth": 420000,
+        "private_youth": 399000,
         "nonmember": 892500.0,
         "paid_day": 660000.0,
         "hotel_lodging_credit": -308000,
@@ -5458,17 +5468,17 @@
         "fixed_common": 2550000,
         "tejo_support": 1000000,
         "excursion_support": 300000,
-        "payment_fees": 342109.07144749997,
+        "payment_fees": 341311.07144749997,
         "oomoto_lodging_and_venue_total": 1200000,
-        "reserve": 947743.0885736999
+        "reserve": 947647.3285736999
       },
-      "expense_subtotal_before_reserve_yen": 7897859.0714475,
-      "revenue_yen": 9002870.30125,
-      "expenses_total_yen": 8845602.1600212,
-      "balance_yen": 157268.14122879878,
-      "revenue": 9002870.30125,
-      "cost": 8845602.1600212,
-      "balance": 157268.14122879878,
+      "expense_subtotal_before_reserve_yen": 7897061.0714475,
+      "revenue_yen": 8981870.30125,
+      "expenses_total_yen": 8844708.4000212,
+      "balance_yen": 137161.90122880042,
+      "revenue": 8981870.30125,
+      "cost": 8844708.4000212,
+      "balance": 137161.90122880042,
       "occupancy": [
         143,
         143,
@@ -5571,8 +5581,8 @@
           0.2
         ],
         "capacity": 227,
-        "private_room_limit": 20,
-        "private_youth_full": 20,
+        "private_room_limit": 19,
+        "private_youth_full": 19,
         "private_youth_first": 0,
         "private_youth_second": 0,
         "private_pricing": "per_night",
@@ -5624,9 +5634,9 @@
         "oomoto_total_yen": 1200000,
         "common_covered_yen": 450000
       },
-      "balance_before_reserve_yen": 1105011.2298024995,
-      "reserve_yen": 947743.0885736999,
-      "balance_after_reserve_yen": 157268.14122879878
+      "balance_before_reserve_yen": 1084809.2298024995,
+      "reserve_yen": 947647.3285736999,
+      "balance_after_reserve_yen": 137161.90122880042
     }
   ]
 }
