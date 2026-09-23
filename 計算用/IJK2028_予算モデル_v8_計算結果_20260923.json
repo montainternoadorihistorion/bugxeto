@@ -1,6 +1,6 @@
 {
   "version": "v8_20260923",
-  "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案",
+  "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案。大本への宿泊・施設合計100万円の条件付き比較と青年・TEJOによる会計管理を追記",
   "date": "2026-09-23",
   "user_confirmed": {
     "ordinary_full": 150,
@@ -15,7 +15,9 @@
       40,
       15
     ],
-    "member_share": 0.3
+    "member_share": 0.3,
+    "oomoto_reported_charge_basis": "修行の宿泊費＋施設利用費",
+    "reported_budget_management": "主催側が伺った意向：青年主体で、TEJOの既存銀行口座と連携して財政管理"
   },
   "provisional": {
     "staff_full": 15,
@@ -33,6 +35,8 @@
     "room_allocation_notice": "20室は別館等を含むと主催側確認。20室の存在と、全室を有料個室として販売できることは別。建物別内訳・スタッフ等の取り置き・単独使用による定員減を確認する",
     "heat_notice": "300円/全日人は既存冷房等を使う前提の追加消耗品枠。新規冷房工事や全日分の飲料購入を賄う見積もりではない",
     "lean_proposal_is_approved": false,
+    "oomoto_100man_estimate": "主催側の感触であり正式提示額ではない。宿泊＋施設合計・食事別の場合を条件付き比較",
+    "oomoto_100man_is_formal_quote": false,
     "common_mix_notice": "国・週・年齢と会員割合の相関は未反映。会員30%を各群へ一律適用"
   },
   "display_basic_table_euro": {
@@ -177,7 +181,7 @@
     {
       "label": "暫定基準：一般全日150人・運営15人、Wi-Fiと暑さ対策を小額化",
       "version": "v8_20260923",
-      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案",
+      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案。大本への宿泊・施設合計100万円の条件付き比較と青年・TEJOによる会計管理を追記",
       "base_age_key": "25_35",
       "ordinary_registration": 150,
       "ordinary_period_counts": {
@@ -400,6 +404,10 @@
         "private_extra_cost_notice": "個室の追加原価は未見積もり。既定0円は未計上を表し、追加費用なしと確認した意味ではない",
         "lodging_night_yen": 1000,
         "hotel_credit_night_yen": 2000,
+        "oomoto_total_yen": null,
+        "common_before_coverage_yen": 4150000,
+        "common_covered_yen": 0,
+        "oomoto_total_notice": "総額方式は宿泊費をまとめ、明示した共通費だけ除く。食事は別。金額・対象日・運営の宿泊・個室・光熱・清掃の範囲は未合意。未指定時は従来の個別積算",
         "hotel_minimum_fee_yen": 10000,
         "hotel_short_full_cap": true,
         "hotel_fee_rules_notice": "ホテル泊だけに全日・短期共通の最低請求額と、短期は同条件全日ホテル料金までの上限を適用。国・週・会員ごとに判定してから平均する。None/Falseは過去比較用に最低額・上限なし",
@@ -440,7 +448,7 @@
     {
       "label": "比較：150人で以前の支出枠を維持",
       "version": "v8_20260923",
-      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案",
+      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案。大本への宿泊・施設合計100万円の条件付き比較と青年・TEJOによる会計管理を追記",
       "base_age_key": "25_35",
       "ordinary_registration": 150,
       "ordinary_period_counts": {
@@ -663,6 +671,10 @@
         "private_extra_cost_notice": "個室の追加原価は未見積もり。既定0円は未計上を表し、追加費用なしと確認した意味ではない",
         "lodging_night_yen": 1000,
         "hotel_credit_night_yen": 2000,
+        "oomoto_total_yen": null,
+        "common_before_coverage_yen": 4500000,
+        "common_covered_yen": 0,
+        "oomoto_total_notice": "総額方式は宿泊費をまとめ、明示した共通費だけ除く。食事は別。金額・対象日・運営の宿泊・個室・光熱・清掃の範囲は未合意。未指定時は従来の個別積算",
         "hotel_minimum_fee_yen": 10000,
         "hotel_short_full_cap": true,
         "hotel_fee_rules_notice": "ホテル泊だけに全日・短期共通の最低請求額と、短期は同条件全日ホテル料金までの上限を適用。国・週・会員ごとに判定してから平均する。None/Falseは過去比較用に最低額・上限なし",
@@ -706,7 +718,7 @@
     {
       "label": "追加縮小の検討案：共通費300万・TEJO等100万・遠足支援30万",
       "version": "v8_20260923",
-      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案",
+      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案。大本への宿泊・施設合計100万円の条件付き比較と青年・TEJOによる会計管理を追記",
       "base_age_key": "25_35",
       "ordinary_registration": 150,
       "ordinary_period_counts": {
@@ -929,6 +941,10 @@
         "private_extra_cost_notice": "個室の追加原価は未見積もり。既定0円は未計上を表し、追加費用なしと確認した意味ではない",
         "lodging_night_yen": 1000,
         "hotel_credit_night_yen": 2000,
+        "oomoto_total_yen": null,
+        "common_before_coverage_yen": 3000000,
+        "common_covered_yen": 0,
+        "oomoto_total_notice": "総額方式は宿泊費をまとめ、明示した共通費だけ除く。食事は別。金額・対象日・運営の宿泊・個室・光熱・清掃の範囲は未合意。未指定時は従来の個別積算",
         "hotel_minimum_fee_yen": 10000,
         "hotel_short_full_cap": true,
         "hotel_fee_rules_notice": "ホテル泊だけに全日・短期共通の最低請求額と、短期は同条件全日ホテル料金までの上限を適用。国・週・会員ごとに判定してから平均する。None/Falseは過去比較用に最低額・上限なし",
@@ -973,7 +989,7 @@
     {
       "label": "追加縮小案・有料個室10人",
       "version": "v8_20260923",
-      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案",
+      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案。大本への宿泊・施設合計100万円の条件付き比較と青年・TEJOによる会計管理を追記",
       "base_age_key": "25_35",
       "ordinary_registration": 150,
       "ordinary_period_counts": {
@@ -1196,6 +1212,10 @@
         "private_extra_cost_notice": "個室の追加原価は未見積もり。既定0円は未計上を表し、追加費用なしと確認した意味ではない",
         "lodging_night_yen": 1000,
         "hotel_credit_night_yen": 2000,
+        "oomoto_total_yen": null,
+        "common_before_coverage_yen": 3000000,
+        "common_covered_yen": 0,
+        "oomoto_total_notice": "総額方式は宿泊費をまとめ、明示した共通費だけ除く。食事は別。金額・対象日・運営の宿泊・個室・光熱・清掃の範囲は未合意。未指定時は従来の個別積算",
         "hotel_minimum_fee_yen": 10000,
         "hotel_short_full_cap": true,
         "hotel_fee_rules_notice": "ホテル泊だけに全日・短期共通の最低請求額と、短期は同条件全日ホテル料金までの上限を適用。国・週・会員ごとに判定してから平均する。None/Falseは過去比較用に最低額・上限なし",
@@ -1241,7 +1261,7 @@
     {
       "label": "追加縮小案・有料個室0人",
       "version": "v8_20260923",
-      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案",
+      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案。大本への宿泊・施設合計100万円の条件付き比較と青年・TEJOによる会計管理を追記",
       "base_age_key": "25_35",
       "ordinary_registration": 150,
       "ordinary_period_counts": {
@@ -1464,6 +1484,10 @@
         "private_extra_cost_notice": "個室の追加原価は未見積もり。既定0円は未計上を表し、追加費用なしと確認した意味ではない",
         "lodging_night_yen": 1000,
         "hotel_credit_night_yen": 2000,
+        "oomoto_total_yen": null,
+        "common_before_coverage_yen": 3000000,
+        "common_covered_yen": 0,
+        "oomoto_total_notice": "総額方式は宿泊費をまとめ、明示した共通費だけ除く。食事は別。金額・対象日・運営の宿泊・個室・光熱・清掃の範囲は未合意。未指定時は従来の個別積算",
         "hotel_minimum_fee_yen": 10000,
         "hotel_short_full_cap": true,
         "hotel_fee_rules_notice": "ホテル泊だけに全日・短期共通の最低請求額と、短期は同条件全日ホテル料金までの上限を適用。国・週・会員ごとに判定してから平均する。None/Falseは過去比較用に最低額・上限なし",
@@ -1509,7 +1533,7 @@
     {
       "label": "追加縮小案・食事550円",
       "version": "v8_20260923",
-      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案",
+      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案。大本への宿泊・施設合計100万円の条件付き比較と青年・TEJOによる会計管理を追記",
       "base_age_key": "25_35",
       "ordinary_registration": 150,
       "ordinary_period_counts": {
@@ -1732,6 +1756,10 @@
         "private_extra_cost_notice": "個室の追加原価は未見積もり。既定0円は未計上を表し、追加費用なしと確認した意味ではない",
         "lodging_night_yen": 1000,
         "hotel_credit_night_yen": 2000,
+        "oomoto_total_yen": null,
+        "common_before_coverage_yen": 3000000,
+        "common_covered_yen": 0,
+        "oomoto_total_notice": "総額方式は宿泊費をまとめ、明示した共通費だけ除く。食事は別。金額・対象日・運営の宿泊・個室・光熱・清掃の範囲は未合意。未指定時は従来の個別積算",
         "hotel_minimum_fee_yen": 10000,
         "hotel_short_full_cap": true,
         "hotel_fee_rules_notice": "ホテル泊だけに全日・短期共通の最低請求額と、短期は同条件全日ホテル料金までの上限を適用。国・週・会員ごとに判定してから平均する。None/Falseは過去比較用に最低額・上限なし",
@@ -1777,7 +1805,7 @@
     {
       "label": "追加縮小案・日帰り受付2日",
       "version": "v8_20260923",
-      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案",
+      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案。大本への宿泊・施設合計100万円の条件付き比較と青年・TEJOによる会計管理を追記",
       "base_age_key": "25_35",
       "ordinary_registration": 150,
       "ordinary_period_counts": {
@@ -2000,6 +2028,10 @@
         "private_extra_cost_notice": "個室の追加原価は未見積もり。既定0円は未計上を表し、追加費用なしと確認した意味ではない",
         "lodging_night_yen": 1000,
         "hotel_credit_night_yen": 2000,
+        "oomoto_total_yen": null,
+        "common_before_coverage_yen": 3000000,
+        "common_covered_yen": 0,
+        "oomoto_total_notice": "総額方式は宿泊費をまとめ、明示した共通費だけ除く。食事は別。金額・対象日・運営の宿泊・個室・光熱・清掃の範囲は未合意。未指定時は従来の個別積算",
         "hotel_minimum_fee_yen": 10000,
         "hotel_short_full_cap": true,
         "hotel_fee_rules_notice": "ホテル泊だけに全日・短期共通の最低請求額と、短期は同条件全日ホテル料金までの上限を適用。国・週・会員ごとに判定してから平均する。None/Falseは過去比較用に最低額・上限なし",
@@ -2045,7 +2077,7 @@
     {
       "label": "追加縮小案・会員50%",
       "version": "v8_20260923",
-      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案",
+      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案。大本への宿泊・施設合計100万円の条件付き比較と青年・TEJOによる会計管理を追記",
       "base_age_key": "25_35",
       "ordinary_registration": 150,
       "ordinary_period_counts": {
@@ -2268,6 +2300,10 @@
         "private_extra_cost_notice": "個室の追加原価は未見積もり。既定0円は未計上を表し、追加費用なしと確認した意味ではない",
         "lodging_night_yen": 1000,
         "hotel_credit_night_yen": 2000,
+        "oomoto_total_yen": null,
+        "common_before_coverage_yen": 3000000,
+        "common_covered_yen": 0,
+        "oomoto_total_notice": "総額方式は宿泊費をまとめ、明示した共通費だけ除く。食事は別。金額・対象日・運営の宿泊・個室・光熱・清掃の範囲は未合意。未指定時は従来の個別積算",
         "hotel_minimum_fee_yen": 10000,
         "hotel_short_full_cap": true,
         "hotel_fee_rules_notice": "ホテル泊だけに全日・短期共通の最低請求額と、短期は同条件全日ホテル料金までの上限を適用。国・週・会員ごとに判定してから平均する。None/Falseは過去比較用に最低額・上限なし",
@@ -2313,7 +2349,7 @@
     {
       "label": "追加縮小案・会員70%",
       "version": "v8_20260923",
-      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案",
+      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案。大本への宿泊・施設合計100万円の条件付き比較と青年・TEJOによる会計管理を追記",
       "base_age_key": "25_35",
       "ordinary_registration": 150,
       "ordinary_period_counts": {
@@ -2536,6 +2572,10 @@
         "private_extra_cost_notice": "個室の追加原価は未見積もり。既定0円は未計上を表し、追加費用なしと確認した意味ではない",
         "lodging_night_yen": 1000,
         "hotel_credit_night_yen": 2000,
+        "oomoto_total_yen": null,
+        "common_before_coverage_yen": 3000000,
+        "common_covered_yen": 0,
+        "oomoto_total_notice": "総額方式は宿泊費をまとめ、明示した共通費だけ除く。食事は別。金額・対象日・運営の宿泊・個室・光熱・清掃の範囲は未合意。未指定時は従来の個別積算",
         "hotel_minimum_fee_yen": 10000,
         "hotel_short_full_cap": true,
         "hotel_fee_rules_notice": "ホテル泊だけに全日・短期共通の最低請求額と、短期は同条件全日ホテル料金までの上限を適用。国・週・会員ごとに判定してから平均する。None/Falseは過去比較用に最低額・上限なし",
@@ -2581,7 +2621,7 @@
     {
       "label": "追加縮小案・運営25人",
       "version": "v8_20260923",
-      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案",
+      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案。大本への宿泊・施設合計100万円の条件付き比較と青年・TEJOによる会計管理を追記",
       "base_age_key": "25_35",
       "ordinary_registration": 150,
       "ordinary_period_counts": {
@@ -2804,6 +2844,10 @@
         "private_extra_cost_notice": "個室の追加原価は未見積もり。既定0円は未計上を表し、追加費用なしと確認した意味ではない",
         "lodging_night_yen": 1000,
         "hotel_credit_night_yen": 2000,
+        "oomoto_total_yen": null,
+        "common_before_coverage_yen": 3000000,
+        "common_covered_yen": 0,
+        "oomoto_total_notice": "総額方式は宿泊費をまとめ、明示した共通費だけ除く。食事は別。金額・対象日・運営の宿泊・個室・光熱・清掃の範囲は未合意。未指定時は従来の個別積算",
         "hotel_minimum_fee_yen": 10000,
         "hotel_short_full_cap": true,
         "hotel_fee_rules_notice": "ホテル泊だけに全日・短期共通の最低請求額と、短期は同条件全日ホテル料金までの上限を適用。国・週・会員ごとに判定してから平均する。None/Falseは過去比較用に最低額・上限なし",
@@ -2849,7 +2893,7 @@
     {
       "label": "追加縮小案・1ユーロ160円",
       "version": "v8_20260923",
-      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案",
+      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案。大本への宿泊・施設合計100万円の条件付き比較と青年・TEJOによる会計管理を追記",
       "base_age_key": "25_35",
       "ordinary_registration": 150,
       "ordinary_period_counts": {
@@ -3072,6 +3116,10 @@
         "private_extra_cost_notice": "個室の追加原価は未見積もり。既定0円は未計上を表し、追加費用なしと確認した意味ではない",
         "lodging_night_yen": 1000,
         "hotel_credit_night_yen": 2000,
+        "oomoto_total_yen": null,
+        "common_before_coverage_yen": 3000000,
+        "common_covered_yen": 0,
+        "oomoto_total_notice": "総額方式は宿泊費をまとめ、明示した共通費だけ除く。食事は別。金額・対象日・運営の宿泊・個室・光熱・清掃の範囲は未合意。未指定時は従来の個別積算",
         "hotel_minimum_fee_yen": 10000,
         "hotel_short_full_cap": true,
         "hotel_fee_rules_notice": "ホテル泊だけに全日・短期共通の最低請求額と、短期は同条件全日ホテル料金までの上限を適用。国・週・会員ごとに判定してから平均する。None/Falseは過去比較用に最低額・上限なし",
@@ -3117,7 +3165,7 @@
     {
       "label": "追加縮小案・個室追加原価1000円/人泊",
       "version": "v8_20260923",
-      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案",
+      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案。大本への宿泊・施設合計100万円の条件付き比較と青年・TEJOによる会計管理を追記",
       "base_age_key": "25_35",
       "ordinary_registration": 150,
       "ordinary_period_counts": {
@@ -3341,6 +3389,10 @@
         "private_extra_cost_notice": "個室の追加原価は未見積もり。既定0円は未計上を表し、追加費用なしと確認した意味ではない",
         "lodging_night_yen": 1000,
         "hotel_credit_night_yen": 2000,
+        "oomoto_total_yen": null,
+        "common_before_coverage_yen": 3000000,
+        "common_covered_yen": 0,
+        "oomoto_total_notice": "総額方式は宿泊費をまとめ、明示した共通費だけ除く。食事は別。金額・対象日・運営の宿泊・個室・光熱・清掃の範囲は未合意。未指定時は従来の個別積算",
         "hotel_minimum_fee_yen": 10000,
         "hotel_short_full_cap": true,
         "hotel_fee_rules_notice": "ホテル泊だけに全日・短期共通の最低請求額と、短期は同条件全日ホテル料金までの上限を適用。国・週・会員ごとに判定してから平均する。None/Falseは過去比較用に最低額・上限なし",
@@ -3386,7 +3438,7 @@
     {
       "label": "追加縮小案・宿泊1800円/泊・食事1900円/日相当",
       "version": "v8_20260923",
-      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案",
+      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案。大本への宿泊・施設合計100万円の条件付き比較と青年・TEJOによる会計管理を追記",
       "base_age_key": "25_35",
       "ordinary_registration": 150,
       "ordinary_period_counts": {
@@ -3609,6 +3661,10 @@
         "private_extra_cost_notice": "個室の追加原価は未見積もり。既定0円は未計上を表し、追加費用なしと確認した意味ではない",
         "lodging_night_yen": 1800,
         "hotel_credit_night_yen": 2000,
+        "oomoto_total_yen": null,
+        "common_before_coverage_yen": 3000000,
+        "common_covered_yen": 0,
+        "oomoto_total_notice": "総額方式は宿泊費をまとめ、明示した共通費だけ除く。食事は別。金額・対象日・運営の宿泊・個室・光熱・清掃の範囲は未合意。未指定時は従来の個別積算",
         "hotel_minimum_fee_yen": 10000,
         "hotel_short_full_cap": true,
         "hotel_fee_rules_notice": "ホテル泊だけに全日・短期共通の最低請求額と、短期は同条件全日ホテル料金までの上限を適用。国・週・会員ごとに判定してから平均する。None/Falseは過去比較用に最低額・上限なし",
@@ -3655,7 +3711,7 @@
     {
       "label": "追加縮小案・無料来場90人日への見直し例",
       "version": "v8_20260923",
-      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案",
+      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案。大本への宿泊・施設合計100万円の条件付き比較と青年・TEJOによる会計管理を追記",
       "base_age_key": "25_35",
       "ordinary_registration": 150,
       "ordinary_period_counts": {
@@ -3878,6 +3934,10 @@
         "private_extra_cost_notice": "個室の追加原価は未見積もり。既定0円は未計上を表し、追加費用なしと確認した意味ではない",
         "lodging_night_yen": 1000,
         "hotel_credit_night_yen": 2000,
+        "oomoto_total_yen": null,
+        "common_before_coverage_yen": 3000000,
+        "common_covered_yen": 0,
+        "oomoto_total_notice": "総額方式は宿泊費をまとめ、明示した共通費だけ除く。食事は別。金額・対象日・運営の宿泊・個室・光熱・清掃の範囲は未合意。未指定時は従来の個別積算",
         "hotel_minimum_fee_yen": 10000,
         "hotel_short_full_cap": true,
         "hotel_fee_rules_notice": "ホテル泊だけに全日・短期共通の最低請求額と、短期は同条件全日ホテル料金までの上限を適用。国・週・会員ごとに判定してから平均する。None/Falseは過去比較用に最低額・上限なし",
@@ -3923,7 +3983,7 @@
     {
       "label": "追加縮小案・全日120人、運営15人",
       "version": "v8_20260923",
-      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案",
+      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案。大本への宿泊・施設合計100万円の条件付き比較と青年・TEJOによる会計管理を追記",
       "base_age_key": "25_35",
       "ordinary_registration": 120,
       "ordinary_period_counts": {
@@ -4146,6 +4206,10 @@
         "private_extra_cost_notice": "個室の追加原価は未見積もり。既定0円は未計上を表し、追加費用なしと確認した意味ではない",
         "lodging_night_yen": 1000,
         "hotel_credit_night_yen": 2000,
+        "oomoto_total_yen": null,
+        "common_before_coverage_yen": 3000000,
+        "common_covered_yen": 0,
+        "oomoto_total_notice": "総額方式は宿泊費をまとめ、明示した共通費だけ除く。食事は別。金額・対象日・運営の宿泊・個室・光熱・清掃の範囲は未合意。未指定時は従来の個別積算",
         "hotel_minimum_fee_yen": 10000,
         "hotel_short_full_cap": true,
         "hotel_fee_rules_notice": "ホテル泊だけに全日・短期共通の最低請求額と、短期は同条件全日ホテル料金までの上限を適用。国・週・会員ごとに判定してから平均する。None/Falseは過去比較用に最低額・上限なし",
@@ -4199,7 +4263,7 @@
     {
       "label": "追加縮小案・会員50%・個室10人・食事550円・日帰り2日",
       "version": "v8_20260923",
-      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案",
+      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案。大本への宿泊・施設合計100万円の条件付き比較と青年・TEJOによる会計管理を追記",
       "base_age_key": "25_35",
       "ordinary_registration": 150,
       "ordinary_period_counts": {
@@ -4422,6 +4486,10 @@
         "private_extra_cost_notice": "個室の追加原価は未見積もり。既定0円は未計上を表し、追加費用なしと確認した意味ではない",
         "lodging_night_yen": 1000,
         "hotel_credit_night_yen": 2000,
+        "oomoto_total_yen": null,
+        "common_before_coverage_yen": 3000000,
+        "common_covered_yen": 0,
+        "oomoto_total_notice": "総額方式は宿泊費をまとめ、明示した共通費だけ除く。食事は別。金額・対象日・運営の宿泊・個室・光熱・清掃の範囲は未合意。未指定時は従来の個別積算",
         "hotel_minimum_fee_yen": 10000,
         "hotel_short_full_cap": true,
         "hotel_fee_rules_notice": "ホテル泊だけに全日・短期共通の最低請求額と、短期は同条件全日ホテル料金までの上限を適用。国・週・会員ごとに判定してから平均する。None/Falseは過去比較用に最低額・上限なし",
@@ -4466,6 +4534,1099 @@
       "balance_before_reserve_yen": -119458.77019749861,
       "reserve_yen": 1012479.4885736998,
       "balance_after_reserve_yen": -1131938.2587711988
+    },
+    {
+      "label": "条件付き：宿泊・施設合計100万、従来の会場等60万も全て範囲内",
+      "version": "v8_20260923",
+      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案。大本への宿泊・施設合計100万円の条件付き比較と青年・TEJOによる会計管理を追記",
+      "base_age_key": "25_35",
+      "ordinary_registration": 150,
+      "ordinary_period_counts": {
+        "full": 150,
+        "first": 0,
+        "second": 0
+      },
+      "ordinary_age_counts": {
+        "16_or_under": 8,
+        "17_24": 60,
+        "25_35": 60,
+        "36_plus": 22
+      },
+      "free_or_actual_cost_staff": 15,
+      "age_composition_is_forecast": true,
+      "capacity_routed_hotel_full": 0,
+      "hotel_registration": 22,
+      "hotel_period_counts": {
+        "full": 22,
+        "first": 0,
+        "second": 0
+      },
+      "nightly_attendance_including_hotel_and_staff": [
+        165,
+        165,
+        165,
+        165,
+        165,
+        165,
+        165
+      ],
+      "nightly_onsite_including_staff": [
+        143,
+        143,
+        143,
+        143,
+        143,
+        143,
+        143
+      ],
+      "nightly_hotel": [
+        22,
+        22,
+        22,
+        22,
+        22,
+        22,
+        22
+      ],
+      "onsite_bed_nights": 1001,
+      "meal_allowance_total": 3465,
+      "quantity_notice": "泊数は実滞在、食数は予算仮定。",
+      "paid_day_person_days": 120,
+      "free_day_person_days": 300,
+      "average_member_base_fee_euro": 295.61312499999997,
+      "average_member_base_fee_yen": 50254.23125,
+      "average_display_basic_fee_euro": 345.61312499999997,
+      "average_display_basic_fee_yen": 58754.23125,
+      "average_by_country_member_base_euro": {
+        "A": 342.0625,
+        "B": 287.5,
+        "C": 239.5,
+        "Cx": 154.0
+      },
+      "average_by_country_display_basic_euro": {
+        "A": 392.0625,
+        "B": 337.5,
+        "C": 289.5,
+        "Cx": 204.0
+      },
+      "income_yen": {
+        "full_basic": 7538134.6875,
+        "first_basic": 0.0,
+        "second_basic": 0.0,
+        "age_discount": -846060.9299999998,
+        "age_surcharge": 646296.54375,
+        "private_youth": 420000,
+        "nonmember": 892500.0,
+        "paid_day": 660000.0,
+        "hotel_lodging_credit": -308000,
+        "helpers_actual_cost_recovery": 0,
+        "grants": 0,
+        "deficit_support": 0,
+        "hotel_fee_rule_adjustment": 0.0
+      },
+      "variable_expense_components_yen": {
+        "lodging": 0.0,
+        "meals": 1559250.0,
+        "vegetarian": 264000.0,
+        "heat": 49500.0,
+        "kit": 115500.0,
+        "insurance": 132000.0,
+        "visa_admin": 49500.0
+      },
+      "expenses_yen": {
+        "ordinary_and_staff_variable": 2169750.0,
+        "day_reception": 336000,
+        "fixed_common": 3550000,
+        "tejo_support": 2000000,
+        "excursion_support": 400000,
+        "payment_fees": 342109.07144749997,
+        "oomoto_lodging_and_venue_total": 1000000,
+        "reserve": 1175743.0885736998
+      },
+      "expense_subtotal_before_reserve_yen": 9797859.0714475,
+      "revenue_yen": 9002870.30125,
+      "expenses_total_yen": 10973602.160021199,
+      "balance_yen": -1970731.8587711994,
+      "revenue": 9002870.30125,
+      "cost": 10973602.160021199,
+      "balance": -1970731.8587711994,
+      "occupancy": [
+        143,
+        143,
+        143,
+        143,
+        143,
+        143,
+        143
+      ],
+      "cohorts": [
+        {
+          "period": "full",
+          "age": "16_or_under",
+          "lodging": "onsite",
+          "count": 8,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 300,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 105200,
+          "average_member_participation_fee_yen_before_lodging_adjustments": 32627.961874999997
+        },
+        {
+          "period": "full",
+          "age": "17_24",
+          "lodging": "onsite",
+          "count": 60,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 300,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 789000,
+          "average_member_participation_fee_yen_before_lodging_adjustments": 38503.384999999995
+        },
+        {
+          "period": "full",
+          "age": "25_35",
+          "lodging": "onsite",
+          "count": 60,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 300,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 789000,
+          "average_member_participation_fee_yen_before_lodging_adjustments": 50254.23125
+        },
+        {
+          "period": "full",
+          "age": "36_plus",
+          "lodging": "hotel",
+          "count": 22,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 300,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 289300,
+          "average_member_participation_fee_yen_before_lodging_adjustments": 79631.34687499999
+        }
+      ],
+      "staff_unit_expenses_yen": {
+        "lodging": 0,
+        "meals": 9450,
+        "vegetarian": 1600,
+        "heat": 300,
+        "kit": 700,
+        "insurance": 800,
+        "visa_admin": 300
+      },
+      "assumptions": {
+        "fx": 170,
+        "country_mix": {
+          "A": 0.45,
+          "B": 0.35,
+          "C": 0.12,
+          "Cx": 0.08
+        },
+        "registration_distribution": [
+          0.5,
+          0.3,
+          0.2
+        ],
+        "capacity": 227,
+        "private_room_limit": 20,
+        "private_youth_full": 20,
+        "private_youth_first": 0,
+        "private_youth_second": 0,
+        "private_pricing": "per_night",
+        "private_addition_night_yen": 3000,
+        "private_extra_cost_night_yen": 0,
+        "private_extra_cost_notice": "個室の追加原価は未見積もり。既定0円は未計上を表し、追加費用なしと確認した意味ではない",
+        "lodging_night_yen": 1000,
+        "hotel_credit_night_yen": 2000,
+        "oomoto_total_yen": 1000000,
+        "common_before_coverage_yen": 4150000,
+        "common_covered_yen": 600000,
+        "oomoto_total_notice": "総額方式は宿泊費をまとめ、明示した共通費だけ除く。食事は別。金額・対象日・運営の宿泊・個室・光熱・清掃の範囲は未合意。未指定時は従来の個別積算",
+        "hotel_minimum_fee_yen": 10000,
+        "hotel_short_full_cap": true,
+        "hotel_fee_rules_notice": "ホテル泊だけに全日・短期共通の最低請求額と、短期は同条件全日ホテル料金までの上限を適用。国・週・会員ごとに判定してから平均する。None/Falseは過去比較用に最低額・上限なし",
+        "meal_price_yen": 450,
+        "full_meal_allowance": 21,
+        "short_meal_allowance": 11,
+        "meal_counts_are_confirmed": false,
+        "heat_full_yen": 300,
+        "short_vegetarian_heat_fraction": 0.5,
+        "nonmember_share": 0.7,
+        "nonmember_full_euro": 50,
+        "nonmember_short_euro": 35.0,
+        "day_older_share": 0.5,
+        "payment_rate": 0.038,
+        "reserve_rate": 0.12,
+        "age_factors": {
+          "16_or_under": 0.7,
+          "17_24": 0.8,
+          "25_35": 1.0,
+          "36_plus": 1.5
+        },
+        "display_table_offset_euro": 50,
+        "membership_discount_parameter_notice": "nonmember_full_euroは会員割引額（旧変数名）。表示基本料金CはTABLE+50で固定し、割引額の感度変更では動かさない",
+        "age_factors_apply_to": "非会員・雑魚寝・食事付き・全日程・25～35歳の表示基本額C",
+        "private_addition_basis": "全日7泊の35歳以下一般参加者専用。1人1泊3000円×7泊=21000円。前半・後半参加は利用不可。年齢・国・会員・申込週の倍率は掛けない",
+        "lodging_price_notice": "ホテル宿泊差引きは参加者向け料金、lodging_night_yenは施設へ払う原価。連動させず別々に設定する",
+        "young_participant_cost_discount": false,
+        "site_older_cap": "施設内の36歳以上一般参加者に約2割の目安。分母未定のため人数上限へ変換しない",
+        "hotel_older_cap": "施設内と同じ厳しい年齢人数上限なし",
+        "hotel_breakfast_automatic_deduction": false
+      },
+      "case_id": "oomoto_total100_base",
+      "changed_parameters_from_baseline": {
+        "oomoto_total_yen": 1000000,
+        "common_covered_yen": 600000
+      },
+      "balance_before_reserve_yen": -794988.7701974995,
+      "reserve_yen": 1175743.0885736998,
+      "balance_after_reserve_yen": -1970731.8587711994
+    },
+    {
+      "label": "条件付き：追加縮小案で宿泊・施設合計100万、会場等45万も全て範囲内",
+      "version": "v8_20260923",
+      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案。大本への宿泊・施設合計100万円の条件付き比較と青年・TEJOによる会計管理を追記",
+      "base_age_key": "25_35",
+      "ordinary_registration": 150,
+      "ordinary_period_counts": {
+        "full": 150,
+        "first": 0,
+        "second": 0
+      },
+      "ordinary_age_counts": {
+        "16_or_under": 8,
+        "17_24": 60,
+        "25_35": 60,
+        "36_plus": 22
+      },
+      "free_or_actual_cost_staff": 15,
+      "age_composition_is_forecast": true,
+      "capacity_routed_hotel_full": 0,
+      "hotel_registration": 22,
+      "hotel_period_counts": {
+        "full": 22,
+        "first": 0,
+        "second": 0
+      },
+      "nightly_attendance_including_hotel_and_staff": [
+        165,
+        165,
+        165,
+        165,
+        165,
+        165,
+        165
+      ],
+      "nightly_onsite_including_staff": [
+        143,
+        143,
+        143,
+        143,
+        143,
+        143,
+        143
+      ],
+      "nightly_hotel": [
+        22,
+        22,
+        22,
+        22,
+        22,
+        22,
+        22
+      ],
+      "onsite_bed_nights": 1001,
+      "meal_allowance_total": 3465,
+      "quantity_notice": "泊数は実滞在、食数は予算仮定。",
+      "paid_day_person_days": 120,
+      "free_day_person_days": 300,
+      "average_member_base_fee_euro": 295.61312499999997,
+      "average_member_base_fee_yen": 50254.23125,
+      "average_display_basic_fee_euro": 345.61312499999997,
+      "average_display_basic_fee_yen": 58754.23125,
+      "average_by_country_member_base_euro": {
+        "A": 342.0625,
+        "B": 287.5,
+        "C": 239.5,
+        "Cx": 154.0
+      },
+      "average_by_country_display_basic_euro": {
+        "A": 392.0625,
+        "B": 337.5,
+        "C": 289.5,
+        "Cx": 204.0
+      },
+      "income_yen": {
+        "full_basic": 7538134.6875,
+        "first_basic": 0.0,
+        "second_basic": 0.0,
+        "age_discount": -846060.9299999998,
+        "age_surcharge": 646296.54375,
+        "private_youth": 420000,
+        "nonmember": 892500.0,
+        "paid_day": 660000.0,
+        "hotel_lodging_credit": -308000,
+        "helpers_actual_cost_recovery": 0,
+        "grants": 0,
+        "deficit_support": 0,
+        "hotel_fee_rule_adjustment": 0.0
+      },
+      "variable_expense_components_yen": {
+        "lodging": 0.0,
+        "meals": 1559250.0,
+        "vegetarian": 264000.0,
+        "heat": 49500.0,
+        "kit": 115500.0,
+        "insurance": 132000.0,
+        "visa_admin": 49500.0
+      },
+      "expenses_yen": {
+        "ordinary_and_staff_variable": 2169750.0,
+        "day_reception": 336000,
+        "fixed_common": 2550000,
+        "tejo_support": 1000000,
+        "excursion_support": 300000,
+        "payment_fees": 342109.07144749997,
+        "oomoto_lodging_and_venue_total": 1000000,
+        "reserve": 923743.0885736999
+      },
+      "expense_subtotal_before_reserve_yen": 7697859.0714475,
+      "revenue_yen": 9002870.30125,
+      "expenses_total_yen": 8621602.1600212,
+      "balance_yen": 381268.1412287988,
+      "revenue": 9002870.30125,
+      "cost": 8621602.1600212,
+      "balance": 381268.1412287988,
+      "occupancy": [
+        143,
+        143,
+        143,
+        143,
+        143,
+        143,
+        143
+      ],
+      "cohorts": [
+        {
+          "period": "full",
+          "age": "16_or_under",
+          "lodging": "onsite",
+          "count": 8,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 300,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 105200,
+          "average_member_participation_fee_yen_before_lodging_adjustments": 32627.961874999997
+        },
+        {
+          "period": "full",
+          "age": "17_24",
+          "lodging": "onsite",
+          "count": 60,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 300,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 789000,
+          "average_member_participation_fee_yen_before_lodging_adjustments": 38503.384999999995
+        },
+        {
+          "period": "full",
+          "age": "25_35",
+          "lodging": "onsite",
+          "count": 60,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 300,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 789000,
+          "average_member_participation_fee_yen_before_lodging_adjustments": 50254.23125
+        },
+        {
+          "period": "full",
+          "age": "36_plus",
+          "lodging": "hotel",
+          "count": 22,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 300,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 289300,
+          "average_member_participation_fee_yen_before_lodging_adjustments": 79631.34687499999
+        }
+      ],
+      "staff_unit_expenses_yen": {
+        "lodging": 0,
+        "meals": 9450,
+        "vegetarian": 1600,
+        "heat": 300,
+        "kit": 700,
+        "insurance": 800,
+        "visa_admin": 300
+      },
+      "assumptions": {
+        "fx": 170,
+        "country_mix": {
+          "A": 0.45,
+          "B": 0.35,
+          "C": 0.12,
+          "Cx": 0.08
+        },
+        "registration_distribution": [
+          0.5,
+          0.3,
+          0.2
+        ],
+        "capacity": 227,
+        "private_room_limit": 20,
+        "private_youth_full": 20,
+        "private_youth_first": 0,
+        "private_youth_second": 0,
+        "private_pricing": "per_night",
+        "private_addition_night_yen": 3000,
+        "private_extra_cost_night_yen": 0,
+        "private_extra_cost_notice": "個室の追加原価は未見積もり。既定0円は未計上を表し、追加費用なしと確認した意味ではない",
+        "lodging_night_yen": 1000,
+        "hotel_credit_night_yen": 2000,
+        "oomoto_total_yen": 1000000,
+        "common_before_coverage_yen": 3000000,
+        "common_covered_yen": 450000,
+        "oomoto_total_notice": "総額方式は宿泊費をまとめ、明示した共通費だけ除く。食事は別。金額・対象日・運営の宿泊・個室・光熱・清掃の範囲は未合意。未指定時は従来の個別積算",
+        "hotel_minimum_fee_yen": 10000,
+        "hotel_short_full_cap": true,
+        "hotel_fee_rules_notice": "ホテル泊だけに全日・短期共通の最低請求額と、短期は同条件全日ホテル料金までの上限を適用。国・週・会員ごとに判定してから平均する。None/Falseは過去比較用に最低額・上限なし",
+        "meal_price_yen": 450,
+        "full_meal_allowance": 21,
+        "short_meal_allowance": 11,
+        "meal_counts_are_confirmed": false,
+        "heat_full_yen": 300,
+        "short_vegetarian_heat_fraction": 0.5,
+        "nonmember_share": 0.7,
+        "nonmember_full_euro": 50,
+        "nonmember_short_euro": 35.0,
+        "day_older_share": 0.5,
+        "payment_rate": 0.038,
+        "reserve_rate": 0.12,
+        "age_factors": {
+          "16_or_under": 0.7,
+          "17_24": 0.8,
+          "25_35": 1.0,
+          "36_plus": 1.5
+        },
+        "display_table_offset_euro": 50,
+        "membership_discount_parameter_notice": "nonmember_full_euroは会員割引額（旧変数名）。表示基本料金CはTABLE+50で固定し、割引額の感度変更では動かさない",
+        "age_factors_apply_to": "非会員・雑魚寝・食事付き・全日程・25～35歳の表示基本額C",
+        "private_addition_basis": "全日7泊の35歳以下一般参加者専用。1人1泊3000円×7泊=21000円。前半・後半参加は利用不可。年齢・国・会員・申込週の倍率は掛けない",
+        "lodging_price_notice": "ホテル宿泊差引きは参加者向け料金、lodging_night_yenは施設へ払う原価。連動させず別々に設定する",
+        "young_participant_cost_discount": false,
+        "site_older_cap": "施設内の36歳以上一般参加者に約2割の目安。分母未定のため人数上限へ変換しない",
+        "hotel_older_cap": "施設内と同じ厳しい年齢人数上限なし",
+        "hotel_breakfast_automatic_deduction": false
+      },
+      "case_id": "oomoto_total100_lean",
+      "changed_parameters_from_baseline": {
+        "fixed": 3000000,
+        "tejo": 1000000,
+        "excursion": 300000,
+        "oomoto_total_yen": 1000000,
+        "common_covered_yen": 450000
+      },
+      "balance_before_reserve_yen": 1305011.2298024995,
+      "reserve_yen": 923743.0885736999,
+      "balance_after_reserve_yen": 381268.1412287988
+    },
+    {
+      "label": "条件付き：追加縮小案で宿泊・施設100万、総額外の光熱・清掃等10万",
+      "version": "v8_20260923",
+      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案。大本への宿泊・施設合計100万円の条件付き比較と青年・TEJOによる会計管理を追記",
+      "base_age_key": "25_35",
+      "ordinary_registration": 150,
+      "ordinary_period_counts": {
+        "full": 150,
+        "first": 0,
+        "second": 0
+      },
+      "ordinary_age_counts": {
+        "16_or_under": 8,
+        "17_24": 60,
+        "25_35": 60,
+        "36_plus": 22
+      },
+      "free_or_actual_cost_staff": 15,
+      "age_composition_is_forecast": true,
+      "capacity_routed_hotel_full": 0,
+      "hotel_registration": 22,
+      "hotel_period_counts": {
+        "full": 22,
+        "first": 0,
+        "second": 0
+      },
+      "nightly_attendance_including_hotel_and_staff": [
+        165,
+        165,
+        165,
+        165,
+        165,
+        165,
+        165
+      ],
+      "nightly_onsite_including_staff": [
+        143,
+        143,
+        143,
+        143,
+        143,
+        143,
+        143
+      ],
+      "nightly_hotel": [
+        22,
+        22,
+        22,
+        22,
+        22,
+        22,
+        22
+      ],
+      "onsite_bed_nights": 1001,
+      "meal_allowance_total": 3465,
+      "quantity_notice": "泊数は実滞在、食数は予算仮定。",
+      "paid_day_person_days": 120,
+      "free_day_person_days": 300,
+      "average_member_base_fee_euro": 295.61312499999997,
+      "average_member_base_fee_yen": 50254.23125,
+      "average_display_basic_fee_euro": 345.61312499999997,
+      "average_display_basic_fee_yen": 58754.23125,
+      "average_by_country_member_base_euro": {
+        "A": 342.0625,
+        "B": 287.5,
+        "C": 239.5,
+        "Cx": 154.0
+      },
+      "average_by_country_display_basic_euro": {
+        "A": 392.0625,
+        "B": 337.5,
+        "C": 289.5,
+        "Cx": 204.0
+      },
+      "income_yen": {
+        "full_basic": 7538134.6875,
+        "first_basic": 0.0,
+        "second_basic": 0.0,
+        "age_discount": -846060.9299999998,
+        "age_surcharge": 646296.54375,
+        "private_youth": 420000,
+        "nonmember": 892500.0,
+        "paid_day": 660000.0,
+        "hotel_lodging_credit": -308000,
+        "helpers_actual_cost_recovery": 0,
+        "grants": 0,
+        "deficit_support": 0,
+        "hotel_fee_rule_adjustment": 0.0
+      },
+      "variable_expense_components_yen": {
+        "lodging": 0.0,
+        "meals": 1559250.0,
+        "vegetarian": 264000.0,
+        "heat": 49500.0,
+        "kit": 115500.0,
+        "insurance": 132000.0,
+        "visa_admin": 49500.0
+      },
+      "expenses_yen": {
+        "ordinary_and_staff_variable": 2169750.0,
+        "day_reception": 336000,
+        "fixed_common": 2650000,
+        "tejo_support": 1000000,
+        "excursion_support": 300000,
+        "payment_fees": 342109.07144749997,
+        "oomoto_lodging_and_venue_total": 1000000,
+        "reserve": 935743.0885736999
+      },
+      "expense_subtotal_before_reserve_yen": 7797859.0714475,
+      "revenue_yen": 9002870.30125,
+      "expenses_total_yen": 8733602.1600212,
+      "balance_yen": 269268.1412287988,
+      "revenue": 9002870.30125,
+      "cost": 8733602.1600212,
+      "balance": 269268.1412287988,
+      "occupancy": [
+        143,
+        143,
+        143,
+        143,
+        143,
+        143,
+        143
+      ],
+      "cohorts": [
+        {
+          "period": "full",
+          "age": "16_or_under",
+          "lodging": "onsite",
+          "count": 8,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 300,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 105200,
+          "average_member_participation_fee_yen_before_lodging_adjustments": 32627.961874999997
+        },
+        {
+          "period": "full",
+          "age": "17_24",
+          "lodging": "onsite",
+          "count": 60,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 300,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 789000,
+          "average_member_participation_fee_yen_before_lodging_adjustments": 38503.384999999995
+        },
+        {
+          "period": "full",
+          "age": "25_35",
+          "lodging": "onsite",
+          "count": 60,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 300,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 789000,
+          "average_member_participation_fee_yen_before_lodging_adjustments": 50254.23125
+        },
+        {
+          "period": "full",
+          "age": "36_plus",
+          "lodging": "hotel",
+          "count": 22,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 300,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 289300,
+          "average_member_participation_fee_yen_before_lodging_adjustments": 79631.34687499999
+        }
+      ],
+      "staff_unit_expenses_yen": {
+        "lodging": 0,
+        "meals": 9450,
+        "vegetarian": 1600,
+        "heat": 300,
+        "kit": 700,
+        "insurance": 800,
+        "visa_admin": 300
+      },
+      "assumptions": {
+        "fx": 170,
+        "country_mix": {
+          "A": 0.45,
+          "B": 0.35,
+          "C": 0.12,
+          "Cx": 0.08
+        },
+        "registration_distribution": [
+          0.5,
+          0.3,
+          0.2
+        ],
+        "capacity": 227,
+        "private_room_limit": 20,
+        "private_youth_full": 20,
+        "private_youth_first": 0,
+        "private_youth_second": 0,
+        "private_pricing": "per_night",
+        "private_addition_night_yen": 3000,
+        "private_extra_cost_night_yen": 0,
+        "private_extra_cost_notice": "個室の追加原価は未見積もり。既定0円は未計上を表し、追加費用なしと確認した意味ではない",
+        "lodging_night_yen": 1000,
+        "hotel_credit_night_yen": 2000,
+        "oomoto_total_yen": 1000000,
+        "common_before_coverage_yen": 3000000,
+        "common_covered_yen": 350000,
+        "oomoto_total_notice": "総額方式は宿泊費をまとめ、明示した共通費だけ除く。食事は別。金額・対象日・運営の宿泊・個室・光熱・清掃の範囲は未合意。未指定時は従来の個別積算",
+        "hotel_minimum_fee_yen": 10000,
+        "hotel_short_full_cap": true,
+        "hotel_fee_rules_notice": "ホテル泊だけに全日・短期共通の最低請求額と、短期は同条件全日ホテル料金までの上限を適用。国・週・会員ごとに判定してから平均する。None/Falseは過去比較用に最低額・上限なし",
+        "meal_price_yen": 450,
+        "full_meal_allowance": 21,
+        "short_meal_allowance": 11,
+        "meal_counts_are_confirmed": false,
+        "heat_full_yen": 300,
+        "short_vegetarian_heat_fraction": 0.5,
+        "nonmember_share": 0.7,
+        "nonmember_full_euro": 50,
+        "nonmember_short_euro": 35.0,
+        "day_older_share": 0.5,
+        "payment_rate": 0.038,
+        "reserve_rate": 0.12,
+        "age_factors": {
+          "16_or_under": 0.7,
+          "17_24": 0.8,
+          "25_35": 1.0,
+          "36_plus": 1.5
+        },
+        "display_table_offset_euro": 50,
+        "membership_discount_parameter_notice": "nonmember_full_euroは会員割引額（旧変数名）。表示基本料金CはTABLE+50で固定し、割引額の感度変更では動かさない",
+        "age_factors_apply_to": "非会員・雑魚寝・食事付き・全日程・25～35歳の表示基本額C",
+        "private_addition_basis": "全日7泊の35歳以下一般参加者専用。1人1泊3000円×7泊=21000円。前半・後半参加は利用不可。年齢・国・会員・申込週の倍率は掛けない",
+        "lodging_price_notice": "ホテル宿泊差引きは参加者向け料金、lodging_night_yenは施設へ払う原価。連動させず別々に設定する",
+        "young_participant_cost_discount": false,
+        "site_older_cap": "施設内の36歳以上一般参加者に約2割の目安。分母未定のため人数上限へ変換しない",
+        "hotel_older_cap": "施設内と同じ厳しい年齢人数上限なし",
+        "hotel_breakfast_automatic_deduction": false
+      },
+      "case_id": "oomoto_total100_lean_extra10",
+      "changed_parameters_from_baseline": {
+        "fixed": 3000000,
+        "tejo": 1000000,
+        "excursion": 300000,
+        "oomoto_total_yen": 1000000,
+        "common_covered_yen": 350000
+      },
+      "balance_before_reserve_yen": 1205011.2298024995,
+      "reserve_yen": 935743.0885736999,
+      "balance_after_reserve_yen": 269268.1412287988
+    },
+    {
+      "label": "条件付き：追加縮小案で宿泊・施設合計120万、会場等45万も範囲内",
+      "version": "v8_20260923",
+      "revision": "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案。大本への宿泊・施設合計100万円の条件付き比較と青年・TEJOによる会計管理を追記",
+      "base_age_key": "25_35",
+      "ordinary_registration": 150,
+      "ordinary_period_counts": {
+        "full": 150,
+        "first": 0,
+        "second": 0
+      },
+      "ordinary_age_counts": {
+        "16_or_under": 8,
+        "17_24": 60,
+        "25_35": 60,
+        "36_plus": 22
+      },
+      "free_or_actual_cost_staff": 15,
+      "age_composition_is_forecast": true,
+      "capacity_routed_hotel_full": 0,
+      "hotel_registration": 22,
+      "hotel_period_counts": {
+        "full": 22,
+        "first": 0,
+        "second": 0
+      },
+      "nightly_attendance_including_hotel_and_staff": [
+        165,
+        165,
+        165,
+        165,
+        165,
+        165,
+        165
+      ],
+      "nightly_onsite_including_staff": [
+        143,
+        143,
+        143,
+        143,
+        143,
+        143,
+        143
+      ],
+      "nightly_hotel": [
+        22,
+        22,
+        22,
+        22,
+        22,
+        22,
+        22
+      ],
+      "onsite_bed_nights": 1001,
+      "meal_allowance_total": 3465,
+      "quantity_notice": "泊数は実滞在、食数は予算仮定。",
+      "paid_day_person_days": 120,
+      "free_day_person_days": 300,
+      "average_member_base_fee_euro": 295.61312499999997,
+      "average_member_base_fee_yen": 50254.23125,
+      "average_display_basic_fee_euro": 345.61312499999997,
+      "average_display_basic_fee_yen": 58754.23125,
+      "average_by_country_member_base_euro": {
+        "A": 342.0625,
+        "B": 287.5,
+        "C": 239.5,
+        "Cx": 154.0
+      },
+      "average_by_country_display_basic_euro": {
+        "A": 392.0625,
+        "B": 337.5,
+        "C": 289.5,
+        "Cx": 204.0
+      },
+      "income_yen": {
+        "full_basic": 7538134.6875,
+        "first_basic": 0.0,
+        "second_basic": 0.0,
+        "age_discount": -846060.9299999998,
+        "age_surcharge": 646296.54375,
+        "private_youth": 420000,
+        "nonmember": 892500.0,
+        "paid_day": 660000.0,
+        "hotel_lodging_credit": -308000,
+        "helpers_actual_cost_recovery": 0,
+        "grants": 0,
+        "deficit_support": 0,
+        "hotel_fee_rule_adjustment": 0.0
+      },
+      "variable_expense_components_yen": {
+        "lodging": 0.0,
+        "meals": 1559250.0,
+        "vegetarian": 264000.0,
+        "heat": 49500.0,
+        "kit": 115500.0,
+        "insurance": 132000.0,
+        "visa_admin": 49500.0
+      },
+      "expenses_yen": {
+        "ordinary_and_staff_variable": 2169750.0,
+        "day_reception": 336000,
+        "fixed_common": 2550000,
+        "tejo_support": 1000000,
+        "excursion_support": 300000,
+        "payment_fees": 342109.07144749997,
+        "oomoto_lodging_and_venue_total": 1200000,
+        "reserve": 947743.0885736999
+      },
+      "expense_subtotal_before_reserve_yen": 7897859.0714475,
+      "revenue_yen": 9002870.30125,
+      "expenses_total_yen": 8845602.1600212,
+      "balance_yen": 157268.14122879878,
+      "revenue": 9002870.30125,
+      "cost": 8845602.1600212,
+      "balance": 157268.14122879878,
+      "occupancy": [
+        143,
+        143,
+        143,
+        143,
+        143,
+        143,
+        143
+      ],
+      "cohorts": [
+        {
+          "period": "full",
+          "age": "16_or_under",
+          "lodging": "onsite",
+          "count": 8,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 300,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 105200,
+          "average_member_participation_fee_yen_before_lodging_adjustments": 32627.961874999997
+        },
+        {
+          "period": "full",
+          "age": "17_24",
+          "lodging": "onsite",
+          "count": 60,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 300,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 789000,
+          "average_member_participation_fee_yen_before_lodging_adjustments": 38503.384999999995
+        },
+        {
+          "period": "full",
+          "age": "25_35",
+          "lodging": "onsite",
+          "count": 60,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 300,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 789000,
+          "average_member_participation_fee_yen_before_lodging_adjustments": 50254.23125
+        },
+        {
+          "period": "full",
+          "age": "36_plus",
+          "lodging": "hotel",
+          "count": 22,
+          "unit_expenses_yen": {
+            "lodging": 0,
+            "meals": 9450,
+            "vegetarian": 1600,
+            "heat": 300,
+            "kit": 700,
+            "insurance": 800,
+            "visa_admin": 300
+          },
+          "variable_expenses_yen": 289300,
+          "average_member_participation_fee_yen_before_lodging_adjustments": 79631.34687499999
+        }
+      ],
+      "staff_unit_expenses_yen": {
+        "lodging": 0,
+        "meals": 9450,
+        "vegetarian": 1600,
+        "heat": 300,
+        "kit": 700,
+        "insurance": 800,
+        "visa_admin": 300
+      },
+      "assumptions": {
+        "fx": 170,
+        "country_mix": {
+          "A": 0.45,
+          "B": 0.35,
+          "C": 0.12,
+          "Cx": 0.08
+        },
+        "registration_distribution": [
+          0.5,
+          0.3,
+          0.2
+        ],
+        "capacity": 227,
+        "private_room_limit": 20,
+        "private_youth_full": 20,
+        "private_youth_first": 0,
+        "private_youth_second": 0,
+        "private_pricing": "per_night",
+        "private_addition_night_yen": 3000,
+        "private_extra_cost_night_yen": 0,
+        "private_extra_cost_notice": "個室の追加原価は未見積もり。既定0円は未計上を表し、追加費用なしと確認した意味ではない",
+        "lodging_night_yen": 1000,
+        "hotel_credit_night_yen": 2000,
+        "oomoto_total_yen": 1200000,
+        "common_before_coverage_yen": 3000000,
+        "common_covered_yen": 450000,
+        "oomoto_total_notice": "総額方式は宿泊費をまとめ、明示した共通費だけ除く。食事は別。金額・対象日・運営の宿泊・個室・光熱・清掃の範囲は未合意。未指定時は従来の個別積算",
+        "hotel_minimum_fee_yen": 10000,
+        "hotel_short_full_cap": true,
+        "hotel_fee_rules_notice": "ホテル泊だけに全日・短期共通の最低請求額と、短期は同条件全日ホテル料金までの上限を適用。国・週・会員ごとに判定してから平均する。None/Falseは過去比較用に最低額・上限なし",
+        "meal_price_yen": 450,
+        "full_meal_allowance": 21,
+        "short_meal_allowance": 11,
+        "meal_counts_are_confirmed": false,
+        "heat_full_yen": 300,
+        "short_vegetarian_heat_fraction": 0.5,
+        "nonmember_share": 0.7,
+        "nonmember_full_euro": 50,
+        "nonmember_short_euro": 35.0,
+        "day_older_share": 0.5,
+        "payment_rate": 0.038,
+        "reserve_rate": 0.12,
+        "age_factors": {
+          "16_or_under": 0.7,
+          "17_24": 0.8,
+          "25_35": 1.0,
+          "36_plus": 1.5
+        },
+        "display_table_offset_euro": 50,
+        "membership_discount_parameter_notice": "nonmember_full_euroは会員割引額（旧変数名）。表示基本料金CはTABLE+50で固定し、割引額の感度変更では動かさない",
+        "age_factors_apply_to": "非会員・雑魚寝・食事付き・全日程・25～35歳の表示基本額C",
+        "private_addition_basis": "全日7泊の35歳以下一般参加者専用。1人1泊3000円×7泊=21000円。前半・後半参加は利用不可。年齢・国・会員・申込週の倍率は掛けない",
+        "lodging_price_notice": "ホテル宿泊差引きは参加者向け料金、lodging_night_yenは施設へ払う原価。連動させず別々に設定する",
+        "young_participant_cost_discount": false,
+        "site_older_cap": "施設内の36歳以上一般参加者に約2割の目安。分母未定のため人数上限へ変換しない",
+        "hotel_older_cap": "施設内と同じ厳しい年齢人数上限なし",
+        "hotel_breakfast_automatic_deduction": false
+      },
+      "case_id": "oomoto_total120_lean",
+      "changed_parameters_from_baseline": {
+        "fixed": 3000000,
+        "tejo": 1000000,
+        "excursion": 300000,
+        "oomoto_total_yen": 1200000,
+        "common_covered_yen": 450000
+      },
+      "balance_before_reserve_yen": 1105011.2298024995,
+      "reserve_yen": 947743.0885736999,
+      "balance_after_reserve_yen": 157268.14122879878
     }
   ]
 }

@@ -25,7 +25,7 @@ from typing import Iterable, Mapping
 
 
 VERSION = "v8_20260923"
-REVISION = "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案"
+REVISION = "一般参加150人・全日7泊8日、運営15人別枠。料金据置。通信10万円、暑さ対策300円/全日人。共通費等の追加縮小は別の検討案。大本への宿泊・施設合計100万円の条件付き比較と青年・TEJOによる会計管理を追記"
 DISPLAY_TABLE_OFFSET_EURO = 50  # TABLEの旧会員相当額Bから、確定済みの表示基本料金Cへの固定差額。
 TABLE = {
     "A": [265,275,280,290,300,305,315,325,335,340,350,360,365,375,385,390,400,410,420,425,435,445,450,460],
@@ -279,6 +279,7 @@ def scenario(label="150人・8日間の暫定基準案", *,
              day_cost=800, lodging_night=1000, meal_price=450, full_meals=21, short_meals=11, heat_full_yen=300,
              hotel_refund_night=2000, hotel_minimum_fee_yen=10000, hotel_short_full_cap=True,
              fixed=4_150_000, tejo=2_000_000, excursion=400_000,
+             oomoto_total_yen=None, common_covered_yen=0,
              fee_rate=.038, reserve_rate=.12, helper_recovery_yen=0,
              grants=0, deficit_support=0, auto_hotel_overflow=False):
     """helpers の回収収入は実費/無料を直接円指定し、年齢倍率は決して掛けない。
@@ -292,6 +293,14 @@ def scenario(label="150人・8日間の暫定基準案", *,
     外部ホテル代と遠足事業費は本人払いの別会計。本体には遠足支援枠だけを計上。
     """
     mix = dict(MIX_JP if mix is None else mix)
+    require_number("大本合計へ移す共通費", common_covered_yen)
+    if oomoto_total_yen is not None:
+        require_number("大本への宿泊・施設合計", oomoto_total_yen)
+    elif common_covered_yen:
+        raise ValueError("宿泊・施設合計を指定せずに共通費だけ除くことはできません")
+    require_number("共通費", fixed)
+    if common_covered_yen > fixed:
+        raise ValueError("大本合計へ移す共通費は共通費の元額以下")
     for name, value in (("全日人数", full), ("前半人数", first), ("後半人数", second),
                         ("運営人数", staff_full), ("施設内定員", capacity),
                         ("一人一室の個室販売枠", private_room_limit), ("全日個室人数", private_youth_full), ("前半個室人数", private_youth_first),
@@ -403,7 +412,10 @@ def scenario(label="150人・8日間の暫定基準案", *,
                 minimum_fee_yen=hotel_minimum_fee_yen, short_full_cap=hotel_short_full_cap)
             for c in cohorts if c.lodging == "hotel")
     revenue = sum(income.values())
-    cost_kwargs = dict(lodging_night=lodging_night, meal_price=meal_price, full_meals=full_meals,
+    # 総額方式では施設内宿泊費を総額の一行へ移し、人数×単価を重ねない。
+    # 食事、個室の追加原価（合計の対象外とする感度）、参加者向け宿泊差引きは別。
+    cost_kwargs = dict(lodging_night=lodging_night if oomoto_total_yen is None else 0,
+                       meal_price=meal_price, full_meals=full_meals,
                        short_meals=short_meals, heat_full_yen=heat_full_yen)
     components = {k: 0. for k in unit_cost("full", "onsite", **cost_kwargs)}
     cohort_details = []
@@ -430,9 +442,11 @@ def scenario(label="150人・8日間の暫定基準案", *,
     expenses = {
         "ordinary_and_staff_variable": sum(components.values()),
         "day_reception": (paid_days*paid_per_day+free_day_person_days)*day_cost,
-        "fixed_common": fixed, "tejo_support": tejo, "excursion_support": excursion,
+        "fixed_common": fixed-common_covered_yen, "tejo_support": tejo, "excursion_support": excursion,
         "payment_fees": fee_base*fee_rate,
     }
+    if oomoto_total_yen is not None:
+        expenses["oomoto_lodging_and_venue_total"] = oomoto_total_yen
     subtotal = sum(expenses.values())
     expenses["reserve"] = subtotal*reserve_rate
     cost = sum(expenses.values())
@@ -473,6 +487,10 @@ def scenario(label="150人・8日間の暫定基準案", *,
             "private_extra_cost_night_yen": private_extra_cost_night,
             "private_extra_cost_notice": "個室の追加原価は未見積もり。既定0円は未計上を表し、追加費用なしと確認した意味ではない",
             "lodging_night_yen": lodging_night, "hotel_credit_night_yen": hotel_refund_night,
+            "oomoto_total_yen": oomoto_total_yen, "common_before_coverage_yen": fixed,
+            "common_covered_yen": common_covered_yen,
+            "oomoto_total_notice": "総額方式は宿泊費をまとめ、明示した共通費だけ除く。食事は別。金額・対象日・運営の宿泊・個室・光熱・清掃の範囲は未合意。未指定時は従来の個別積算",
+
             "hotel_minimum_fee_yen": hotel_minimum_fee_yen,
             "hotel_short_full_cap": hotel_short_full_cap,
             "hotel_fee_rules_notice": "ホテル泊だけに全日・短期共通の最低請求額と、短期は同条件全日ホテル料金までの上限を適用。国・週・会員ごとに判定してから平均する。None/Falseは過去比較用に最低額・上限なし",
@@ -563,6 +581,18 @@ def build_report():
         ("lean_combined", "追加縮小案・会員50%・個室10人・食事550円・日帰り2日", {
             **lean, "nonmember_share": .5, "private_youth_full": 10, "meal_price": 550, "paid_days": 2}),
     ]
+    # 全て条件付き比較。100万円は主催側の感触で、施設の正式見積ではない。
+    # common_covered_yenは既存「会場・光熱・清掃」のうち合計100万円に含むと仮定する額。
+    specs.extend([
+        ("oomoto_total100_base", "条件付き：宿泊・施設合計100万、従来の会場等60万も全て範囲内", {
+            "oomoto_total_yen": 1000000, "common_covered_yen": 600000}),
+        ("oomoto_total100_lean", "条件付き：追加縮小案で宿泊・施設合計100万、会場等45万も全て範囲内", {
+            **lean, "oomoto_total_yen": 1000000, "common_covered_yen": 450000}),
+        ("oomoto_total100_lean_extra10", "条件付き：追加縮小案で宿泊・施設100万、総額外の光熱・清掃等10万", {
+            **lean, "oomoto_total_yen": 1000000, "common_covered_yen": 350000}),
+        ("oomoto_total120_lean", "条件付き：追加縮小案で宿泊・施設合計120万、会場等45万も範囲内", {
+            **lean, "oomoto_total_yen": 1200000, "common_covered_yen": 450000}),
+    ])
     rows = []
     for key, label, changed in specs:
         row = scenario(label, **changed)
@@ -575,7 +605,9 @@ def build_report():
         "version": VERSION, "revision": REVISION, "date": "2026-09-23",
         "user_confirmed": {"ordinary_full": 150, "days": 8, "staff_is_separate": True,
             "observed_private_rooms": 20, "private_rooms_include_annex": True, "short_price_fraction": .7,
-            "age_ratio": [5,40,40,15], "member_share": .3},
+            "age_ratio": [5,40,40,15], "member_share": .3,
+            "oomoto_reported_charge_basis": "修行の宿泊費＋施設利用費",
+            "reported_budget_management": "主催側が伺った意向：青年主体で、TEJOの既存銀行口座と連携して財政管理"},
         "provisional": {"staff_full": 15, "age_counts": [8,60,60,22],
             "hotel_full": 22, "paid_private_people": 20,
             "free_day_person_days": 300, "onsite_capacity_document_total": 227,
@@ -583,6 +615,8 @@ def build_report():
             "room_allocation_notice": "20室は別館等を含むと主催側確認。20室の存在と、全室を有料個室として販売できることは別。建物別内訳・スタッフ等の取り置き・単独使用による定員減を確認する",
             "heat_notice": "300円/全日人は既存冷房等を使う前提の追加消耗品枠。新規冷房工事や全日分の飲料購入を賄う見積もりではない",
             "lean_proposal_is_approved": False,
+            "oomoto_100man_estimate": "主催側の感触であり正式提示額ではない。宿泊＋施設合計・食事別の場合を条件付き比較",
+            "oomoto_100man_is_formal_quote": False,
             "common_mix_notice": "国・週・年齢と会員割合の相関は未反映。会員30%を各群へ一律適用"},
         "display_basic_table_euro": {g: [v+50 for v in values] for g, values in TABLE.items()},
         "common_budgets_yen": COMMON_BUDGETS,
